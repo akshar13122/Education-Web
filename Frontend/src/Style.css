@@ -1,0 +1,683 @@
+/* style.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Century Gothic, Arial, sans-serif;
+}
+/* body{
+  width: 100vh;
+  height: 100vh;
+} */
+
+header {
+  overflow: hidden;
+    overflow-y: scroll;
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(./images/7.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    width: 100vw;
+    height: 100vh;
+}
+
+ul {
+    position: relative;
+    float: right;
+    list-style-type: none;
+    margin-top: 25px;
+}
+
+ul li {
+    display: inline-block;
+    margin: 10px;
+}
+
+ul li a {
+    text-decoration: none;
+    color: #fff;
+    padding: 8px 30px;
+    border: 1px solid transparent;
+    transition: 0.8s ease;
+}
+
+ul li a:hover {
+    background-color: #ffffff;
+    color: #000;
+}
+
+.title {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.title h1 {
+    color: rgb(255, 255, 255);
+    font-size: 70px;
+}
+
+.button {
+    position: relative;
+    top: 60%;
+    left: 37%;
+}
+
+.btn {
+    border: 1px solid;
+    padding: 10px 30px;
+    color: #fff;
+    text-decoration: none;
+    transition: 0.8s ease;
+    position: relative;
+    right: 90px;
+    bottom: 20px;
+}
+
+.btn:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+.about-container, .contact-container {
+    position: relative;
+    top: 80px;
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 30px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #ffffff;
+}
+
+.company-name {
+    font-weight: bold;
+    color: #000;
+}
+
+.contact-container p strong {
+    font-weight: bold;
+    color: #ffffff;
+}
+.buttoncc{
+    position: relative;
+    top: 400px;
+    left: 590px;
+}
+.buttoncc>a{
+    margin:4px;
+}
+/* #h1c{
+    text-align: center;
+}
+img{
+    height: 50px;
+    width: 60px;
+} */
+
+.buttonh1{
+    position: absolute;
+    top:35%;
+    left: 20%;
+}
+.buttonh2{
+    position: absolute;
+    top: 35%;
+    left: 55%;
+}
+div>img{
+    height: 200px;
+    border: 10px double rgb(200, 220, 217);
+}
+.b1{
+    position: absolute;
+    font-size: 30px;
+    font-weight: bold;
+    left:26%;
+    top:68%
+}
+.b2{
+    font-weight: bold;
+    position: absolute;
+    font-size: 30px;
+    left:63%;
+    top:68%
+}
+div>a{
+    text-decoration: none;
+    color: aliceblue;
+    border: 10px double transparent;
+    transition: 0.6s ease-in;
+}
+div>a:hover{
+    background-color: rgb(146, 183, 183);
+    color: black;
+}
+#h1c{
+    color: rgb(204, 221, 226);
+    position: absolute;
+    top: 15%;
+    right: 32%;
+    transition: 0.8s ease-in;
+}
+div>img:hover{
+    background-color: rgb(0, 0, 0);
+    color: black;
+}
+/* #h1c:hover{
+    background-color: rgb(146, 183, 183);
+    color: black;
+} */
+
+/*CourseMenu*/
+
+
+
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Container for the Course Menu */
+.course-menu {
+    position: relative;
+    top: 130px;
+    padding: 20px;
+    /* background-color: #f4f4f4; */
+    text-align: center;
+  
+}
+
+/* Title Styling */
+/* .course-menu-title {
+    position: relative;
+    bottom: 65px;
+    left: 235px;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #ffffff;
+} */
+
+/* Course Grid Layout */
+.course-grid {
+  position: relative;
+  top: 70px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 10px;
+    justify-items: center;
+    
+}
+
+/* Course Card Styling */
+.course-card {
+    background-color: rgba(135, 207, 235, 0.3);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    max-width: 300px;
+    transition: transform 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Course Image Styling */
+.course-image {
+    width: 100%;
+    /* height: 130px; */
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Course Card Title */
+.course-card h2 {
+    font-size: 1.5rem;
+    margin: 10px 0;
+}
+
+/* Button Styling */
+.btn22 {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid;
+    padding: 10px 30px;
+    color: #fff;
+    text-decoration: none;
+    transition: 0.8s ease;
+}
+
+.btn22:hover {
+    background-color: #ffffff;
+}
+
+/*Video section*/
+
+.htmlv-container {
+    position: relative;
+    top: 70px;
+    left: 450px;
+    
+  }
+  
+  .video-info {
+    margin-top: 20px;
+    font-size: 20px;
+    color: #fff;
+    font-weight: 600;
+    border: 1px solid white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for effect */
+    background-color: transparent; /* Semi-transparent background for text */
+    padding: 10px 20px;
+    /* border-radius: 8px; */
+    display: inline-block; /* Ensure the width fits the content */
+    max-width: 100%; /* Prevents the element from exceeding the container width */
+    box-sizing: border-box; /* Includes padding and border in the width calculation */
+    text-align: center; /* Center the text */
+    position: relative;
+    right: 45px;
+    top: 30px;
+  }
+  .notes-container {
+    position: absolute;
+    top: 110%;
+    left: 17%;
+    transform: translateX(-50%); /* Centers the buttons horizontally */
+    display: flex;
+    gap: 20px; /* Adjust the gap between the buttons */
+  }
+  
+  .notes {
+    padding: 10px 20px;
+    background-color:transparent;
+    border: 1px solid white;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 800;
+    /* border-radius: 5px; */
+    position: relative;
+    bottom: 25px;
+    
+  }
+
+  
+  .notes:hover {
+    background-color: white;
+  }
+  
+  
+
+/*FeedBackForm */
+  
+
+  
+  .feedback-form form {
+    position: relative;
+    top: 120px;
+    background-color: rgba(255, 255, 255, 0.49); /* Form background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    padding: 30px;
+    width: 100%;
+    max-width: 450px; /* Limit form width to prevent overflow */
+    box-sizing: border-box; /* Include padding in the width */
+    margin: 0 auto; /* Center horizontally */
+  }
+  .feedback-form{
+    position: relative;
+    bottom: 30px;
+  }
+  
+  .feedback-form .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .feedback-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .feedback-form textarea,
+  .feedback-form input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #dddddda8;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box; /* Include padding in the width */
+  }
+  
+  .feedback-form textarea:focus,
+  .feedback-form input:focus {
+    border-color: #4CAF50; /* Green border on focus */
+  }
+  
+  .feedback-form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50; /* Green background */
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .feedback-form button:hover {
+    background-color: #45a049; /* Darker green on hover */
+  }
+  
+  
+  /* Signup */
+  /* Basic styling for the SignUp component */
+
+  /* Styling for the SignUp component */
+
+/* Form container with centered alignment */
+.signup-container {
+    position: relative;
+    top: 180px;
+    background-color: rgba(255, 255, 255, 0.493); /* Light form background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    padding: 30px;
+    width: 100%;
+    max-width: 450px; /* Limit form width */
+    box-sizing: border-box;
+    margin: 0 auto; /* Center horizontally */
+  }
+  
+  /* Margin between input fields */
+  .signup-container .form-group {
+    margin-bottom: 15px;
+  }
+  
+  /* Styling for form labels */
+  .signup-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555; /* Text color */
+  }
+  
+  /* Input fields styling */
+  .signup-container input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #dddddda8; /* Light border */
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+  }
+  
+  /* Focus effect on input fields */
+  .signup-container input:focus {
+    border-color: #4CAF50; /* Green border on focus */
+  }
+  
+  /* Styling for submit button */
+  .signup-container button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50; /* Green background */
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Hover effect for submit button */
+  .signup-container button:hover {
+    background-color: #45a049; /* Darker green on hover */
+  }
+  
+
+
+
+/* Login page */
+/* Styling for the Login component */
+
+/* Form container with centered alignment */
+.login-container {
+    position: relative;
+    top: 180px;
+    background-color: rgba(255, 255, 255, 0.49); /* Light form background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    padding: 30px;
+    width: 100%;
+    max-width: 450px; /* Limit form width */
+    box-sizing: border-box;
+    margin: 0 auto; /* Center horizontally */
+  }
+  
+  /* Margin between input fields */
+  .login-container .login-group {
+    margin-bottom: 15px;
+  }
+  
+  /* Styling for form labels */
+  .login-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555; /* Text color */
+  }
+  
+  /* Input fields styling */
+  .login-container input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #dddddda8; /* Light border */
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+  }
+  
+  /* Focus effect on input fields */
+  .login-container input:focus {
+    border-color: #4CAF50; /* Green border on focus */
+  }
+  
+  /* Styling for submit button */
+  .login-container button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50; /* Green background */
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Hover effect for submit button */
+  .login-container button:hover {
+    background-color: #45a049; /* Darker green on hover */
+  }
+
+
+
+
+  /* Signup-Login button */
+ .signup{
+    position: relative;
+    right: 800px;
+  } 
+ .login{
+    position: relative;
+    right: 530px;
+  }
+ /* Signup-Login button */
+
+
+
+ /* search bar */
+
+
+ /* Center the search bar and style it */
+/* .course-menu {
+  display: flex;
+  justify-content: center; 
+  margin-top: 20px;
+} */
+.searchbar-main{
+  position: relative;
+  top: 60px;
+  left: 260px;
+}
+.search-bar {
+  position: relative;
+  bottom: 75px;
+  width: 50%; 
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.search-bar:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 10px rgba(0,123,255,0.5);
+}
+
+.left-nav22{
+  position: relative;
+  top: 39px;
+  left: 20px;
+}
+.nav-btn22{
+  padding-left: 0px;
+}
+#nnbtn{
+  margin-left: 20px;
+}
+
+/* logout button */
+
+@media (max-width: 1024px) {
+  .btn {
+    position: relative;
+    right: 250px;
+    bottom: 50px;
+  }
+  .searchbar-main{
+    position: relative;
+    left: 5px;
+  }
+}
+@media (max-width: 768px) {
+  .title h1 {
+      font-size: 50px;
+  }
+  .buttoncc{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+  }
+  .btn{
+    position: relative;
+    width: 150px;
+  }
+
+  .button {
+      left: 30%;
+  }
+
+
+  .about-container, .contact-container {
+      padding: 20px;
+      margin: 20px;
+  }
+
+  .course-menu {
+      padding: 10px;
+  }
+
+  .course-grid {
+      grid-template-columns: 1fr;
+  }
+
+  .feedback-form form, .signup-container, .login-container {
+      width: 90%;
+      padding: 20px;
+  }
+
+  .htmlv-container {
+      left: 0;
+      top: 40%;
+  }
+
+  .notes-container {
+      top: 110%;
+      left: 50%;
+  }
+}
+
+/* For Small Mobile Devices */
+@media (max-width: 480px) {
+  .title h1 {
+      font-size: 40px;
+  }
+
+  .button {
+      left: 20%;
+  }
+
+  .buttonh1, .buttonh2 {
+      top: 35%;
+  }
+
+  .about-container, .contact-container {
+      padding: 15px;
+      margin: 10px;
+  }
+
+  .course-card {
+      padding: 15px;
+  }
+
+  .btn22 {
+      font-size: 14px;
+      padding: 8px 16px;
+  }
+
+  .feedback-form form, .signup-container, .login-container {
+      width: 95%;
+      padding: 15px;
+  }
+}

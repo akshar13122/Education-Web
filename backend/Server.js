@@ -41,7 +41,7 @@ app.post("/api/register", (req, res) => {
       return res.status(400).json({ error: "User already exists with that email!" });
     }
 
-    // Register the new user
+    // Register the new user with plain-text password
     db.query(
       "INSERT INTO user_table (name, email, password) VALUES (?, ?, ?)",
       [name, email, password],
@@ -65,40 +65,22 @@ app.post("/api/login", (req, res) => {
   }
 
   // Check user credentials in the database
-  db.query(
-    "SELECT * FROM user_table WHERE email = ?",
-    [email],
-    (err, results) => {
-      if (err) {
-        console.error("Login Error:", err.message);
-        return res.status(500).json({ error: "Database Error" });
-      }
-
-      if (results.length === 0 || results[0].password !== password) {
-        return res.status(401).json({ error: "Invalid credentials" });
-      }
-
-      // Simulate a "logged-in" status via a cookie or response
-      // Here, we will simply send back a success response and role
-      res.json({
-        role: "user",
-        user: results[0],
-      });
+  db.query("SELECT * FROM user_table WHERE email = ?", [email], (err, results) => {
+    if (err) {
+      console.error("Login Error:", err.message);
+      return res.status(500).json({ error: "Database Error" });
     }
-  );
-});
 
-// Course Menu (Protected Route)
-app.get("/api/course-menu", (req, res) => {
-  // Simulate checking if the user is logged in
-  // This would typically come from a session or cookie
-  const user = req.query.user; // For example, the user might be sent in query params (in reality, you may use JWT/cookies)
-  
-  if (!user) {
-    return res.status(401).json({ error: "You must log in to access the course menu" });
-  }
+    if (results.length === 0 || results[0].password !== password) {
+      return res.status(401).json({ error: "Invalid credentials" });
+    }
 
-  res.json({ message: "Welcome to the course menu!" });
+    // Simulate a "logged-in" status via a response
+    res.json({
+      message: "You are logged in!",
+      user: results[0],
+    });
+  });
 });
 
 // Start the server

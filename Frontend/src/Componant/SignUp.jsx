@@ -1,19 +1,17 @@
-// src/Register.js
-
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';  // Importing useNavigate for navigation
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";  // Importing useNavigate for navigation
 import "./SignUp.css";
 
 const SignUp = () => {
   // State to store input values
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: ''
+    name: "",
+    email: "",
+    password: "",
   });
 
   // State to handle errors
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   const navigate = useNavigate();  // Hook for navigation
 
@@ -22,39 +20,55 @@ const SignUp = () => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value,
     });
   };
 
   // Handle form submit
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Basic form validation
     if (!formData.name || !formData.email || !formData.password) {
-      setError('All fields are required!');
+      setError("All fields are required!");
       return;
     }
 
     if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      setError('Please enter a valid email!');
+      setError("Please enter a valid email!");
       return;
     }
 
-    // If validation passes, you can process the form data
-    console.log('Form submitted:', formData);
-    setError('');
-    // Reset the form
-    setFormData({
-      name: '',
-      email: '',
-      password: ''
-    });
+    // If validation passes, send a POST request to your backend
+    try {
+      const response = await fetch("http://localhost:5000/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        alert("Registration successful!");  // Show alert on success
+        setFormData({
+          name: "",
+          email: "",
+          password: "",
+        });
+        setError("");
+        navigate("/login");  // Navigate to login page after successful registration
+      } else {
+        setError("Registration failed! Please try again.");
+      }
+    } catch (err) {
+      setError("Network error. Please try again later.");
+    }
   };
 
   // Navigate to login page
   const handleLoginRedirect = () => {
-    navigate('/login');  // Navigates to the login page
+    navigate("/login");  // Navigates to the login page
   };
 
   return (
@@ -95,12 +109,16 @@ const SignUp = () => {
           />
         </div>
         {error && <p className="error-message">{error}</p>}
-        <button type="submit" className="submit-btn">Register</button>
+        <button type="submit" className="submit-btn">
+          Register
+        </button>
       </form>
 
       <div className="login-redirect">
-        <p id='regp'>Already have an account?</p>
-        <button className="login-btn" onClick={handleLoginRedirect}>Login</button>
+        <p id="regp">Already have an account?</p>
+        <button className="login-btn" onClick={handleLoginRedirect}>
+          Login
+        </button>
       </div>
     </div>
   );

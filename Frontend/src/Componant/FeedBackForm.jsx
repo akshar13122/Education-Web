@@ -32,6 +32,17 @@ class FeedBackForm extends Component {
     return (
       <div className="feedback-form">
         <form onSubmit={this.handleSubmit}>
+        <div className="form-group">
+            <label>Name</label>
+            <input
+              type="text"
+              name="likeCourse"
+              value={this.state.likeCourse}
+              onChange={this.handleChange}
+              placeholder="Enter your name"
+              required
+            />
+          </div>
           {/* 1. How is the Course? */}
           <div className="form-group">
             <label>1. How is the Course?</label>

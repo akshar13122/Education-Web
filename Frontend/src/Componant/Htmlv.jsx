@@ -5,7 +5,7 @@ import "./Htmlv.css";
 
 export default function Htmlv() {
   const handleIntroductionClick = () => {
-    window.open("http://www.nematrian.com/HTMLTutorialIntroduction", "_blank");
+    window.open("https://www.w3schools.com/html/html_intro.asp", "_blank");
   };
 
   return (
@@ -16,12 +16,11 @@ export default function Htmlv() {
       </video> */}
       <div className='ApiSec'>
         <p onClick={handleIntroductionClick} className="clickable-text">Introduction</p>
+        <a href='http://www.nematrian.com/HTMLTutorialGettingStarted'>get started</a>
       </div>
       <div className="notes-container">
         {/* For external link, use <a> tag */}
-        <a href="http://www.nematrian.com/HTMLTutorialIntroduction" target="_blank" rel="noopener noreferrer" className="notes">
-          Notes
-        </a>
+        <NavLink  className="notes">Notes</NavLink>
         <NavLink to="/FeedBackForm" className="notes">
           Feedback
         </NavLink>

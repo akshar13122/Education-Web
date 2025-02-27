@@ -9,9 +9,9 @@ app.use(express.json());
 // MySQL Database connection
 const db = mysql.createConnection({
   host: "localhost",
-  user: "root",  // Replace with your MySQL username
-  password: "root",  // Replace with your MySQL password
-  database: "edu_users",  // Replace with your database name
+  user: "root",  
+  password: "root",  
+  database: "edu_users",  
 });
 
 db.connect((err) => {
@@ -55,6 +55,54 @@ app.post("/api/register", (req, res) => {
     );
   });
 });
+
+// Admin Fetch all registered users
+app.get("/api/users", (req, res) => {
+  db.query("SELECT * FROM user_table", (err, results) => {
+    if (err) {
+      console.error("Error fetching users:", err.message);
+      return res.status(500).json({ error: "Database Error" });
+    }
+    res.json({ users: results });
+  });
+});
+
+// Delete user
+app.delete("/api/users/:id", (req, res) => {
+  const { id } = req.params;
+  db.query("DELETE FROM user_table WHERE id = ?", [id], (err, result) => {
+    if (err) {
+      console.error("Delete Error:", err.message);
+      return res.status(500).json({ error: "Database Error" });
+    }
+    res.status(200).json({ message: "User deleted successfully!" });
+  });
+});
+
+
+// Update user details
+app.put("/api/users/:id", (req, res) => {
+  const { id } = req.params;
+  const { name, email, password } = req.body;
+
+  if (!name || !email || !password) {
+    return res.status(400).json({ error: "All fields are required!" });
+  }
+
+  db.query(
+    "UPDATE user_table SET name = ?, email = ?, password = ? WHERE id = ?",
+    [name, email, password, id],
+    (err, result) => {
+      if (err) {
+        console.error("Update Error:", err.message);
+        return res.status(500).json({ error: "Database Error" });
+      }
+      res.status(200).json({ message: "User updated successfully!" });
+    }
+  );
+});
+
+
 
 // Login Route
 app.post("/api/login", (req, res) => {

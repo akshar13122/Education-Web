@@ -9,7 +9,7 @@ function Home() {
             </div>
             <div className="buttoncc">
                 <NavLink to="/CourseMenu" className="btn">COURSE MENU</NavLink>
-                <NavLink to="/Dashboard" className="btn">DEMO VIDEOS</NavLink>
+                <NavLink to="/adminlogin" className="btn">ADMIN LOGIN</NavLink>
             </div>
         </>
     );

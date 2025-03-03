@@ -1,0 +1,46 @@
+/* FeedbackData.css */
+.feedback-data-container {
+    padding: 20px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.feedback-data-container h1 {
+    text-align: center;
+}
+
+table {
+    width: 800px;
+    /* max-width: 1200px;  */
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 16px 20px;  /* Increase padding for a wider feel */
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.deletebtn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+.deletebtn:hover {
+    background-color: #d32f2f;
+}

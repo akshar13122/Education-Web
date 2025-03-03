@@ -15,14 +15,14 @@ class CourseMenu extends Component {
         { name: 'CSS', link: '/Cssv' },
         { name: 'Java', link: '/Javav' },
         { name: 'Python', link: '/Pythonv' },
-        { name: 'React Js', link: '/Htmlv' },
-        { name: 'Node Js', link: '/Htmlv' },
-        { name: 'Express Js', link: '/Htmlv' },
-        { name: 'Mongo-Db', link: '/Htmlv' },
-        { name: 'JavaScript', link: '/Htmlv' },
-        { name: 'My-SQL', link: '/Htmlv' },
-        { name: 'PHP', link: '/Htmlv' },
-        { name: 'Postgre-SQL', link: '/Htmlv' },
+        { name: 'React Js', link: '/reactjsv' },
+        { name: 'Node Js', link: '/nodejsv' },
+        { name: 'Express Js', link: '/expressjsv' },
+        { name: 'Mongo-Db', link: '/mongodbv' },
+        // { name: 'JavaScript', link: '/Htmlv' },
+        // { name: 'My-SQL', link: '/Htmlv' },
+        // { name: 'PHP', link: '/Htmlv' },
+        // { name: 'Postgre-SQL', link: '/Htmlv' },
     ];
 
     constructor(props) {
@@ -50,14 +50,14 @@ class CourseMenu extends Component {
                 return ex;
             case 'Mongo-Db':
                 return mongo3;
-            case 'JavaScript':
-                return mongo3;
-            case 'My-SQL':
-                return mongo3;
-            case 'PHP':
-                return mongo3;
-            case 'Postgre-SQL':
-                return mongo3;
+            // case 'JavaScript':
+            //     return mongo3;
+            // case 'My-SQL':
+            //     return mongo3;
+            // case 'PHP':
+            //     return mongo3;
+            // case 'Postgre-SQL':
+            //     return mongo3;
             default:
                 return ''; 
         }

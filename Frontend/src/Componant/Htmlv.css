@@ -1,8 +1,46 @@
-.ApiSec{
-    height: 68vh;
-    border: 1px solid black;
+
+.ApiSec {
+    height: 70vh;
+    /* border: 1px solid black; */
     width: 190vh;
     position: relative;
-    right: 380px;
+    right: 400px;
+    bottom: 70px;
+    overflow: auto; 
 }
+
+.ApiSec::-webkit-scrollbar {
+    display: none; 
+}
+.ApiSec {
+    scrollbar-width: none;
+}
+.notes-container {
+    position: absolute;
+    top: 110%;
+    left: 17%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+  }
+  
+  .notes {
+    padding: 10px 20px;
+    background-color:transparent;
+    border: 1px solid white;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 800;
+    /* border-radius: 5px; */
+    position: relative;
+    bottom: 100px;
+  }
+
+  
+  .notes:hover {
+    background-color: white;
+  }
+  
+  
 

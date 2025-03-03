@@ -51,6 +51,11 @@ const AdminDashBoard = () => {
     navigate(`/edituser/${id}`); // Navigate to EditUser page with the user ID
   };
 
+  // Navigate to FeedbackData page
+  const navigateToFeedbackData = () => {
+    navigate('/feedbackdata');
+  };
+
   // Handle the search input change
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value); // Update the search term state
@@ -67,6 +72,9 @@ const AdminDashBoard = () => {
     <div className="adminDiv">
       <div className="admin-dashboard">
         <h1>Admin Dashboard</h1>
+
+        {/* Add Feedback Data Button */}
+        <button onClick={navigateToFeedbackData} className="feedbackbtn">View Feedback Data</button>
 
         {loading ? (
           <p className="loading">Loading users...</p>

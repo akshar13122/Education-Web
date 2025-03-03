@@ -9,7 +9,6 @@ import Cssv from './Componant/Cssv';
 import Javav from './Componant/Javav';
 import Pythonv from './Componant/Pythonv';
 import './Style.css';
-import FeedBackForm from './Componant/FeedBackForm';
 import { ToastContainer } from 'react-toastify';
 import SignUp from './Componant/SignUp';
 import LogIn from './Componant/LogIn';
@@ -17,7 +16,20 @@ import AdminDashBoard from './Componant/AdminDashBoard';
 import AdminLogIn from "./Componant/AdminLogin";
 import LogoutButton from './Componant/LogoutButton'; // Importing LogoutButton
 import EditUser from './Componant/EditUser'; // Import the EditUser component
-
+import FeedBackForm from "./Componant/FeedBackForm";
+import FeedbackData from './Componant/FeedBackData';
+import HtmlAssignment from './Assignment/HtmlAssignment';
+import CssAssignment from './Assignment/CssAssignment';
+import JavaAssignment from './Assignment/javaAssignment';
+import PythonAssignment from './Assignment/PythonAssignment';
+import ReactJsAssignment from './Assignment/ReactJsAssignment';
+import NodejsAssignment from './Assignment/NodejsAssignment';
+import ExpressJsAssignment from './Assignment/ExpressJsAssignment';
+import NodeJsv from './Assignment/NodeJsv';
+import ReactJsv from './Componant/ReactJsv';
+import Expressjsv from './Componant/Expressjsv';
+import MongoDbv from './Componant/MongoDbv';
+import MongoDbAssignment from './Assignment/MongoDbAssignment';
 // Protected Route for Admin Dashboard
 const AdminDashboardWithAuth = () => {
   const admin = localStorage.getItem("admin"); // Check if admin is logged in
@@ -84,11 +96,24 @@ const App = () => {
           <Route path="/Cssv" element={<Cssv />} />
           <Route path="/Javav" element={<Javav />} />
           <Route path="/Pythonv" element={<Pythonv />} />
-          <Route path="/FeedBackForm" element={<FeedBackForm />} />
+          <Route path="/nodejsv" element={<NodeJsv />} />
+          <Route path="/reactjsv" element={<ReactJsv />} />
+          <Route path="/expressjsv" element={<Expressjsv />} />
+          <Route path="/mongodbv" element={<MongoDbv />} />
           <Route path="/register" element={<SignUp />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/adminlogin" element={<AdminLogIn />} />
-          
+          <Route path="/FeedBackForm" element={<FeedBackForm />} />
+          <Route path="/feedbackdata" element={<FeedbackData />} />
+          <Route path="/htmlassignment" element={<HtmlAssignment />} />
+          <Route path="/cssassignment" element={<CssAssignment />} />
+          <Route path="/javaassignment" element={<JavaAssignment />} />
+          <Route path="/pythonassignment" element={<PythonAssignment />} />
+          <Route path="/reactjsassignment" element={<ReactJsAssignment />} />
+          <Route path="/nodejsassignment" element={<NodejsAssignment />} />
+          <Route path="/expressjsassignment" element={<ExpressJsAssignment />} />
+          <Route path="/mongodbassignment" element={<MongoDbAssignment />} />
+          {/* <Route path="/htmlv/:id" element={<Htmlv/>} /> */}
           {/* Add the new route for the EditUser page */}
           <Route path="/edituser/:id" element={<EditUser />} />  {/* :id is the user ID */}
         </Routes>

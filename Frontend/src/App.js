@@ -30,6 +30,8 @@ import ReactJsv from './Componant/ReactJsv';
 import Expressjsv from './Componant/Expressjsv';
 import MongoDbv from './Componant/MongoDbv';
 import MongoDbAssignment from './Assignment/MongoDbAssignment';
+import UserProfile from './Componant/UserProfile';
+import { useParams } from 'react-router-dom';
 // Protected Route for Admin Dashboard
 const AdminDashboardWithAuth = () => {
   const admin = localStorage.getItem("admin"); // Check if admin is logged in
@@ -49,7 +51,10 @@ const AdminDashboardWithAuth = () => {
 
 // Protected Route for CourseMenu
 const CourseMenuWithAuth = () => {
-  const user = localStorage.getItem("user"); // Check if user is logged in
+  const { id } = useParams();  // Get the ID from the URL
+  console.log(id);  // Debugging: check if you get the correct ID
+
+  const user = localStorage.getItem("user");  // Check if user is logged in
   const navigate = useNavigate();
 
   if (!user) {
@@ -90,8 +95,7 @@ const App = () => {
           <Route path="/contact" element={<Contact />} />
           
           {/* Conditional rendering for /CourseMenu with an alert if not logged in */}
-          <Route path="/CourseMenu" element={<CourseMenuWithAuth />}  />
-
+          <Route path="/CourseMenu/:id" element={<CourseMenuWithAuth />}  />
           <Route path="/Htmlv" element={<Htmlv />} />
           <Route path="/Cssv" element={<Cssv />} />
           <Route path="/Javav" element={<Javav />} />
@@ -113,6 +117,7 @@ const App = () => {
           <Route path="/nodejsassignment" element={<NodejsAssignment />} />
           <Route path="/expressjsassignment" element={<ExpressJsAssignment />} />
           <Route path="/mongodbassignment" element={<MongoDbAssignment />} />
+          <Route path="/myprofile/:id" element={<UserProfile />} />
           {/* <Route path="/htmlv/:id" element={<Htmlv/>} /> */}
           {/* Add the new route for the EditUser page */}
           <Route path="/edituser/:id" element={<EditUser />} />  {/* :id is the user ID */}

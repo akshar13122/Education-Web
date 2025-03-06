@@ -34,9 +34,9 @@ const Login = () => {
 
         // Set user data to localStorage after successful login
         localStorage.setItem('user', JSON.stringify(data.user));  // Store user object
-       
+        console.log(data.user.id);
         
-        navigate("/CourseMenu");  // Navigate to the course menu after successful login
+        navigate(`/CourseMenu/${data.user.id}`);  // Navigate to the course menu after successful login
       } else {
         const data = await response.json();
         setError(data.error);  // Show error message

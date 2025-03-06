@@ -382,3 +382,224 @@
 //         <p style="text-align: justify;">Testing is an essential part of React development. Tools like Jest and React Testing Library are commonly used for unit and integration testing of React components, ensuring the application works as expected before deployment.</p>
 //     '
 // WHERE id = 6;
+
+
+
+
+
+// INSERT INTO html_courses (title, content) 
+// VALUES ('Node-js Tutor', 
+// '<p style="text-align: justify;">This post is a getting started guide to Node.js, the server-side JavaScript runtime environment. Node.js is built on top of the Google Chrome V8 JavaScript engine, and it\'s mainly used to create web servers - but it\'s not limited to that. Node.js is a runtime environment for JavaScript that runs on the server. Node.js is open source, cross-platform, and since its introduction in 2009, it got hugely popular and now plays a significant role in the web development scene. If GitHub stars are one popularity indication factor, having 46000+ stars means being very popular.</p> 
+// <h2 style="text-align: center;">Overview</h2> 
+// <p style="text-align: justify;">Node.js is a runtime environment for JavaScript that runs on the server. Node.js is open source, cross-platform, and since its introduction in 2009, it got hugely popular and now plays a significant role in the web development scene. If GitHub stars are one popularity indication factor, having 46000+ stars means being very popular.</p> 
+// <h2 style="text-align: center;">The best features of Node.js</h2> 
+// <p style="text-align: justify;">Fast: One of the main selling points of Node.js is speed. JavaScript code running on Node.js (depending on the benchmark) can be twice as fast as compiled languages like C or Java, and orders of magnitude faster than interpreted languages like Python or Ruby, because of its non-blocking paradigm.</p> 
+// <p style="text-align: justify;">Simple: Node.js is simple. Extremely simple, actually. JavaScript: Node.js runs JavaScript code. This means that millions of frontend developers who already use JavaScript in the browser can now run server-side code using the same programming language without the need to learn a completely different tool.</p> 
+// <p style="text-align: justify;">V8: Running on the Google V8 JavaScript engine, which is Open Source, Node.js is able to leverage the work of thousands of engineers who made (and will continue to make) the Chrome JavaScript runtime blazing fast.</p> 
+// <p style="text-align: justify;">Asynchronous platform: Node.js uses non-blocking, event-driven architecture. Instead of waiting for an I/O operation to complete (e.g., reading from the database, accessing the filesystem), Node.js continues running other tasks and uses a callback function once the I/O operation is completed. This enables the server to handle thousands of concurrent connections with a single thread.</p> 
+// <p style="text-align: justify;">A huge number of libraries: npm with its simple structure helped the ecosystem of Node.js proliferate. Now the npm registry hosts almost 500,000 open source packages you can freely use.</p>
+// <h2 style="text-align: center;">An example Node.js application</h2>
+// <p style="text-align: justify;">The most common example "Hello World" of Node.js is a web server:</p>
+// <pre style="text-align: justify;">
+// const http = require(\'http\');
+// const hostname = \'127.0.0.1\';
+// const port = 3000;
+
+// const server = http.createServer((req, res) => {
+//   res.statusCode = 200;
+//   res.setHeader(\'Content-Type\', \'text/plain\');
+//   res.end(\'Hello World\n\');
+// });
+
+// server.listen(port, hostname, () => {
+//   console.log(`Server running at http://${hostname}:${port}/`);
+// });
+// </pre>
+// <p style="text-align: justify;">To run this snippet, save it as a server.js file and run <code>node server.js</code> in your terminal. This code first includes the Node.js http module. Node.js has an amazing standard library, including a first-class support for networking. The <code>createServer()</code> method of http creates a new HTTP server and returns it. The server is set to listen on the specified port and hostname. When the server is ready, the callback function is called, in this case informing us that the server is running.</p>
+// <h2 style="text-align: center;">Node.js frameworks and tools</h2>
+// <p style="text-align: justify;">Node.js is a low-level platform, and to make things easier and more interesting for developers, thousands of libraries have been built on top of Node.js. Many of those established over time as popular options. Here is a non-comprehensive list of the ones I consider very relevant and worth learning:</p>
+// <ul style="text-align: justify;">
+//   <li><b>Express</b>: One of the most simple yet powerful ways to create a web server. Its minimalist approach is key to its success.</li>
+//   <li><b>Meteor</b>: An incredibly powerful full-stack framework, sharing code on both the client and server.</li>
+//   <li><b>Next.js</b>: A framework to render server-side rendered React applications.</li>
+//   <li><b>Socket.io</b>: A real-time communication engine for building network applications.</li>
+// </ul>
+// <h2 style="text-align: center;">A brief history of Node.js</h2>
+// <p style="text-align: justify;">Node.js is just 9 years old. In comparison, JavaScript is 23 years old and the web as we know it is 25 years old. Node.js has been around for a relatively short time but has grown very quickly. Let’s take a look at its history:</p>
+// <ul style="text-align: justify;">
+//   <li><b>2009:</b> Node.js is born. The first form of npm is created.</li>
+//   <li><b>2010:</b> Express and Socket.io are born.</li>
+//   <li><b>2015:</b> The Node.js Foundation is formed. IO.js is merged back into Node.js.</li>
+//   <li><b>2017:</b> Node 8 introduces HTTP/2. npm reaches 3 billion downloads weekly.</li>
+//   <li><b>2018:</b> Node 10 adds experimental support for ES modules (.mjs).</li>
+// </ul>
+// <h2 style="text-align: center;">How much JavaScript do you need to know to use Node?</h2>
+// <p style="text-align: justify;">If you are just starting out with JavaScript, you should have a good grasp of the following concepts before diving into Node.js:</p>
+// <ul style="text-align: justify;">
+//   <li>Lexical Structure</li>
+//   <li>Expressions</li>
+//   <li>Types</li>
+//   <li>Variables</li>
+//   <li>Functions</li>
+//   <li>Arrow Functions</li>
+//   <li>Loops</li>
+//   <li>Arrays</li>
+//   <li>ECMAScript 6, 2016, 2017</li>
+// </ul>
+// <p style="text-align: justify;">Once you’ve mastered these, you’ll be ready to take on asynchronous programming with callbacks, promises, async/await, and understand how Node.js works.</p>
+// <h2 style="text-align: center;">Differences between Node.js and the Browser</h2>
+// <p style="text-align: justify;">While both the browser and Node.js use JavaScript, they differ in several ways:</p>
+// <ul style="text-align: justify;">
+//   <li>Node.js is server-side, while the browser is client-side.</li>
+//   <li>Node.js has access to the filesystem and network, whereas the browser does not.</li>
+//   <li>Node.js handles asynchronous programming and concurrency differently than the browser.</li>
+// </ul>');
+
+
+// UPDATE html_courses 
+// SET title = 'Node-js Tutor', 
+//     content = '<h1>Node-Js</h1> 
+//     <p style="text-align: justify;">This post is a getting started guide to Node.js, the server-side JavaScript runtime environment. Node.js is built on top of the Google Chrome V8 JavaScript engine, and it\'s mainly used to create web servers - but it\'s not limited to that. Node.js is a runtime environment for JavaScript that runs on the server. Node.js is open source, cross-platform, and since its introduction in 2009, it got hugely popular and now plays a significant role in the web development scene. If GitHub stars are one popularity indication factor, having 46000+ stars means being very popular.</p> 
+//     <h2 style="text-align: center;">Overview</h2> 
+//     <p style="text-align: justify;">Node.js is a runtime environment for JavaScript that runs on the server. Node.js is open source, cross-platform, and since its introduction in 2009, it got hugely popular and now plays a significant role in the web development scene. If GitHub stars are one popularity indication factor, having 46000+ stars means being very popular.</p> 
+//     <h2 style="text-align: center;">The best features of Node.js</h2> 
+//     <p style="text-align: justify;">Fast: One of the main selling points of Node.js is speed. JavaScript code running on Node.js (depending on the benchmark) can be twice as fast as compiled languages like C or Java, and orders of magnitude faster than interpreted languages like Python or Ruby, because of its non-blocking paradigm.</p> 
+//     <p style="text-align: justify;">Simple: Node.js is simple. Extremely simple, actually. JavaScript: Node.js runs JavaScript code. This means that millions of frontend developers who already use JavaScript in the browser can now run server-side code using the same programming language without the need to learn a completely different tool.</p> 
+//     <p style="text-align: justify;">V8: Running on the Google V8 JavaScript engine, which is Open Source, Node.js is able to leverage the work of thousands of engineers who made (and will continue to make) the Chrome JavaScript runtime blazing fast.</p> 
+//     <p style="text-align: justify;">Asynchronous platform: Node.js uses non-blocking, event-driven architecture. Instead of waiting for an I/O operation to complete (e.g., reading from the database, accessing the filesystem), Node.js continues running other tasks and uses a callback function once the I/O operation is completed. This enables the server to handle thousands of concurrent connections with a single thread.</p> 
+//     <p style="text-align: justify;">A huge number of libraries: npm with its simple structure helped the ecosystem of Node.js proliferate. Now the npm registry hosts almost 500,000 open source packages you can freely use.</p>
+//     <h2 style="text-align: center;">An example Node.js application</h2>
+//     <p style="text-align: justify;">The most common example "Hello World" of Node.js is a web server:</p>
+//     <pre style="text-align: justify;">
+//     const http = require(\'http\');
+//     const hostname = \'127.0.0.1\';
+//     const port = 3000;
+
+//     const server = http.createServer((req, res) => {
+//       res.statusCode = 200;
+//       res.setHeader(\'Content-Type\', \'text/plain\');
+//       res.end(\'Hello World\n\');
+//     });
+
+//     server.listen(port, hostname, () => {
+//       console.log(`Server running at http://${hostname}:${port}/`);
+//     });
+//     </pre>
+//     <p style="text-align: justify;">To run this snippet, save it as a server.js file and run <code>node server.js</code> in your terminal. This code first includes the Node.js http module. Node.js has an amazing standard library, including a first-class support for networking. The <code>createServer()</code> method of http creates a new HTTP server and returns it. The server is set to listen on the specified port and hostname. When the server is ready, the callback function is called, in this case informing us that the server is running.</p>
+//     <h2 style="text-align: center;">Node.js frameworks and tools</h2>
+//     <p style="text-align: justify;">Node.js is a low-level platform, and to make things easier and more interesting for developers, thousands of libraries have been built on top of Node.js. Many of those established over time as popular options. Here is a non-comprehensive list of the ones I consider very relevant and worth learning:</p>
+//     <ul style="text-align: justify;">
+//       <li><b>Express</b>: One of the most simple yet powerful ways to create a web server. Its minimalist approach is key to its success.</li>
+//       <li><b>Meteor</b>: An incredibly powerful full-stack framework, sharing code on both the client and server.</li>
+//       <li><b>Next.js</b>: A framework to render server-side rendered React applications.</li>
+//       <li><b>Socket.io</b>: A real-time communication engine for building network applications.</li>
+//     </ul>
+//     <h2 style="text-align: center;">A brief history of Node.js</h2>
+//     <p style="text-align: justify;">Node.js is just 9 years old. In comparison, JavaScript is 23 years old and the web as we know it is 25 years old. Node.js has been around for a relatively short time but has grown very quickly. Let’s take a look at its history:</p>
+//     <ul style="text-align: justify;">
+//       <li><b>2009:</b> Node.js is born. The first form of npm is created.</li>
+//       <li><b>2010:</b> Express and Socket.io are born.</li>
+//       <li><b>2015:</b> The Node.js Foundation is formed. IO.js is merged back into Node.js.</li>
+//       <li><b>2017:</b> Node 8 introduces HTTP/2. npm reaches 3 billion downloads weekly.</li>
+//       <li><b>2018:</b> Node 10 adds experimental support for ES modules (.mjs).</li>
+//     </ul>
+//     <h2 style="text-align: center;">How much JavaScript do you need to know to use Node?</h2>
+//     <p style="text-align: justify;">If you are just starting out with JavaScript, you should have a good grasp of the following concepts before diving into Node.js:</p>
+//     <ul style="text-align: justify;">
+//       <li>Lexical Structure</li>
+//       <li>Expressions</li>
+//       <li>Types</li>
+//       <li>Variables</li>
+//       <li>Functions</li>
+//       <li>Arrow Functions</li>
+//       <li>Loops</li>
+//       <li>Arrays</li>
+//       <li>ECMAScript 6, 2016, 2017</li>
+//     </ul>
+//     <p style="text-align: justify;">Once you’ve mastered these, you’ll be ready to take on asynchronous programming with callbacks, promises, async/await, and understand how Node.js works.</p>
+//     <h2 style="text-align: center;">Differences between Node.js and the Browser</h2>
+//     <p style="text-align: justify;">While both the browser and Node.js use JavaScript, they differ in several ways:</p>
+//     <ul style="text-align: justify;">
+//       <li>Node.js is server-side, while the browser is client-side.</li>
+//       <li>Node.js has access to the filesystem and network, whereas the browser does not.</li>
+//       <li>Node.js handles asynchronous programming and concurrency differently than the browser.</li>
+//     </ul>'
+// WHERE id = 7; 
+
+
+// Express js
+
+// INSERT INTO html_courses (title, content) 
+// VALUES (
+//   'Express-js Tutor', 
+//   '<p style="text-align: justify;">Express.js is a minimal and flexible Node.js web application framework that provides a robust set of features to build web and mobile applications. It simplifies the process of handling HTTP requests, routing, middleware, and setting up APIs, among other things. It\'s one of the most popular frameworks in the Node.js ecosystem.</p> 
+//   <h2 style="text-align: center;">Key Features of Express</h2>
+//   <p style="text-align: justify;">Routing: Handle requests to different URLs with ease.</p>
+//   <p style="text-align: justify;">Middleware: Easily manage requests and responses, add authentication, logging, error handling, etc.</p>
+//   <p style="text-align: justify;">Template Engines: Serve dynamic HTML content using engines like EJS, Pug, etc.</p>
+//   <p style="text-align: justify;">API Creation: Build RESTful APIs with simple HTTP request handling.</p>
+//   <h2 style="text-align: center;">Install Node.js</h2>
+//   <p style="text-align: justify;">First, ensure that you have Node.js installed on your system. You can check this by running the following command:</p>
+//   <pre style="text-align: justify;">node -v</pre>
+//   <h2 style="text-align: center;">Initialize a New Project</h2>
+//   <p style="text-align: justify;">Once Node.js is installed, create a new project folder and initialize it with npm (Node Package Manager):</p>
+//   <pre style="text-align: justify;">mkdir express-course
+// cd express-course
+// npm init -y  # Initializes a new package.json file</pre>
+//   <h2 style="text-align: center;">Install Express</h2>
+//   <p style="text-align: justify;">Now, install Express.js as a dependency:</p>
+//   <pre style="text-align: justify;">npm install express</pre>
+//   <h2 style="text-align: center;">Create an app.js File</h2>
+//   <p style="text-align: justify;">Create a file named app.js (or server.js) in your project folder. This file will be the entry point for your application:</p>
+//   <pre style="text-align: justify;">const express = require(\'express\');
+// const app = express();
+// const PORT = 3000;
+
+// app.get(\'/\', (req, res) => {
+//   res.send(\'Hello, Express!\');
+// });
+
+// app.listen(PORT, () => {
+//   console.log(Server is running on http://localhost:${PORT});
+// });</pre>
+//   <h2 style="text-align: center;">Basic Routing in Express</h2>
+//   <p style="text-align: justify;">In Express, you define routes to handle different HTTP methods (GET, POST, PUT, DELETE, etc.) for specific URLs. Below are examples of each:</p>
+//   <h2 style="text-align: center;">GET Route</h2>
+//   <p style="text-align: justify;">The GET method is used to fetch data from the server:</p>
+//   <pre style="text-align: justify;">app.get(\'/home\', (req, res) => {
+//   res.send(\'Welcome to the homepage!\');
+// });</pre>
+//   <h2 style="text-align: center;">POST Route</h2>
+//   <p style="text-align: justify;">POST method to send data to the server:</p>
+//   <pre style="text-align: justify;">app.post(\'/submit\', (req, res) => {
+//   res.send(\'Form submitted successfully!\');
+// });</pre>
+//   <h2 style="text-align: center;">PUT Route</h2>
+//   <p style="text-align: justify;">PUT method to update data:</p>
+//   <pre style="text-align: justify;">app.put(\'/update\', (req, res) => {
+//   res.send(\'Data updated successfully!\');
+// });</pre>
+//   <h2 style="text-align: center;">DELETE Route</h2>
+//   <p style="text-align: justify;">DELETE method to delete data:</p>
+//   <pre style="text-align: justify;">app.delete(\'/delete\', (req, res) => {
+//   res.send(\'Data deleted successfully!\');
+// });</pre>
+//   <h2 style="text-align: center;">Middleware in Express</h2>
+//   <p style="text-align: justify;">Middleware functions are functions that have access to the request (req), response (res), and the next function in the request-response cycle. Middleware is used for a wide variety of purposes, such as logging, authentication, error handling, etc.</p>
+//   <h2 style="text-align: center;">Basic Middleware Example</h2>
+//   <p style="text-align: justify;">Custom middleware that logs request details:</p>
+//   <pre style="text-align: justify;">app.use((req, res, next) => {
+//   console.log(${req.method} request to ${req.url});
+//   next();  // Call next middleware or route handler
+// });</pre>
+//   <h2 style="text-align: center;">Built-in Middleware</h2>
+//   <p style="text-align: justify;">Express provides built-in middleware for common tasks like parsing request bodies, serving static files, and more.</p>
+//   <h2 style="text-align: center;">Serving Static Files</h2>
+//   <pre style="text-align: justify;">app.use(express.static(\'public\'));</pre>
+//   <h2 style="text-align: center;">Body Parsing Middleware</h2>
+//   <pre style="text-align: justify;">app.use(express.json());  // Parse JSON data
+// app.use(express.urlencoded({ extended: true }));  // Parse URL-encoded data</pre>
+//   <h2 style="text-align: center;">Working with Templates (EJS)</h2>
+//   <p style="text-align: justify;">You can use EJS (Embedded JavaScript) as a template engine in Express to dynamically render HTML pages:</p>
+//   <pre style="text-align: justify;">npm install ejs</pre>'
+// );

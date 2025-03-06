@@ -1,0 +1,51 @@
+/* General styling for the user profile page */
+.user-profile {
+    height: 70%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .user-profile-content {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  .profile-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .profile-label {
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .user-profile p {
+    margin: 8px 0;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .loading-text,
+  .error-text {
+    font-size: 18px;
+    color: #ff6347; /* Tomato color for error */
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .no-data-text {
+    font-size: 18px;
+    color: #888;
+    text-align: center;
+    margin-top: 20px;
+  }
+  

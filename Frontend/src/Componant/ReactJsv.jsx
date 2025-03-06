@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import './Htmlv.css';  // Assuming you want to use the same styles as Htmlv component
+import './Htmlv.css';  
 
 export default function ReactJsv() {
-  const [reactContent, setReactContent] = useState(null);  // State to store ReactJS content
-  const [loading, setLoading] = useState(true);            // State to show loading while fetching data
-  const [error, setError] = useState(null);                // State to handle errors
+  const [reactContent, setReactContent] = useState(null);  
+  const [loading, setLoading] = useState(true);            
+  const [error, setError] = useState(null);                
 
-  // Fetch ReactJS content when the component mounts
+  
   useEffect(() => {
     // Fetch data from the server
-    fetch('http://localhost:5000/api/reactjs-course')  // Update the API endpoint
+    fetch('http://localhost:5000/api/reactjs-course')  
       .then((response) => response.json())
       .then((data) => {
         if (data.error) {
-          setError(data.error);  // Handle any error in the response
+          setError(data.error);  
         } else {
-          setReactContent(data);  // Store the fetched ReactJS content in state
-          setLoading(false);       // Set loading to false once data is fetched
+          setReactContent(data); 
+          setLoading(false);      
         }
       })
       .catch((error) => {
@@ -25,9 +25,9 @@ export default function ReactJsv() {
         setError('Error fetching course data: ' + error.message);
         setLoading(false);
       });
-  }, []);  // Empty dependency array ensures the request triggers only once when the component mounts
+  }, []);  
 
-  // Show loading state while fetching
+ 
   if (loading) {
     return <div>Loading...</div>;
   }

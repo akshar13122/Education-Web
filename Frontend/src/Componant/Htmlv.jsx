@@ -1,30 +1,46 @@
-import React from 'react';
-import htmlsample from '../video/htmlsample.mp4'; // Assuming this is the correct path to your video
-import { NavLink } from 'react-router-dom';
-import "./Htmlv.css";
+import React, { useEffect, useState } from 'react';
+import './Htmlv.css';
+import { NavLink, useParams } from 'react-router-dom';
 
 export default function Htmlv() {
-  const handleIntroductionClick = () => {
-    window.open("http://www.nematrian.com/HTMLTutorialIntroduction", "_blank");
-  };
+  const [htmlContent, setHtmlContent] = useState(null); // State to store HTML content
+  const [loading, setLoading] = useState(true); // State to show loading while fetching data
+  const { id } = useParams();
+
+  // Fetch HTML content when the component mounts
+  useEffect(() => {
+    // Fetch data from the server
+    fetch('http://localhost:5000/api/html-course')
+      .then((response) => response.json())
+      .then((data) => {
+        setHtmlContent(data);  // Store the fetched content in state
+        setLoading(false);      // Set loading to false once data is fetched
+      })
+      .catch((error) => {
+        console.error('Error fetching HTML content:', error);
+        setLoading(false);
+      });
+  }, []);  // Empty dependency array means the request will be triggered once when the component mounts
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="htmlv-container">
-      {/* <video width="500" height="400" controls>
-        <source src={htmlsample} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video> */}
-      <div className='ApiSec'>
-        <p onClick={handleIntroductionClick} className="clickable-text">Introduction</p>
+      <div className="ApiSec">
+        {/* Display the HTML content from the database */}
+        {htmlContent && (
+          <div
+            className="html-content"
+            dangerouslySetInnerHTML={{ __html: htmlContent.content }} // Render the HTML content
+          />
+        )}
       </div>
       <div className="notes-container">
-        {/* For external link, use <a> tag */}
-        <a href="http://www.nematrian.com/HTMLTutorialIntroduction" target="_blank" rel="noopener noreferrer" className="notes">
-          Notes
-        </a>
-        <NavLink to="/FeedBackForm" className="notes">
-          Feedback
-        </NavLink>
+        <NavLink to="/javaassignment" className="notes">Assignment</NavLink>
+      <NavLink to={`/FeedBackForm/${id}`} className="notes">Feedback</NavLink>
+        
       </div>
     </div>
   );

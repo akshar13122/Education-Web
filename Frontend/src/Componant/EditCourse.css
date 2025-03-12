@@ -1,0 +1,91 @@
+/* Courses List Styles */
+.coursesDiv {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 20px;
+  }
+  
+  .courses-dashboard {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 10px;
+    background-color: #f4f4f436;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 40%;
+  }
+  
+  .courses-dashboard h1 {
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .courses-dashboard h2 {
+    color: #555;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+  
+  .courses-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .course-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #fefefe24; /* Soft Lavender */
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+  
+  /* Hover Effect for course-item */
+  .course-item:hover {
+    transform: translateY(-5px); /* Moves the item upwards */
+    background-color: #67ff7977; /* Changes background color */
+  }
+  
+  .course-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .editbtn {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    border: none;
+  }
+  
+  .editbtn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Responsiveness for smaller screens */
+  @media (max-width: 600px) {
+    .courses-dashboard h1 {
+      font-size: 1.5rem;
+    }
+  
+    .courses-dashboard h2 {
+      font-size: 1.2rem;
+    }
+  
+    .course-item {
+      font-size: 0.9rem;
+    }
+  }
+  

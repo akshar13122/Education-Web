@@ -1,0 +1,117 @@
+/* Admin Dashboard Styles */
+.adminDiv{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 20px;
+}
+.admin-dashboard {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 10px;
+    background-color: #f4f4f436;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    width: 70%
+  }
+  
+  /* Header Styling */
+  .admin-dashboard h1 {
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .admin-dashboard h2 {
+    color: #555;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+  
+  /* Loading and No Users Message */
+  .admin-dashboard p {
+    font-size: 0.5rem;
+    color: #888;
+  }
+  
+  /* Table Styles */
+  .admin-dashboard table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .admin-dashboard table th,
+  .admin-dashboard table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .admin-dashboard table th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .admin-dashboard table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Styling for the loading text */
+  .admin-dashboard .loading {
+    font-style: italic;
+    color: #007bff;
+    font-size: 1.1rem;
+  }
+  .deletebtn{
+    background-color: rgba(255, 0, 0, 0.671);
+    border-radius: 10px;
+  }
+  .deletebtn:hover{
+    background-color: red;
+  }
+  .editbtn{
+    border-radius: 10px;
+  }
+  .search-bar3{
+    width: 400px;
+    position: relative;
+    left: 250px;
+  }
+  .upperbuttons{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 15px;
+  }
+  .feedbackbtn{
+
+  }
+  /* Responsiveness for smaller screens */
+  @media (max-width: 600px) {
+    .admin-dashboard h1 {
+      font-size: 1.5rem;
+    }
+  
+    .admin-dashboard h2 {
+      font-size: 1.2rem;
+    }
+  
+    .admin-dashboard table {
+      font-size: 0.9rem;
+    }
+  
+    .admin-dashboard table th,
+    .admin-dashboard table td {
+      padding: 8px;
+    }
+  }
+  

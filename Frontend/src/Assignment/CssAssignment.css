@@ -1,0 +1,91 @@
+.ass-main {
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+  }
+  
+  .css-assignment {
+    max-width: 600px; /* Keep a compact width */
+    margin: 0 auto; /* Center the container horizontally */
+    padding: 10px; /* Reduced padding for a more compact design */
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Align content at the top */
+    text-align: center;
+    overflow-y: auto; /* Allow scrolling if content overflows */
+  }
+  
+  .css-assignment h1 {
+    font-size: 1.5rem; /* Slightly smaller header */
+    color: #4CAF50;
+    margin-bottom: 12px; /* Reduced margin */
+  }
+  
+  .intro {
+    font-size: 0.85rem;
+    color: #ffffff;
+    margin-bottom: 20px; /* Reduced margin */
+  }
+  
+  .assignments-list {
+    list-style-type: none;
+    padding-left: 0;
+    width: 100%;
+  }
+  
+  .assignment {
+    margin-bottom: 8px; /* Reduced margin */
+    padding: 10px; /* Reduced padding */
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .assignment h2 {
+    font-size: 0.9rem; /* Slightly smaller subheading */
+    color: #333;
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+  
+  .assignment p {
+    font-size: 0.75rem; /* Smaller paragraph text */
+    color: #555;
+    line-height: 1.3;
+    text-align: center;
+    margin: 0;
+  }
+  
+  @media (max-width: 600px) {
+    .css-assignment {
+      padding: 10px; /* Reduced padding */
+      width: 90%;
+    }
+  
+    .assignment {
+      padding: 8px; /* Reduced padding */
+    }
+  
+    .css-assignment h1 {
+      font-size: 1.3rem; /* Smaller header font size */
+    }
+  
+    .intro {
+      font-size: 0.75rem; /* Smaller font size */
+    }
+  
+    .assignment h2 {
+      font-size: 0.85rem; /* Smaller subheading font size */
+    }
+  
+    .assignment p {
+      font-size: 0.7rem; /* Smaller paragraph font size */
+    }
+  }
+  

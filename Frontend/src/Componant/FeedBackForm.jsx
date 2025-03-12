@@ -1,94 +1,124 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
+import { useParams } from 'react-router-dom'; // Import useParams
+import './FeedBackForm.css';
 
-class FeedBackForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      courseFeedback: '',
-      likeCourse: '',
-      query: '',
-      suggestions: ''
-    };
-  }
+const FeedBackForm = () => {
+  const { id } = useParams(); // Retrieve userId from the URL parameters
 
-  handleChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
+  const [formData, setFormData] = useState({
+    courseLike: '',
+    query: '',
+    suggestions: '',
+    rating: '1'
+  });
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-    // Handle form submission logic here, such as sending the data to a backend
-    console.log('Feedback Submitted:', this.state);
-    // Optionally reset the form
-    this.setState({
-      courseFeedback: '',
-      likeCourse: '',
-      query: '',
-      suggestions: ''
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
     });
   };
 
-  render() {
-    return (
-      <div className="feedback-form">
-        <form onSubmit={this.handleSubmit}>
-          {/* 1. How is the Course? */}
-          <div className="form-group">
-            <label>1. How is the Course?</label>
-            <textarea
-              name="courseFeedback"
-              value={this.state.courseFeedback}
-              onChange={this.handleChange}
-              placeholder="Enter your feedback"
-              rows="3"
-              required
-            />
-          </div>
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    // Log the userId to the console for debugging
+    console.log("User ID from URL:", id);
 
-          {/* 2. Did you like the course? */}
-          <div className="form-group">
-            <label>2. Did you like the course? (Yes/No)</label>
-            <input
-              type="text"
-              name="likeCourse"
-              value={this.state.likeCourse}
-              onChange={this.handleChange}
-              placeholder="Yes or No"
-              required
-            />
-          </div>
+    // Add userId to formData
+    const dataToSubmit = { ...formData, id };
 
-          {/* 3. Any Query? */}
-          <div className="form-group">
-            <label>3. Any Query?</label>
-            <textarea
-              name="query"
-              value={this.state.query}
-              onChange={this.handleChange}
-              placeholder="Enter your query"
-              rows="2"
-            />
-          </div>
+    // Debug: Log the data being sent
+    console.log("Data being submitted:", dataToSubmit);
 
-          {/* 4. Any Suggestions? */}
-          <div className="form-group">
-            <label>4. Any Suggestions?</label>
-            <textarea
-              name="suggestions"
-              value={this.state.suggestions}
-              onChange={this.handleChange}
-              placeholder="Enter your suggestions"
-              rows="3"
-            />
-          </div>
+    // Submit the feedback data to the backend
+    fetch("http://localhost:5000/api/submit-feedback", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(dataToSubmit) // Send the data with userId
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.message) {
+          alert(data.message);
+          // Optionally, reset the form after submission
+          setFormData({
+            courseLike: '',
+            query: '',
+            suggestions: '',
+            rating: '1'
+          });
+        }
+      })
+      .catch((err) => {
+        console.error("Error submitting feedback:", err);
+        alert("Error submitting feedback, please try again.");
+      });
+  };
 
-          {/* Submit button */}
-          <button type="submit">Submit Feedback</button>
-        </form>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="feedback-form222">
+      <h2>Course Feedback Form</h2>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group222">
+          <label>1. Do you like the course?</label>
+          <input
+            type="text"
+            name="courseLike"
+            value={formData.courseLike}
+            onChange={handleChange}
+            placeholder="Please type your answer"
+            required
+          />
+        </div>
+
+        <div className="form-group222">
+          <label>2. Any query or difficulty?</label>
+          <textarea
+            name="query"
+            value={formData.query}
+            onChange={handleChange}
+            placeholder="Please write your query or difficulty here"
+            rows="4"
+          />
+        </div>
+
+        <div className="form-group222">
+          <label>3. Any suggestions?</label>
+          <textarea
+            name="suggestions"
+            value={formData.suggestions}
+            onChange={handleChange}
+            placeholder="Please write your suggestions here"
+            rows="4"
+          />
+        </div>
+
+        <div className="form-group222">
+          <label>4. Rate the course from 1 to 10</label>
+          <select
+            name="rating"
+            value={formData.rating}
+            onChange={handleChange}
+            required
+          >
+            {[...Array(10).keys()].map((num) => (
+              <option key={num + 1} value={num + 1}>
+                {num + 1}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="form-group222">
+          <button id='bbtn' type="submit">Submit Feedback</button>
+        </div>
+      </form>
+    </div>
+  );
+};
 
 export default FeedBackForm;
-

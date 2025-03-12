@@ -4,6 +4,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Century Gothic, Arial, sans-serif;
+    
 }
 /* body{
   width: 100vh;
@@ -296,35 +297,7 @@ div>img:hover{
     right: 45px;
     top: 30px;
   }
-  .notes-container {
-    position: absolute;
-    top: 110%;
-    left: 17%;
-    transform: translateX(-50%); /* Centers the buttons horizontally */
-    display: flex;
-    gap: 20px; /* Adjust the gap between the buttons */
-  }
-  
-  .notes {
-    padding: 10px 20px;
-    background-color:transparent;
-    border: 1px solid white;
-    color: white;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 800;
-    /* border-radius: 5px; */
-    position: relative;
-    bottom: 25px;
-    
-  }
-
-  
-  .notes:hover {
-    background-color: white;
-  }
-  
-  
+ 
 
 /*FeedBackForm */
   
@@ -553,7 +526,7 @@ div>img:hover{
 } */
 .searchbar-main{
   position: relative;
-  top: 60px;
+  top: 100px;
   left: 260px;
 }
 .search-bar {
@@ -569,7 +542,12 @@ div>img:hover{
   box-shadow: 0 0 5px rgba(0,0,0,0.1);
   transition: all 0.3s ease;
 }
-
+#profile-btn-my{
+  position: relative;
+  left: 250px;
+  background-color: #00f7ff8c;
+  border-radius: 5px;
+}
 .search-bar:focus {
   border-color: #007bff;
   box-shadow: 0 0 10px rgba(0,123,255,0.5);

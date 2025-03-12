@@ -1,22 +1,50 @@
-import React from 'react';
-import htmlsample from '../video/htmlsample.mp4'; // Assuming this is the correct path to your video
-import { NavLink } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import './Htmlv.css';
+import { NavLink ,useParams} from 'react-router-dom';
 
-export default function Htmlv() {
+
+export default function Cssv() {
+  const [cssContent, setCssContent] = useState(null); // State to store CSS course content
+  const [loading, setLoading] = useState(true); // State to show loading while fetching data
+  const { id } = useParams();
+  // Fetch CSS content when the component mounts
+  useEffect(() => {
+    // Fetch data from the server
+    fetch('http://localhost:5000/api/css-course') 
+      .then((response) => response.json())
+      .then((data) => {
+        setCssContent(data); 
+        setLoading(false);    
+      })
+      .catch((error) => {
+        console.error('Error fetching CSS content:', error);
+        setLoading(false);
+      });
+  }, []); 
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="htmlv-container">
-      <p className="video-info">You will get brief knowledge about CSS from this course.</p>
-      <video width="500" height="400" controls>
-        <source src={htmlsample} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-      
-      <div className="notes-container">
-        <NavLink  className="notes">Notes</NavLink>
-        <NavLink to="/FeedBackForm" className="notes">Feedback</NavLink>
+      <div className="ApiSec">
+        {/* Display the HTML content from the database */}
+        {cssContent && (
+          <div
+            className="html-content"
+            dangerouslySetInnerHTML={{ __html: cssContent.content }} // Render the HTML content
+          />
+        )}
       </div>
+      
+      {/* Video Section */}
 
+      {/* Navigation Links */}
+      <div className="notes-container">
+        <NavLink to="/cssassignment" className="notes">Assignment</NavLink>
+        <NavLink to={`/FeedBackForm/${id}`}  className="notes">Feedback</NavLink>
+      </div>
     </div>
-
   );
 }

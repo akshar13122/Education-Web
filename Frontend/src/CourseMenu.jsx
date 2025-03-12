@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState,useEffect } from 'react';
 import { NavLink, useParams } from 'react-router-dom'; // Import useParams
 import img8 from './images/8.jpg';
 import img9 from './images/9.jpg';
@@ -10,11 +10,21 @@ import ex from './images/ex.png';
 import mongo3 from './images/mongo3.png';
 
 const CourseMenu = () => {
-    // Access the id parameter from the URL
+    // Access the id parameter from the URL (assuming the logged-in user has an id)
+    
     const { id } = useParams(); 
 
-    console.log(id);  
-
+    console.log(id);  // You can see the logged-in user ID in the console
+    useEffect(() => {
+        // Check if the page has already been reloaded (stored in localStorage)
+        const hasReloaded = localStorage.getItem('hasReloaded');
+        
+        if (!hasReloaded) {
+            // If the page has not been reloaded before, reload it and set the flag in localStorage
+            localStorage.setItem('hasReloaded', 'true');
+            window.location.reload();
+        }
+    }, []);
     const courses = [
         { name: 'HTML', link: '/Htmlv' },
         { name: 'CSS', link: '/Cssv' },
@@ -49,7 +59,7 @@ const CourseMenu = () => {
         }
     };
 
-    const [searchTerm, setSearchTerm] = React.useState('');
+    const [searchTerm, setSearchTerm] = useState('');
 
     const handleSearchChange = (event) => {
         setSearchTerm(event.target.value);
@@ -62,11 +72,13 @@ const CourseMenu = () => {
     };
 
     const filteredCourses = getFilteredCourses();
-
+    // useEffect(() => {
+    //     window.location.reload();
+    // }, []); 
     return (
         <div className="course-menu">
             <div className="profile-button-container">
-            <NavLink to={`/myprofile/${id}`} id="profile-btn-my">My Profile</NavLink>
+                <NavLink to={`/myprofile/${id}`} id="profile-btn-my">My Profile</NavLink>
             </div>
             <div className="search-profile-container">
                 <div className='searchbar-main'>
@@ -90,7 +102,10 @@ const CourseMenu = () => {
                                 className="course-image"
                             />
                             <h2>{course.name}</h2>
-                            <NavLink to={course.link} className="btn22">{course.name}</NavLink>
+                            {/* Append the logged-in user ID to the course URL */}
+                            <NavLink to={`${course.link}/${id}`} className="btn22">
+                                {course.name}
+                            </NavLink>
                         </div>
                     ))
                 ) : (

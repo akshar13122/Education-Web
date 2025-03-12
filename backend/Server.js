@@ -102,19 +102,23 @@ app.put("/api/users/:id", (req, res) => {
   );
 });
 
+
+
+
+
 // Add this route to handle feedback submission
 app.post("/api/submit-feedback", (req, res) => {
-  const { courseLike, query, suggestions, rating } = req.body;
+  console.log(req.body);  // This will log the request body (feedback data)
+  const { courseLike, query, suggestions, rating, id } = req.body;
 
-  // Validate data
-  if (!courseLike || !query || !suggestions || !rating) {
+  if (!courseLike || !query || !suggestions || !rating || !id) {
     return res.status(400).json({ error: "All fields are required!" });
   }
 
-  // Insert the feedback data into the database, mapping to your columns q1, q2, q3, q4
+  // Insert the feedback data into the database
   db.query(
-    "INSERT INTO feedback_data (q1, q2, q3, q4) VALUES (?, ?, ?, ?)",
-    [courseLike, query, suggestions, rating],
+    "INSERT INTO feedback_data (name, q1, q2, q3, q4) VALUES (?, ?, ?, ?, ?)",
+    [id, courseLike, query, suggestions, rating],
     (err, result) => {
       if (err) {
         console.error("Error inserting feedback:", err.message);
@@ -125,9 +129,17 @@ app.post("/api/submit-feedback", (req, res) => {
   );
 });
 
+
+
+
 // Get all feedback
+// Get all feedback with associated user name
 app.get('/api/feedback-data', (req, res) => {
-  db.query("SELECT * FROM feedback_data", (err, results) => {
+  db.query(`
+    SELECT fd.id, u.name, fd.q1, fd.q2, fd.q3, fd.q4
+    FROM feedback_data fd
+    JOIN user_table u ON fd.name = u.id
+  `, (err, results) => {
     if (err) {
       console.error("Error fetching feedback data:", err.message);
       return res.status(500).json({ error: "Database Error" });
@@ -135,6 +147,10 @@ app.get('/api/feedback-data', (req, res) => {
     res.json({ feedback: results });
   });
 });
+
+
+
+
 
 // Delete feedback
 app.delete('/api/feedback-data/:id', (req, res) => {
@@ -295,6 +311,31 @@ app.get("/api/mongodb-course", (req, res) => {
     }
   });
 });
+
+//Mongodb course edit
+app.put('/update-course/:id', (req, res) => {
+  const { title, content } = req.body;
+  const courseId = req.params.id;
+
+  const query = 'UPDATE html_courses SET title = ?, content = ? WHERE id = ?';
+  db.query(query, [title, content, courseId], (err, result) => {
+    if (err) {
+      res.status(500).json({ message: 'Error updating course' });
+      return;
+    }
+    res.status(200).json({ message: 'Course updated successfully' });
+  });
+});
+
+
+
+
+
+
+
+
+
+
 
 
 //For UserProfile component For Fetching User Data for User

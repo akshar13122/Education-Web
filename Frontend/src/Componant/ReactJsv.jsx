@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink,useParams} from 'react-router-dom';
 import './Htmlv.css';  
 
 export default function ReactJsv() {
   const [reactContent, setReactContent] = useState(null);  
   const [loading, setLoading] = useState(true);            
   const [error, setError] = useState(null);                
-
+  const { id } = useParams();
   
   useEffect(() => {
     // Fetch data from the server
@@ -34,12 +34,22 @@ export default function ReactJsv() {
 
   return (
     <div className="htmlv-container">
-      <div className="ApiSec">
-        {/* Display the ReactJS content from the database */}
-        {reactContent ? (
-          <div className="html-content" dangerouslySetInnerHTML={{ __html: reactContent.content }} />
-        ) : (
-          <div>No ReactJS content available</div>
+           <div className="ApiSec">
+        {/* Display the ReactJS course content */}
+        {reactContent && (
+          <>
+          <div
+            className="html-content"
+            dangerouslySetInnerHTML={{ __html: reactContent.content }} /><br/>
+            <div className="Ccontent2">
+              <h2><a id='h2a'   href='https://www.w3schools.com/react/default.asp'>React-Js Introduction and Features</a></h2>
+              <p>You will Find all the Learning content of Node-Js Features</p><br/>
+              <h2><a id='h2a' href='https://www.w3schools.com/react/react_hooks.asp'>React-Js Hooks</a></h2>
+              <p>You will learn about Several React-Js Hooks with Examples</p><br/>
+              <h2><a  id='h2a' href='https://www.w3schools.com/react/react_compiler.asp'>React-Js Exercises</a></h2>
+              <p>You will find several Exercises of React-js</p><br/>
+            </div>
+            </>
         )}
       </div>
 
@@ -48,7 +58,7 @@ export default function ReactJsv() {
 
       <div className="notes-container">
         <NavLink to="/reactjsassignment" className="notes">Assignment</NavLink>
-        <NavLink to="/FeedBackForm" className="notes">Feedback</NavLink>
+        <NavLink to={`/FeedBackForm/${id}`} className="notes">Feedback</NavLink>
       </div>
     </div>
   );

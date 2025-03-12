@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './Htmlv.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 
 export default function Htmlv() {
   const [htmlContent, setHtmlContent] = useState(null); // State to store HTML content
   const [loading, setLoading] = useState(true); // State to show loading while fetching data
+  const { id } = useParams();
 
   // Fetch HTML content when the component mounts
   useEffect(() => {
@@ -37,8 +38,9 @@ export default function Htmlv() {
         )}
       </div>
       <div className="notes-container">
-        <NavLink to="/htmlassignment" className="notes">Assignment</NavLink>
-        <NavLink to="/FeedBackForm" className="notes">Feedback</NavLink>
+        <NavLink to="/javaassignment" className="notes">Assignment</NavLink>
+      <NavLink to={`/FeedBackForm/${id}`} className="notes">Feedback</NavLink>
+        
       </div>
     </div>
   );

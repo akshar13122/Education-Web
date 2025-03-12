@@ -32,6 +32,10 @@ import MongoDbv from './Componant/MongoDbv';
 import MongoDbAssignment from './Assignment/MongoDbAssignment';
 import UserProfile from './Componant/UserProfile';
 import { useParams } from 'react-router-dom';
+import EditCourse from './Componant/EditCourse';
+import HtmlEdit from './CourseEdit/HtmlEdit';
+import MongodbEdit from './CourseEdit/MongodbEdit';
+import { useState, useEffect } from 'react';
 // Protected Route for Admin Dashboard
 const AdminDashboardWithAuth = () => {
   const admin = localStorage.getItem("admin"); // Check if admin is logged in
@@ -64,18 +68,68 @@ const CourseMenuWithAuth = () => {
 
   return <CourseMenu />;  // Show CourseMenu if logged in
 };
+const logOutHandler = () => {
+  const user = localStorage.getItem("user");
+  const admin = localStorage.getItem("admin");
+
+  if (user) { // If user is logged in, logout user
+    const confirmed = window.confirm("Are you sure you want to logout?");
+    if (confirmed) {
+      localStorage.removeItem("user"); // Remove user data from localStorage
+      window.location.href = "/" // Navigate to the home page after logging out
+    }
+  } else if (admin) { // If admin is logged in, logout admin
+    const confirmed = window.confirm("Are you sure you want to logout?");
+    if (confirmed) {
+      localStorage.removeItem("admin"); // Remove admin data from localStorage
+      window.location.href = "/"; // Navigate to the home page after logging out
+    }
+  } else {
+    alert("No user or admin is logged in."); // If no one is logged in
+  }
+}
 
 const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    localStorage.getItem('user') !== null || localStorage.getItem('admin') !== null
+  );
+
+  // Listen for changes in localStorage and update the state
+  useEffect(() => {
+    const handleStorageChange = () => {
+      setIsLoggedIn(localStorage.getItem('user') !== null || localStorage.getItem('admin') !== null);
+    };
+
+    // Add event listener for storage changes
+    window.addEventListener('storage', handleStorageChange);
+
+    // Cleanup the event listener
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
   return (
     <Router>
       <header>
         <nav className="nav-container">
           <div className="left-nav22">
-            {/* Register and Login buttons */}
-            <Link to="/register" className="nav-btn22">Register</Link>
-            <Link to="/login" id="nnbtn">Login</Link>
-            {/* Use the LogoutButton component */}
-            <LogoutButton />
+            <Link to="/register" className="nav-btn22" style={{ visibility: isLoggedIn ? 'hidden' : 'visible' }}>
+              Register
+            </Link>
+            <Link to="/login" id="nnbtn" style={{ visibility: isLoggedIn ? 'hidden' : 'visible' }}>
+              Login
+            </Link>
+
+            <button
+              id="nnbtn"
+              onClick={logOutHandler}
+              style={{ visibility: isLoggedIn ? 'visible' : 'hidden' }} // Show logout button when logged in, but still occupy space
+            >
+              Logout
+            </button>
+
+
+            {/* <LogoutButton /> */}
           </div>
           <div className="right-nav">
             {/* Existing navigation links */}
@@ -93,21 +147,21 @@ const App = () => {
           <Route path="/admindahsboard" element={<AdminDashboardWithAuth />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          
+
           {/* Conditional rendering for /CourseMenu with an alert if not logged in */}
-          <Route path="/CourseMenu/:id" element={<CourseMenuWithAuth />}  />
-          <Route path="/Htmlv" element={<Htmlv />} />
-          <Route path="/Cssv" element={<Cssv />} />
-          <Route path="/Javav" element={<Javav />} />
-          <Route path="/Pythonv" element={<Pythonv />} />
-          <Route path="/nodejsv" element={<NodeJsv />} />
-          <Route path="/reactjsv" element={<ReactJsv />} />
-          <Route path="/expressjsv" element={<Expressjsv />} />
-          <Route path="/mongodbv" element={<MongoDbv />} />
+          <Route path="/CourseMenu/:id" element={<CourseMenuWithAuth />} />
+          <Route path="//Htmlv/:id" element={<Htmlv />} />
+          <Route path="/Cssv/:id" element={<Cssv />} />
+          <Route path="/Javav/:id" element={<Javav />} />
+          <Route path="/Pythonv/:id" element={<Pythonv />} />
+          <Route path="/nodejsv/:id" element={<NodeJsv />} />
+          <Route path="/reactjsv/:id" element={<ReactJsv />} />
+          <Route path="/expressjsv/:id" element={<Expressjsv />} />
+          <Route path="/mongodbv/:id" element={<MongoDbv />} />
           <Route path="/register" element={<SignUp />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/adminlogin" element={<AdminLogIn />} />
-          <Route path="/FeedBackForm" element={<FeedBackForm />} />
+          <Route path="/FeedBackForm/:id" element={<FeedBackForm />} />
           <Route path="/feedbackdata" element={<FeedbackData />} />
           <Route path="/htmlassignment" element={<HtmlAssignment />} />
           <Route path="/cssassignment" element={<CssAssignment />} />
@@ -120,7 +174,10 @@ const App = () => {
           <Route path="/myprofile/:id" element={<UserProfile />} />
           {/* <Route path="/htmlv/:id" element={<Htmlv/>} /> */}
           {/* Add the new route for the EditUser page */}
-          <Route path="/edituser/:id" element={<EditUser />} />  {/* :id is the user ID */}
+          <Route path="/edituser/:id" element={<EditUser />} />  {/* :id is the user ID */}editcourse
+          <Route path="/editcourse" element={<EditCourse />} />
+          <Route path="/htmledit/1" element={<HtmlEdit />} />mongodbedit/9
+          <Route path="mongodbedit/9" element={<MongodbEdit />} />
         </Routes>
         <ToastContainer />
       </header>

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './Htmlv.css'; // Assuming you want to style your page similarly
-import { NavLink } from 'react-router-dom';
+import { NavLink,useParams } from 'react-router-dom';
 
 export default function ReactJsv() {
   const [nodejsContent, setNodejsContent] = useState(null); // State to store Node.js course content
   const [loading, setLoading] = useState(true); // State to handle loading state
-
+  const { id } = useParams();
   // Fetch Node.js course content when the component mounts
   useEffect(() => {
     // Fetch data from the server (Node.js course API endpoint)
@@ -37,13 +37,16 @@ export default function ReactJsv() {
               className="html-content"
               dangerouslySetInnerHTML={{ __html: nodejsContent.content }} // Render the HTML content
             />
+            <div className="Ccontent2">
+              <h2>Introduction</h2>
+            </div>
           </div>
         )}
       </div>
 
       <div className="notes-container">
         <NavLink to="/expressjsassignment" className="notes">Assignment</NavLink>
-        <NavLink to="/FeedBackForm" className="notes">Feedback</NavLink>
+        <NavLink to={`/FeedBackForm/${id}`} className="notes">Feedback</NavLink>
       </div>
     </div>
   );

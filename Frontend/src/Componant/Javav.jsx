@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './Htmlv.css'; // Make sure to import the CSS if it's required for styling
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 
 export default function Cssv() {
   const [cssContent, setCssContent] = useState(null); // State to store CSS course content
   const [loading, setLoading] = useState(true); // State to show loading while fetching data
-
+  const { id } = useParams();
   // Fetch CSS content when the component mounts
   useEffect(() => {
     // Fetch data from the server
@@ -36,8 +36,8 @@ export default function Cssv() {
 
       {/* Navigation Links */}
       <div className="notes-container">
-        <NavLink to="/javaassignment" className="notes">Assignment</NavLink>
-        <NavLink to="/FeedBackForm" className="notes">Feedback</NavLink>
+          <NavLink to="/javaassignment" className="notes">Assignment</NavLink>
+             <NavLink to={`/FeedBackForm/${id}`} className="notes">Feedback</NavLink>
       </div>
     </div>
   );

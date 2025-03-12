@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './Htmlv.css'; // Assuming styles are handled in this CSS file
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 
 export default function ReactJsv() {
   const [courseContent, setCourseContent] = useState(null);  // State to store course data
   const [loading, setLoading] = useState(true);  // Loading state for fetching data
-
+  const { id } = useParams();
   useEffect(() => {
     // Fetch course data when the component mounts
     fetch('http://localhost:5000/api/mongodb-course')
@@ -42,7 +42,7 @@ export default function ReactJsv() {
 
       <div className="notes-container">
         <NavLink to="/mongodbassignment" className="notes">Assignment</NavLink>
-        <NavLink to="/FeedBackForm" className="notes">Feedback</NavLink>
+        <NavLink to={`/FeedBackForm/${id}`} className="notes">Feedback</NavLink>
       </div>
     </div>
   );

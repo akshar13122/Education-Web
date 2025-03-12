@@ -30,10 +30,19 @@ export default function ReactJsv() {
       <div className="ApiSec">
         {/* Display the ReactJS course content */}
         {reactContent && (
+          <>
           <div
             className="html-content"
-            dangerouslySetInnerHTML={{ __html: reactContent.content }} // Render HTML content
-          />
+            dangerouslySetInnerHTML={{ __html: reactContent.content }} /><br/>
+            <div className="Ccontent2">
+              <h2><a id='h2a'   href='https://www.w3schools.com/nodejs/default.asp'>Node-Js Introduction and Features</a></h2>
+              <p>You will Find all the Learning content of Node-Js Features</p><br/>
+              <h2><a id='h2a' href='https://www.w3schools.com/nodejs/nodejs_mysql.asp'>Node-Js with Mysql</a></h2>
+              <p>You will learn about MySQL database connectivity with Node.js and explore several key MySQL features</p><br/>
+              <h2><a  id='h2a' href='https://www.w3schools.com/nodejs/nodejs_mongodb.asp'>Node-Js with Mongodb</a></h2>
+              <p>You will learn about Mongodb database connectivity with Node.js and explore several key Mongodb features</p><br/>
+            </div>
+            </>
         )}
       </div>
 

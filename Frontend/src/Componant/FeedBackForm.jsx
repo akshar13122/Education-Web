@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom'; // Import useParams
 import './FeedBackForm.css';
 
 const FeedBackForm = () => {
+  const { id } = useParams(); // Retrieve userId from the URL parameters
+
   const [formData, setFormData] = useState({
     courseLike: '',
     query: '',
@@ -19,6 +22,15 @@ const FeedBackForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    // Log the userId to the console for debugging
+    console.log("User ID from URL:", id);
+
+    // Add userId to formData
+    const dataToSubmit = { ...formData, id };
+
+    // Debug: Log the data being sent
+    console.log("Data being submitted:", dataToSubmit);
 
     // Submit the feedback data to the backend
     fetch("http://localhost:5000/api/submit-feedback", {
@@ -26,7 +38,7 @@ const FeedBackForm = () => {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(formData)
+      body: JSON.stringify(dataToSubmit) // Send the data with userId
     })
       .then(response => response.json())
       .then(data => {

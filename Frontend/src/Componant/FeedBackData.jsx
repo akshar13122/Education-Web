@@ -56,6 +56,7 @@ const FeedbackData = () => {
               <thead>
                 <tr>
                   <th>ID</th>
+                  <th>User Name</th> {/* Add User Name column */}
                   <th>Course Like</th>
                   <th>Query</th>
                   <th>Suggestions</th>
@@ -67,6 +68,7 @@ const FeedbackData = () => {
                 {feedback.map((item) => (
                   <tr key={item.id}>
                     <td>{item.id}</td>
+                    <td>{item.name}</td> {/* Display User Name */}
                     <td>{item.q1}</td>
                     <td>{item.q2}</td>
                     <td>{item.q3}</td>

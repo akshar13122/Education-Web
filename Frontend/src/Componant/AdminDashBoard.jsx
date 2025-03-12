@@ -10,6 +10,8 @@ const AdminDashBoard = () => {
 
   // Fetch users on component mount
   useEffect(() => {
+          // Check if the page has already been reloaded (stored in localStorage)
+   
     const fetchUsers = async () => {
       try {
         const response = await fetch("http://localhost:5000/api/users");
@@ -26,6 +28,14 @@ const AdminDashBoard = () => {
     };
 
     fetchUsers();
+    const hasReloaded = localStorage.getItem('hasReloaded');
+          
+    if (!hasReloaded) {
+        // If the page has not been reloaded before, reload it and set the flag in localStorage
+        localStorage.setItem('hasReloaded', 'true');
+        window.location.reload();
+    }
+
   }, []);
 
   // Delete user
@@ -56,6 +66,9 @@ const AdminDashBoard = () => {
     navigate('/feedbackdata');
   };
 
+  const navigateToEditCourse = () => {
+    navigate('/editcourse');
+  }
   // Handle the search input change
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value); // Update the search term state
@@ -67,6 +80,7 @@ const AdminDashBoard = () => {
       user.name.toLowerCase().includes(searchTerm.toLowerCase()) || // Match by name
       user.id.toString().includes(searchTerm) // Match by ID
   );
+  
 
   return (
     <div className="adminDiv">
@@ -74,7 +88,10 @@ const AdminDashBoard = () => {
         <h1>Admin Dashboard</h1>
 
         {/* Add Feedback Data Button */}
-        <button onClick={navigateToFeedbackData} className="feedbackbtn">View Feedback Data</button>
+        <div className="upperbuttons">
+          <button onClick={navigateToFeedbackData} className="feedbackbtn">Feedback Data</button>
+          <button onClick={navigateToEditCourse} className="feedbackbtn">Edit-Courses</button>
+        </div>
 
         {loading ? (
           <p className="loading">Loading users...</p>

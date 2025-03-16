@@ -17,23 +17,23 @@ const EditCourse = () => {
           </div>
           <div className="course-item">
             <h3 className="course-title">CSS</h3>
-            <button className="editbtn">Edit</button>
+            <NavLink to="/cssedit/3" className="editbtn">Edit</NavLink>
           </div>
           <div className="course-item">
             <h3 className="course-title">Java</h3>
-            <button className="editbtn">Edit</button>
+            <NavLink to="/javaedit/4" className="editbtn">Edit</NavLink>
           </div>
           <div className="course-item">
             <h3 className="course-title">Python</h3>
-            <button className="editbtn">Edit</button>
+            <NavLink to="/pythonedit/5" className="editbtn">Edit</NavLink>
           </div>
           <div className="course-item">
             <h3 className="course-title">React-js</h3>
-            <button className="editbtn">Edit</button>
+            <NavLink to="/reactjsedit/6" className="editbtn">Edit</NavLink>
           </div>
           <div className="course-item">
             <h3 className="course-title">Node-js</h3>
-            <button className="editbtn">Edit</button>
+            <NavLink to="/nodejsedit/7" className="editbtn">Edit</NavLink>
           </div>
           <div className="course-item">
             <h3 className="course-title">Express-js</h3>

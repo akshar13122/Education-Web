@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from "react";
 import "./HtmlEdit.css";
 
-const HtmlEdit = () => {
+const JavaEdit = () => {
   const [courses, setCourses] = useState([]);
   const [course, setCourse] = useState({ heading: "", content: "", link: "" });
   const [editId, setEditId] = useState(null);
 
+  // Fetch courses from backend
   useEffect(() => {
     fetchCourses();
   }, []);
 
   const fetchCourses = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/html-courses");
+      const response = await fetch("http://localhost:5000/api/java-courses");
       const data = await response.json();
       setCourses(data);
     } catch (error) {
@@ -20,15 +21,17 @@ const HtmlEdit = () => {
     }
   };
 
+  // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCourse((prev) => ({ ...prev, [name]: value }));
   };
 
+  // Add a new course
   const handleAddCourse = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/api/html-courses", {
+      const response = await fetch("http://localhost:5000/api/java-courses", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(course),
@@ -42,10 +45,11 @@ const HtmlEdit = () => {
     }
   };
 
+  // Update a course
   const handleUpdateCourse = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:5000/api/html-courses/${editId}`, {
+      const response = await fetch(`http://localhost:5000/api/java-courses/${editId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(course),
@@ -60,9 +64,10 @@ const HtmlEdit = () => {
     }
   };
 
+  // Delete a course
   const handleDeleteCourse = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/html-courses/${id}`, {
+      const response = await fetch(`http://localhost:5000/api/java-courses/${id}`, {
         method: "DELETE",
       });
       if (response.ok) {
@@ -124,4 +129,4 @@ const HtmlEdit = () => {
   );
 };
 
-export default HtmlEdit;
+export default JavaEdit;

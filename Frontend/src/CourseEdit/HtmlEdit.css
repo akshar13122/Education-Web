@@ -1,62 +1,192 @@
-/* HtmlEdit.css */
+/* Main container */
+.htmlmaincr {
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+  padding: 20px;
+  overflow-y: auto; /* Allows scrolling */
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: #4CAF50 #f9f9f9; /* Green scrollbar */
+  border-radius: 10px;
+}
 
-/* Center-align the title */
-.htmlmaincr{
-    height: 80%;
-    display: flex;
-    justify-content: center;
-    /* align-items: center; */
-    width: 100%;
+/* Section wrapper */
+.secmain {
+  width: 100%;
+  max-width: 1300px;
+  padding: 20px;
+  background: #f9f9f98d;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-height: 80vh; /* Prevents overflowing navbar */
+  overflow-y: auto; /* Allows internal scrolling */
 }
-.htmlcrmain2{
-    width:130vh;
+
+.htmlmaincr::-webkit-scrollbar {
+  width: 8px;
 }
+
+.htmlmaincr::-webkit-scrollbar-thumb {
+  background-color: #4CAF50; /* Green */
+  border-radius: 4px;
+}
+
+.htmlmaincr::-webkit-scrollbar-track {
+  background: #f9f9f9;
+}
+
+/* Title styling */
 .course-title2 {
-    text-align: center;
-    font-size: 2rem; /* You can adjust the font size */
-    margin-bottom: 20px;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Justified content */
+.course-content2 {
+  text-align: justify;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+/* Form styling */
+form {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  background: #ffffff81;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Label styling */
+label {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Input & textarea styling */
+input,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #f8f8f8;
+  transition: 0.3s;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #4CAF50;
+  background: #ffffff;
+  outline: none;
+}
+
+/* Button styling */
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: #ffffff6b;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Table headers */
+thead {
+  background-color: #4CAF50;
+  color: rgb(0, 0, 0);
+}
+#edt{
+  width: 90px;
+  margin-top: 0px;
+}
+#dlt{
+  margin-top: 10px;
+  background-color: #d32f2f;
+}
+.margdiv{
+  margin-top: 20px;
+}
+th,
+td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Table row hover effect */
+tbody tr:hover {
+  background-color: #f2f2f2;
+}
+
+/* Action buttons */
+button.edit {
+  background-color: #2196F3;
+}
+
+button.edit:hover {
+  background-color: #0b7dda;
+}
+
+button.delete {
+  background-color: #f44336;
+}
+
+button.delete:hover {
+  background-color: #d32f2f;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .secmain {
+      padding: 15px;
   }
-  
-  /* Justify the content */
+
+  .course-title2 {
+      font-size: 1.8rem;
+  }
+
   .course-content2 {
-    text-align: justify;
-    font-size: 1.2rem; /* You can adjust the font size */
-    margin-bottom: 20px;
+      font-size: 1rem;
   }
-  
-  /* Optional: Style the form and inputs */
-  form {
-    margin-top: 30px;
+
+  input,
+  textarea {
+      font-size: 0.9rem;
   }
-  
-  form div {
-    margin-bottom: 15px;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-  
-  input, textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
-  }
-  
+
   button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+      font-size: 0.9rem;
   }
-  
-  button:hover {
-    background-color: #45a049;
-  }
-  
+}

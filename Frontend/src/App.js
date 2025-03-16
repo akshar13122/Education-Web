@@ -36,6 +36,13 @@ import EditCourse from './Componant/EditCourse';
 import HtmlEdit from './CourseEdit/HtmlEdit';
 import MongodbEdit from './CourseEdit/MongodbEdit';
 import { useState, useEffect } from 'react';
+import NodejsEdit from './CourseEdit/NodeJsEdit';
+import ReactjsEdit from './CourseEdit/ReactJsEdit';
+import PythonEdit from './CourseEdit/PythonEdit';
+import JavaEdit from './CourseEdit/JavEdit';
+import CssEdit from './CourseEdit/CssEdit';
+
+
 // Protected Route for Admin Dashboard
 const AdminDashboardWithAuth = () => {
   const admin = localStorage.getItem("admin"); // Check if admin is logged in
@@ -177,7 +184,12 @@ const App = () => {
           <Route path="/edituser/:id" element={<EditUser />} />  {/* :id is the user ID */}editcourse
           <Route path="/editcourse" element={<EditCourse />} />
           <Route path="/htmledit/1" element={<HtmlEdit />} />mongodbedit/9
-          <Route path="mongodbedit/9" element={<MongodbEdit />} />
+          <Route path="mongodbedit/9" element={<MongodbEdit />} />/nodejsedit/7
+          <Route path="/nodejsedit/7" element={<NodejsEdit />} />
+          <Route path="/reactjsedit/6" element={<ReactjsEdit/>} />
+          <Route path="/pythonedit/5" element={<PythonEdit/>} />/javaedit/4
+          <Route path="/javaedit/4" element={<JavaEdit/>} />/cssedit/3
+          <Route path="/cssedit/3" element={<CssEdit/>} />
         </Routes>
         <ToastContainer />
       </header>

@@ -116,7 +116,7 @@ const AdminDashBoard = () => {
               <table>
                 <thead>
                   <tr>
-                    <th>ID</th>
+                    {/* <th>ID</th> */}
                     <th>Name</th>
                     <th>Email</th>
                     <th>Password</th>
@@ -127,7 +127,7 @@ const AdminDashBoard = () => {
                 <tbody>
                   {filteredUsers.map((user) => (
                     <tr key={user.id}>
-                      <td>{user.id}</td>
+                      {/* <td>{user.id}</td> */}
                       <td>{user.name}</td>
                       <td>{user.email}</td>
                       <td>{user.password}</td>

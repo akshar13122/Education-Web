@@ -36,12 +36,14 @@ function Home() {
             <div className="title">
                 <h1>BE VERSATILE</h1>
             </div>
+            <div className="btncc2">
             <div className="buttoncc">
                 {/* Button click will trigger the handleCourseMenuClick function */}
                 <button onClick={handleCourseMenuClick} className="btn" style={{ backgroundColor: 'transparent', borderRadius: '0' }}>
                     COURSE MENU
                 </button>
                 <NavLink to="/adminlogin" className="btn">ADMIN LOGIN</NavLink>
+            </div>
             </div>
         </>
     );

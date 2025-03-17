@@ -111,10 +111,22 @@ p {
     font-weight: bold;
     color: #ffffff;
 }
-.buttoncc{
+/* .buttoncc{
     position: relative;
     top: 400px;
     left: 590px;
+   
+} */
+.btncc2{
+  position: relative;
+  /* top: 50px; */
+  /* height: 80%; */
+  position: relative;
+  top: 45%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .buttoncc>a{
     margin:4px;

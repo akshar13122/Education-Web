@@ -122,10 +122,10 @@ const App = () => {
       <header>
         <nav className="nav-container">
           <div className="left-nav22">
-            <Link to="/register" className="nav-btn22" style={{ visibility: isLoggedIn ? 'hidden' : 'visible' }}>
+            <Link classname='linkk'  to="/register" className="nav-btn22" style={{ visibility: isLoggedIn ? 'hidden' : 'visible' }}>
               Register
             </Link>
-            <Link to="/login" id="nnbtn" style={{ visibility: isLoggedIn ? 'hidden' : 'visible' }}>
+            <Link classname='linkk'    to="/login" id="nnbtn" style={{ visibility: isLoggedIn ? 'hidden' : 'visible' }}>
               Login
             </Link>
 

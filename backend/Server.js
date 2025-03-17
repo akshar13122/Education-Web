@@ -307,7 +307,7 @@ app.get("/api/mongodb-course", (req, res) => {
       res.json({ title: results[0].title, content: results[0].content });
     } else {
       // If no data is found
-      res.status(404).json({ error: "Express.js course not found" });
+      res.status(404).json({ error: "Express.js course not found" }); 
     }
   });
 });

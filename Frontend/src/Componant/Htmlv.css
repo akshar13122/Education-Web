@@ -1,12 +1,14 @@
 
 .ApiSec {
+  background-color: rgba(240, 248, 255, 0.305);
     height: 70vh;
-    /* border: 1px solid black; */
     width: 190vh;
     position: relative;
     right: 400px;
     bottom: 70px;
     overflow: auto; 
+    border-radius: 10px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .ApiSec::-webkit-scrollbar {
@@ -32,7 +34,6 @@
     cursor: pointer;
     font-size: 16px;
     font-weight: 800;
-    /* border-radius: 5px; */
     position: relative;
     bottom: 100px;
   }
@@ -42,9 +43,19 @@
     background-color: white;
   }
   
-  .Ccontent2 h2{
+  .contentH2{
     text-align: justify;
     color: black;
+    margin-left: 10px;
+  }
+  .contentH2 a{
+    text-decoration: none;
+    color: black;
+    font-weight: 800;
+  }
+  .contentP{
+    text-align: justify;
+    margin-left: 10px;
   }
   #h2a{
     text-decoration: none;

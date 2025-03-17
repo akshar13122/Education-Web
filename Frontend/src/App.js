@@ -36,6 +36,13 @@ import EditCourse from './Componant/EditCourse';
 import HtmlEdit from './CourseEdit/HtmlEdit';
 import MongodbEdit from './CourseEdit/MongodbEdit';
 import { useState, useEffect } from 'react';
+import NodejsEdit from './CourseEdit/NodeJsEdit';
+import ReactjsEdit from './CourseEdit/ReactJsEdit';
+import PythonEdit from './CourseEdit/PythonEdit';
+import JavaEdit from './CourseEdit/JavEdit';
+import CssEdit from './CourseEdit/CssEdit';
+import UserEditByUser from './Componant/UserEditByUser';
+
 // Protected Route for Admin Dashboard
 const AdminDashboardWithAuth = () => {
   const admin = localStorage.getItem("admin"); // Check if admin is logged in
@@ -44,26 +51,26 @@ const AdminDashboardWithAuth = () => {
   if (!admin) {
     const confirmed = window.confirm("Please login through Admin Login to access the Admin Dashboard.");
     if (confirmed) {
-      return <Navigate to="/adminlogin" />;  // Redirect to admin login page if the user clicks OK
+      return <Navigate to="/adminlogin" />;  
     } else {
-      return null;  // Do nothing or redirect to another route
+      return null;  
     }
   }
 
-  return <AdminDashBoard />;  // Show Admin Dashboard if logged in
+  return <AdminDashBoard />;  
 };
 
 // Protected Route for CourseMenu
 const CourseMenuWithAuth = () => {
-  const { id } = useParams();  // Get the ID from the URL
-  console.log(id);  // Debugging: check if you get the correct ID
+  const { id } = useParams(); 
+  console.log(id);  
 
   const user = localStorage.getItem("user");  // Check if user is logged in
   const navigate = useNavigate();
 
   if (!user) {
     alert("Please login first to access Course Menu.");
-    return <Navigate to="/login" />;  // Redirect to login page if not logged in
+    return <Navigate to="/login" />;  
   }
 
   return <CourseMenu />;  // Show CourseMenu if logged in
@@ -75,14 +82,16 @@ const logOutHandler = () => {
   if (user) { // If user is logged in, logout user
     const confirmed = window.confirm("Are you sure you want to logout?");
     if (confirmed) {
-      localStorage.removeItem("user"); // Remove user data from localStorage
-      window.location.href = "/" // Navigate to the home page after logging out
+      localStorage.removeItem("user"); 
+      localStorage.clear();
+      window.location.href = "/" 
     }
-  } else if (admin) { // If admin is logged in, logout admin
+  } else if (admin) { 
     const confirmed = window.confirm("Are you sure you want to logout?");
     if (confirmed) {
-      localStorage.removeItem("admin"); // Remove admin data from localStorage
-      window.location.href = "/"; // Navigate to the home page after logging out
+      localStorage.removeItem("admin"); 
+      localStorage.clear();
+      window.location.href = "/"; 
     }
   } else {
     alert("No user or admin is logged in."); // If no one is logged in
@@ -177,7 +186,13 @@ const App = () => {
           <Route path="/edituser/:id" element={<EditUser />} />  {/* :id is the user ID */}editcourse
           <Route path="/editcourse" element={<EditCourse />} />
           <Route path="/htmledit/1" element={<HtmlEdit />} />mongodbedit/9
-          <Route path="mongodbedit/9" element={<MongodbEdit />} />
+          <Route path="mongodbedit/9" element={<MongodbEdit />} />/nodejsedit/7
+          <Route path="/nodejsedit/7" element={<NodejsEdit />} />
+          <Route path="/reactjsedit/6" element={<ReactjsEdit/>} />
+          <Route path="/pythonedit/5" element={<PythonEdit/>} />/javaedit/4
+          <Route path="/javaedit/4" element={<JavaEdit/>} />/cssedit/3
+          <Route path="/cssedit/3" element={<CssEdit/>} />/edit-user/
+          <Route path="/edit-user/:id" element={<UserEditByUser />} />
         </Routes>
         <ToastContainer />
       </header>

@@ -10,7 +10,7 @@ app.use(express.json());
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",  
-  password: "root",  
+  password: "akshar2409",  
   database: "edu_users",  
 });
 
@@ -166,114 +166,105 @@ app.delete('/api/feedback-data/:id', (req, res) => {
 
 // title = 'HTML Tutor'
 // Fetch HTML course content by ID
-app.get("/api/html-course", (req, res) => {
-  db.query("SELECT * FROM html_courses WHERE id='1'", (err, results) => {
-    if (err) {
-      console.error("Error fetching HTML course content:", err.message);
-      return res.status(500).json({ error: "Database Error" });
-    }
+// app.get("/api/html-course", (req, res) => {
+//   db.query("SELECT * FROM html_courses WHERE id='1'", (err, results) => {
+//     if (err) {
+//       console.error("Error fetching HTML course content:", err.message);
+//       return res.status(500).json({ error: "Database Error" });
+//     }
     
-    if (results.length > 0) {
-      res.json({ title: results[0].title, content: results[0].content });
-    } else {
-      res.status(404).json({ error: "HTML course not found" });
-    }
-  });
-});
+//     if (results.length > 0) {
+//       res.json({ title: results[0].title, content: results[0].content });
+//     } else {
+//       res.status(404).json({ error: "HTML course not found" });
+//     }
+//   });
+// });
 
 //Css course
-app.get("/api/css-course", (req, res) => {
-  // Change the id to 3 to fetch the correct data
-  db.query("SELECT * FROM html_courses WHERE id='3'", (err, results) => {
-    if (err) {
-      console.error("Error fetching HTML course content:", err.message);
-      return res.status(500).json({ error: "Database Error" });
-    }
+// app.get("/api/css-course", (req, res) => {
+//   db.query("SELECT * FROM html_courses WHERE id='3'", (err, results) => {
+//     if (err) {
+//       console.error("Error fetching HTML course content:", err.message);
+//       return res.status(500).json({ error: "Database Error" });
+//     }
     
-    if (results.length > 0) {
-      // Send the course data as a response
-      res.json({ title: results[0].title, content: results[0].content });
-    } else {
-      // If no data is found
-      res.status(404).json({ error: "HTML course not found" });
-    }
-  });
-});
+//     if (results.length > 0) {
+//       res.json({ title: results[0].title, content: results[0].content });
+//     } else {
+//       res.status(404).json({ error: "HTML course not found" });
+//     }
+//   });
+// });
 
 //Java Course
-app.get("/api/java-course", (req, res) => {
-  // Change the id to 4 to fetch the correct data
-  db.query("SELECT * FROM html_courses WHERE id = 4", (err, results) => {
-    if (err) {
-      console.error("Error fetching HTML course content:", err.message);
-      return res.status(500).json({ error: "Database Error" });
-    }
-    
-    if (results.length > 0) {
-      // Send the course data as a response
-      res.json({ title: results[0].title, content: results[0].content });
-    } else {
-      // If no data is found
-      res.status(404).json({ error: "HTML course not found" });
-    }
-  });
-});
+// app.get("/api/java-course", (req, res) => {
+//   db.query("SELECT * FROM html_courses WHERE id = 4", (err, results) => {
+//     if (err) {
+//       console.error("Error fetching HTML course content:", err.message);
+//       return res.status(500).json({ error: "Database Error" });
+//     }
+//     if (results.length > 0) {
+//       res.json({ title: results[0].title, content: results[0].content });
+//     } else {
+//       res.status(404).json({ error: "HTML course not found" });
+//     }
+//   });
+// });
 
 //Python Course
-app.get("/api/python-course", (req, res) => {
-  // Change the id to 5 to fetch the correct data for Python course
-  db.query("SELECT * FROM html_courses WHERE id = 5", (err, results) => {
-    if (err) {
-      console.error("Error fetching Python course content:", err.message);
-      return res.status(500).json({ error: "Database Error" });
-    }
+// app.get("/api/python-course", (req, res) => {
+//   db.query("SELECT * FROM html_courses WHERE id = 5", (err, results) => {
+//     if (err) {
+//       console.error("Error fetching Python course content:", err.message);
+//       return res.status(500).json({ error: "Database Error" });
+//     }
     
-    if (results.length > 0) {
-      // Send the Python course data as a response
-      res.json({ title: results[0].title, content: results[0].content });
-    } else {
-      // If no data is found
-      res.status(404).json({ error: "Python course not found" });
-    }
-  });
-});
+//     if (results.length > 0) {
+      
+//       res.json({ title: results[0].title, content: results[0].content });
+//     } else {
+      
+//       res.status(404).json({ error: "Python course not found" });
+//     }
+//   });
+// });
 
-app.get("/api/reactjs-course", (req, res) => {
-  // Change the id to match the React course ID in the database
-  db.query("SELECT * FROM html_courses WHERE id = 6", (err, results) => { // Assuming id = 1 is for ReactJS course
-    if (err) {
-      console.error("Error fetching ReactJS course content:", err.message);
-      return res.status(500).json({ error: "Database Error" });
-    }
+// app.get("/api/reactjs-course", (req, res) => {
+ 
+//   db.query("SELECT * FROM html_courses WHERE id = 6", (err, results) => { 
+//     if (err) {
+//       console.error("Error fetching ReactJS course content:", err.message);
+//       return res.status(500).json({ error: "Database Error" });
+//     }
     
-    if (results.length > 0) {
-      // Send the ReactJS course data as a response
-      res.json({ title: results[0].title, content: results[0].content });
-    } else {
-      // If no data is found
-      res.status(404).json({ error: "ReactJS course not found" });
-    }
-  });
-});
+//     if (results.length > 0) {
+     
+//       res.json({ title: results[0].title, content: results[0].content });
+//     } else {
+     
+//       res.status(404).json({ error: "ReactJS course not found" });
+//     }
+//   });
+// });
 
 
-app.get("/api/nodejs-course", (req, res) => {
-  // Change the id to match the React course ID in the database
-  db.query("SELECT * FROM html_courses WHERE id = 7", (err, results) => { // Assuming id = 6 is for ReactJS course
-    if (err) {
-      console.error("Error fetching NodeJs course content:", err.message);
-      return res.status(500).json({ error: "Database Error" });
-    }
+// app.get("/api/nodejs-course", (req, res) => {
+  
+//   db.query("SELECT * FROM html_courses WHERE id = 7", (err, results) => { 
+//     if (err) {
+//       console.error("Error fetching NodeJs course content:", err.message);
+//       return res.status(500).json({ error: "Database Error" });
+//     }
 
-    if (results.length > 0) {
-      // Send the ReactJS course data as a response
-      res.json({ title: results[0].title, content: results[0].content });
-    } else {
-      // If no data is found
-      res.status(404).json({ error: "Nodejs course not found" });
-    }
-  });
-});
+//     if (results.length > 0) {
+    
+//       res.json({ title: results[0].title, content: results[0].content });
+//     } else {
+//       res.status(404).json({ error: "Nodejs course not found" });
+//     }
+//   });
+// });
 
 
 app.get("/api/expressjs-course", (req, res) => {
@@ -328,9 +319,304 @@ app.put('/update-course/:id', (req, res) => {
 });
 
 
+//new  Mongo-DB
+app.get("/api/courses", (req, res) => {
+  const sql = "SELECT id, heading, content, link FROM testing_tbl";
+  db.query(sql, (err, results) => {
+      if (err) {
+          return res.status(500).json({ error: err.message });
+      }
+      res.json(results);
+  });
+});
+
+
+//  Add a New Course
+app.post("/api/courses", (req, res) => {
+  const { heading, content, link } = req.body;
+  const sql = "INSERT INTO testing_tbl (heading, content, link) VALUES (?, ?, ?)";
+  db.query(sql, [heading, content, link], (err, result) => {
+    if (err) return res.status(500).send(err);
+    res.json({ message: "Course added successfully", id: result.insertId });
+  });
+});
+
+//  Update Course by ID
+app.put("/api/courses/:id", (req, res) => {
+  const { heading, content, link } = req.body;
+  const sql = "UPDATE testing_tbl SET heading=?, content=?, link=? WHERE id=?";
+  db.query(sql, [heading, content, link, req.params.id], (err, result) => {
+    if (err) return res.status(500).send(err);
+    res.json({ message: "Course updated successfully" });
+  });
+});
+
+//  Delete Course by ID
+app.delete("/api/courses/:id", (req, res) => {
+  const sql = "DELETE FROM testing_tbl WHERE id=?";
+  db.query(sql, [req.params.id], (err, result) => {
+    if (err) return res.status(500).send(err);
+    res.json({ message: "Course deleted successfully" });
+  });
+});
+
+
+//Node js course
+app.get("/api/nodejs-courses", (req, res) => {
+  const sql = "SELECT id, heading, content, link FROM nodejs_tbl";
+  db.query(sql, (err, result) => {
+    if (err) return res.status(500).send(err);
+    res.json(result);
+  });
+});
+
+
+app.post("/api/nodejs-courses", (req, res) => {
+  const { heading, content, link } = req.body;
+  const sql = "INSERT INTO nodejs_tbl (heading, content, link) VALUES (?, ?, ?)";
+  db.query(sql, [heading, content, link], (err, result) => {
+    if (err) return res.status(500).send(err);
+    res.json({ message: "Course added successfully", id: result.insertId });
+  });
+});
+
+
+//  Update Course by ID
+app.put("/api/nodejs-courses/:id", (req, res) => {
+  const { heading, content, link } = req.body;
+  const sql = "UPDATE nodejs_tbl SET heading=?, content=?, link=? WHERE id=?";
+  db.query(sql, [heading, content, link, req.params.id], (err, result) => {
+    if (err) return res.status(500).send(err);
+    res.json({ message: "Course updated successfully" });
+  });
+});
+
+//  Delete Course by ID
+app.delete("/api/nodejs-courses/:id", (req, res) => {
+  const sql = "DELETE FROM nodejs_tbl WHERE id=?";
+  db.query(sql, [req.params.id], (err, result) => {
+    if (err) return res.status(500).send(err);
+    res.json({ message: "Course deleted successfully" });
+  });
+});
 
 
 
+
+
+//  Fetch all React.js Courses
+app.get("/api/reactjs-courses", (req, res) => {
+  const sql = "SELECT id, heading, content, link FROM reactjs_tbl";
+  db.query(sql, (err, result) => {
+    if (err) return res.status(500).send(err);
+    res.json(result);
+  });
+});
+
+//  Add a New React.js Course
+app.post("/api/reactjs-courses", (req, res) => {
+  const { heading, content, link } = req.body;
+  const sql = "INSERT INTO reactjs_tbl (heading, content, link) VALUES (?, ?, ?)";
+  db.query(sql, [heading, content, link], (err, result) => {
+    if (err) return res.status(500).send(err);
+    res.json({ message: "Course added successfully", id: result.insertId });
+  });
+});
+
+//  Update Course by ID
+app.put("/api/reactjs-courses/:id", (req, res) => {
+  const { heading, content, link } = req.body;
+  const sql = "UPDATE reactjs_tbl SET heading=?, content=?, link=? WHERE id=?";
+  db.query(sql, [heading, content, link, req.params.id], (err, result) => {
+    if (err) return res.status(500).send(err);
+    res.json({ message: "Course updated successfully" });
+  });
+});
+
+//  Delete Course by ID
+app.delete("/api/reactjs-courses/:id", (req, res) => {
+  const sql = "DELETE FROM reactjs_tbl WHERE id=?";
+  db.query(sql, [req.params.id], (err, result) => {
+    if (err) return res.status(500).send(err);
+    res.json({ message: "Course deleted successfully" });
+  });
+});
+
+
+
+
+
+
+
+
+
+//  Fetch all Python Courses
+app.get("/api/python-courses", (req, res) => {
+  const sql = "SELECT id, heading, content, link FROM python_tbl";
+  db.query(sql, (err, result) => {
+    if (err) return res.status(500).send(err);
+    res.json(result);
+  });
+});
+
+//  Add a New Python Course
+app.post("/api/python-courses", (req, res) => {
+  const { heading, content, link } = req.body;
+  const sql = "INSERT INTO python_tbl (heading, content, link) VALUES (?, ?, ?)";
+  db.query(sql, [heading, content, link], (err, result) => {
+    if (err) return res.status(500).send(err);
+    res.json({ message: "Course added successfully", id: result.insertId });
+  });
+});
+
+//  Update Course by ID
+app.put("/api/python-courses/:id", (req, res) => {
+  const { heading, content, link } = req.body;
+  const sql = "UPDATE python_tbl SET heading=?, content=?, link=? WHERE id=?";
+  db.query(sql, [heading, content, link, req.params.id], (err, result) => {
+    if (err) return res.status(500).send(err);
+    res.json({ message: "Course updated successfully" });
+  });
+});
+
+//  Delete Course by ID
+app.delete("/api/python-courses/:id", (req, res) => {
+  const sql = "DELETE FROM python_tbl WHERE id=?";
+  db.query(sql, [req.params.id], (err, result) => {
+    if (err) return res.status(500).send(err);
+    res.json({ message: "Course deleted successfully" });
+  });
+});
+
+
+
+
+
+//  Fetch all Java Courses
+app.get("/api/java-courses", (req, res) => {
+  const sql = "SELECT * FROM java_tbl";
+  db.query(sql, (err, result) => {
+    if (err) return res.status(500).send(err);
+    res.json(result);
+  });
+});
+
+//  Add a New Java Course
+app.post("/api/java-courses", (req, res) => {
+  const { heading, content, link } = req.body;
+  const sql = "INSERT INTO java_tbl (heading, content, link) VALUES (?, ?, ?)";
+  db.query(sql, [heading, content, link], (err, result) => {
+    if (err) return res.status(500).send(err);
+    res.json({ message: "Course added successfully", id: result.insertId });
+  });
+});
+
+//  Update Course by ID
+app.put("/api/java-courses/:id", (req, res) => {
+  const { heading, content, link } = req.body;
+  const sql = "UPDATE java_tbl SET heading=?, content=?, link=? WHERE id=?";
+  db.query(sql, [heading, content, link, req.params.id], (err, result) => {
+    if (err) return res.status(500).send(err);
+    res.json({ message: "Course updated successfully" });
+  });
+});
+
+//  Delete Course by ID
+app.delete("/api/java-courses/:id", (req, res) => {
+  const sql = "DELETE FROM java_tbl WHERE id=?";
+  db.query(sql, [req.params.id], (err, result) => {
+    if (err) return res.status(500).send(err);
+    res.json({ message: "Course deleted successfully" });
+  });
+});
+
+
+
+// app.get("/api/java-courses", (req, res) => {
+//   const sql = "SELECT * FROM java_tbl";
+//   db.query(sql, (err, result) => {
+//     if (err) return res.status(500).send(err);
+//     res.json(result);
+//   });
+// });
+
+//  Fetch all CSS Courses
+app.get("/api/css-courses", (req, res) => {
+  const sql = "SELECT * FROM css_tbl";
+  db.query(sql, (err, result) => {
+    if (err) return res.status(500).send(err);
+    res.json(result);
+  });
+});
+
+// Add a New CSS Course
+app.post("/api/css-courses", (req, res) => {
+  const { heading, content, link } = req.body;
+  const sql = "INSERT INTO css_tbl (heading, content, link) VALUES (?, ?, ?)";
+  db.query(sql, [heading, content, link], (err, result) => {
+    if (err) return res.status(500).send(err);
+    res.json({ message: "Course added successfully", id: result.insertId });
+  });
+});
+
+//  Update Course by ID
+app.put("/api/css-courses/:id", (req, res) => {
+  const { heading, content, link } = req.body;
+  const sql = "UPDATE css_tbl SET heading=?, content=?, link=? WHERE id=?";
+  db.query(sql, [heading, content, link, req.params.id], (err, result) => {
+    if (err) return res.status(500).send(err);
+    res.json({ message: "Course updated successfully" });
+  });
+});
+
+//  Delete Course by ID
+app.delete("/api/css-courses/:id", (req, res) => {
+  const sql = "DELETE FROM css_tbl WHERE id=?";
+  db.query(sql, [req.params.id], (err, result) => {
+    if (err) return res.status(500).send(err);
+    res.json({ message: "Course deleted successfully" });
+  });
+});
+
+
+
+//  Fetch all HTML Courses
+app.get("/api/html-courses", (req, res) => {
+  const sql = "SELECT * FROM html_tbl";
+  db.query(sql, (err, result) => {
+    if (err) return res.status(500).send(err);
+    res.json(result);
+  });
+});
+
+//  Add a New HTML Course
+app.post("/api/html-courses", (req, res) => {
+  const { heading, content, link } = req.body;
+  const sql = "INSERT INTO html_tbl (heading, content, link) VALUES (?, ?, ?)";
+  db.query(sql, [heading, content, link], (err, result) => {
+    if (err) return res.status(500).send(err);
+    res.json({ message: "Course added successfully", id: result.insertId });
+  });
+});
+
+//  Update Course by ID
+app.put("/api/html-courses/:id", (req, res) => {
+  const { heading, content, link } = req.body;
+  const sql = "UPDATE html_tbl SET heading=?, content=?, link=? WHERE id=?";
+  db.query(sql, [heading, content, link, req.params.id], (err, result) => {
+    if (err) return res.status(500).send(err);
+    res.json({ message: "Course updated successfully" });
+  });
+});
+
+//  Delete Course by ID
+app.delete("/api/html-courses/:id", (req, res) => {
+  const sql = "DELETE FROM html_tbl WHERE id=?";
+  db.query(sql, [req.params.id], (err, result) => {
+    if (err) return res.status(500).send(err);
+    res.json({ message: "Course deleted successfully" });
+  });
+});
 
 
 
@@ -360,6 +646,23 @@ app.get("/api/user-profile/:id", (req, res) => {
     });
   });
 });
+
+//for updating userdata
+app.put('/api/update-user/:id', (req, res) => {
+  const userId = req.params.id;
+  const { name, email } = req.body;
+  const sql = 'UPDATE user_table SET name = ?, email = ? WHERE id = ?';
+
+  db.query(sql, [name, email, userId], (err, result) => {
+    if (err) {
+      return res.status(500).json({ error: 'Database error' });
+    }
+    res.json({ message: 'User updated successfully!' });
+  });
+});
+
+
+
 
 
 

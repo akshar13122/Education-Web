@@ -100,6 +100,7 @@ const AdminDashBoard = () => {
             <h2>Registered Users</h2>
 
             {/* Search Bar */}
+            <div className="srch">
             <div className="search-bar3">
               <input
                 type="text"
@@ -108,6 +109,7 @@ const AdminDashBoard = () => {
                 onChange={handleSearchChange}
                 className="search-input"
               />
+            </div>
             </div>
 
             {filteredUsers.length > 0 ? (

@@ -331,7 +331,7 @@ app.get("/api/courses", (req, res) => {
 });
 
 
-// 🟢 Add a New Course
+//  Add a New Course
 app.post("/api/courses", (req, res) => {
   const { heading, content, link } = req.body;
   const sql = "INSERT INTO testing_tbl (heading, content, link) VALUES (?, ?, ?)";
@@ -341,7 +341,7 @@ app.post("/api/courses", (req, res) => {
   });
 });
 
-// 🟢 Update Course by ID
+//  Update Course by ID
 app.put("/api/courses/:id", (req, res) => {
   const { heading, content, link } = req.body;
   const sql = "UPDATE testing_tbl SET heading=?, content=?, link=? WHERE id=?";
@@ -351,7 +351,7 @@ app.put("/api/courses/:id", (req, res) => {
   });
 });
 
-// 🟢 Delete Course by ID
+//  Delete Course by ID
 app.delete("/api/courses/:id", (req, res) => {
   const sql = "DELETE FROM testing_tbl WHERE id=?";
   db.query(sql, [req.params.id], (err, result) => {
@@ -381,7 +381,7 @@ app.post("/api/nodejs-courses", (req, res) => {
 });
 
 
-// 🟢 Update Course by ID
+//  Update Course by ID
 app.put("/api/nodejs-courses/:id", (req, res) => {
   const { heading, content, link } = req.body;
   const sql = "UPDATE nodejs_tbl SET heading=?, content=?, link=? WHERE id=?";
@@ -391,7 +391,7 @@ app.put("/api/nodejs-courses/:id", (req, res) => {
   });
 });
 
-// 🟢 Delete Course by ID
+//  Delete Course by ID
 app.delete("/api/nodejs-courses/:id", (req, res) => {
   const sql = "DELETE FROM nodejs_tbl WHERE id=?";
   db.query(sql, [req.params.id], (err, result) => {
@@ -404,7 +404,7 @@ app.delete("/api/nodejs-courses/:id", (req, res) => {
 
 
 
-// 🟢 Fetch all React.js Courses
+//  Fetch all React.js Courses
 app.get("/api/reactjs-courses", (req, res) => {
   const sql = "SELECT id, heading, content, link FROM reactjs_tbl";
   db.query(sql, (err, result) => {
@@ -413,7 +413,7 @@ app.get("/api/reactjs-courses", (req, res) => {
   });
 });
 
-// 🟢 Add a New React.js Course
+//  Add a New React.js Course
 app.post("/api/reactjs-courses", (req, res) => {
   const { heading, content, link } = req.body;
   const sql = "INSERT INTO reactjs_tbl (heading, content, link) VALUES (?, ?, ?)";
@@ -423,7 +423,7 @@ app.post("/api/reactjs-courses", (req, res) => {
   });
 });
 
-// 🟢 Update Course by ID
+//  Update Course by ID
 app.put("/api/reactjs-courses/:id", (req, res) => {
   const { heading, content, link } = req.body;
   const sql = "UPDATE reactjs_tbl SET heading=?, content=?, link=? WHERE id=?";
@@ -433,7 +433,7 @@ app.put("/api/reactjs-courses/:id", (req, res) => {
   });
 });
 
-// 🟢 Delete Course by ID
+//  Delete Course by ID
 app.delete("/api/reactjs-courses/:id", (req, res) => {
   const sql = "DELETE FROM reactjs_tbl WHERE id=?";
   db.query(sql, [req.params.id], (err, result) => {
@@ -450,7 +450,7 @@ app.delete("/api/reactjs-courses/:id", (req, res) => {
 
 
 
-// 🟢 Fetch all Python Courses
+//  Fetch all Python Courses
 app.get("/api/python-courses", (req, res) => {
   const sql = "SELECT id, heading, content, link FROM python_tbl";
   db.query(sql, (err, result) => {
@@ -459,7 +459,7 @@ app.get("/api/python-courses", (req, res) => {
   });
 });
 
-// 🟢 Add a New Python Course
+//  Add a New Python Course
 app.post("/api/python-courses", (req, res) => {
   const { heading, content, link } = req.body;
   const sql = "INSERT INTO python_tbl (heading, content, link) VALUES (?, ?, ?)";
@@ -469,7 +469,7 @@ app.post("/api/python-courses", (req, res) => {
   });
 });
 
-// 🟢 Update Course by ID
+//  Update Course by ID
 app.put("/api/python-courses/:id", (req, res) => {
   const { heading, content, link } = req.body;
   const sql = "UPDATE python_tbl SET heading=?, content=?, link=? WHERE id=?";
@@ -479,7 +479,7 @@ app.put("/api/python-courses/:id", (req, res) => {
   });
 });
 
-// 🟢 Delete Course by ID
+//  Delete Course by ID
 app.delete("/api/python-courses/:id", (req, res) => {
   const sql = "DELETE FROM python_tbl WHERE id=?";
   db.query(sql, [req.params.id], (err, result) => {
@@ -492,7 +492,7 @@ app.delete("/api/python-courses/:id", (req, res) => {
 
 
 
-// 🟢 Fetch all Java Courses
+//  Fetch all Java Courses
 app.get("/api/java-courses", (req, res) => {
   const sql = "SELECT * FROM java_tbl";
   db.query(sql, (err, result) => {
@@ -501,7 +501,7 @@ app.get("/api/java-courses", (req, res) => {
   });
 });
 
-// 🟢 Add a New Java Course
+//  Add a New Java Course
 app.post("/api/java-courses", (req, res) => {
   const { heading, content, link } = req.body;
   const sql = "INSERT INTO java_tbl (heading, content, link) VALUES (?, ?, ?)";
@@ -511,7 +511,7 @@ app.post("/api/java-courses", (req, res) => {
   });
 });
 
-// 🟢 Update Course by ID
+//  Update Course by ID
 app.put("/api/java-courses/:id", (req, res) => {
   const { heading, content, link } = req.body;
   const sql = "UPDATE java_tbl SET heading=?, content=?, link=? WHERE id=?";
@@ -521,7 +521,7 @@ app.put("/api/java-courses/:id", (req, res) => {
   });
 });
 
-// 🟢 Delete Course by ID
+//  Delete Course by ID
 app.delete("/api/java-courses/:id", (req, res) => {
   const sql = "DELETE FROM java_tbl WHERE id=?";
   db.query(sql, [req.params.id], (err, result) => {
@@ -540,7 +540,7 @@ app.delete("/api/java-courses/:id", (req, res) => {
 //   });
 // });
 
-// 🟢 Fetch all CSS Courses
+//  Fetch all CSS Courses
 app.get("/api/css-courses", (req, res) => {
   const sql = "SELECT * FROM css_tbl";
   db.query(sql, (err, result) => {
@@ -549,7 +549,7 @@ app.get("/api/css-courses", (req, res) => {
   });
 });
 
-// 🟢 Add a New CSS Course
+// Add a New CSS Course
 app.post("/api/css-courses", (req, res) => {
   const { heading, content, link } = req.body;
   const sql = "INSERT INTO css_tbl (heading, content, link) VALUES (?, ?, ?)";
@@ -559,7 +559,7 @@ app.post("/api/css-courses", (req, res) => {
   });
 });
 
-// 🟢 Update Course by ID
+//  Update Course by ID
 app.put("/api/css-courses/:id", (req, res) => {
   const { heading, content, link } = req.body;
   const sql = "UPDATE css_tbl SET heading=?, content=?, link=? WHERE id=?";
@@ -569,7 +569,7 @@ app.put("/api/css-courses/:id", (req, res) => {
   });
 });
 
-// 🟢 Delete Course by ID
+//  Delete Course by ID
 app.delete("/api/css-courses/:id", (req, res) => {
   const sql = "DELETE FROM css_tbl WHERE id=?";
   db.query(sql, [req.params.id], (err, result) => {
@@ -580,7 +580,7 @@ app.delete("/api/css-courses/:id", (req, res) => {
 
 
 
-// 🟢 Fetch all HTML Courses
+//  Fetch all HTML Courses
 app.get("/api/html-courses", (req, res) => {
   const sql = "SELECT * FROM html_tbl";
   db.query(sql, (err, result) => {
@@ -589,7 +589,7 @@ app.get("/api/html-courses", (req, res) => {
   });
 });
 
-// 🟢 Add a New HTML Course
+//  Add a New HTML Course
 app.post("/api/html-courses", (req, res) => {
   const { heading, content, link } = req.body;
   const sql = "INSERT INTO html_tbl (heading, content, link) VALUES (?, ?, ?)";
@@ -599,7 +599,7 @@ app.post("/api/html-courses", (req, res) => {
   });
 });
 
-// 🟢 Update Course by ID
+//  Update Course by ID
 app.put("/api/html-courses/:id", (req, res) => {
   const { heading, content, link } = req.body;
   const sql = "UPDATE html_tbl SET heading=?, content=?, link=? WHERE id=?";
@@ -609,7 +609,7 @@ app.put("/api/html-courses/:id", (req, res) => {
   });
 });
 
-// 🟢 Delete Course by ID
+//  Delete Course by ID
 app.delete("/api/html-courses/:id", (req, res) => {
   const sql = "DELETE FROM html_tbl WHERE id=?";
   db.query(sql, [req.params.id], (err, result) => {
@@ -646,6 +646,23 @@ app.get("/api/user-profile/:id", (req, res) => {
     });
   });
 });
+
+//for updating userdata
+app.put('/api/update-user/:id', (req, res) => {
+  const userId = req.params.id;
+  const { name, email } = req.body;
+  const sql = 'UPDATE user_table SET name = ?, email = ? WHERE id = ?';
+
+  db.query(sql, [name, email, userId], (err, result) => {
+    if (err) {
+      return res.status(500).json({ error: 'Database error' });
+    }
+    res.json({ message: 'User updated successfully!' });
+  });
+});
+
+
+
 
 
 

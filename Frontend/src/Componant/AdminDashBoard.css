@@ -81,8 +81,7 @@
   }
   .search-bar3{
     width: 400px;
-    position: relative;
-    left: 250px;
+    
   }
   .upperbuttons{
     width: 100%;
@@ -91,6 +90,12 @@
     justify-content: center;
     gap: 40px;
     margin-bottom: 15px;
+  }
+  .srch{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .feedbackbtn{
 

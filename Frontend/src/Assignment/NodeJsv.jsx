@@ -6,7 +6,7 @@ export default function NodeJsv() {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
-
+  const staticId = 7
   useEffect(() => {
     fetch("http://localhost:5000/api/nodejs-courses") // Fetch Node.js courses
       .then((response) => response.json())
@@ -46,7 +46,7 @@ export default function NodeJsv() {
 
       <div className="notes-container">
         <NavLink to="/nodejsassignment" className="notes">Assignment</NavLink>
-        <NavLink to={`/FeedBackForm/${id}`} className="notes">Feedback</NavLink>
+        <NavLink to={`/FeedBackForm/${staticId}/${id}`} className="notes">Feedback</NavLink>
       </div>
     </div>
   );

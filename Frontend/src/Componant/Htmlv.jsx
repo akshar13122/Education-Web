@@ -6,7 +6,7 @@ export default function Htmlv() {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
-
+  const staticId = 1;
   useEffect(() => {
     fetch("http://localhost:5000/api/html-courses") // Fetch HTML courses
       .then((response) => response.json())
@@ -46,7 +46,7 @@ export default function Htmlv() {
 
       <div className="notes-container">
         <NavLink to="/htmlassignment" className="notes">Assignment</NavLink>
-        <NavLink to={`/FeedBackForm/${id}`} className="notes">Feedback</NavLink>
+        <NavLink to={`/FeedBackForm/${staticId}/${id}`} className="notes">Feedback</NavLink>
       </div>
     </div>
   );

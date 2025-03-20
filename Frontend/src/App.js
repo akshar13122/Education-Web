@@ -176,18 +176,18 @@ const App = () => {
           {/* Conditional rendering for /CourseMenu with an alert if not logged in */}
           <Route path="/CourseMenu" element={<CourseMenu />} />
           <Route path="/CourseMenu/:id" element={<CourseMenu />} />
-          <Route path="//Htmlv/:id" element={<Htmlv />} />
-          <Route path="/Cssv/:id" element={<Cssv />} />
-          <Route path="/Javav/:id" element={<Javav />} />
-          <Route path="/Pythonv/:id" element={<Pythonv />} />
-          <Route path="/nodejsv/:id" element={<NodeJsv />} />
-          <Route path="/reactjsv/:id" element={<ReactJsv />} />
-          <Route path="/expressjsv/:id" element={<Expressjsv />} />
-          <Route path="/mongodbv/:id" element={<MongoDbv />} />
+          <Route path="//Htmlv/1/:id" element={<Htmlv />} />
+          <Route path="/Cssv/3/:id" element={<Cssv />} />
+          <Route path="/Javav/4/:id" element={<Javav />} />
+          <Route path="/Pythonv/5/:id" element={<Pythonv />} />
+          <Route path="/nodejsv/7/:id" element={<NodeJsv />} />
+          <Route path="/reactjsv/6/:id" element={<ReactJsv />} />
+          <Route path="/expressjsv/8/:id" element={<Expressjsv />} />
+          <Route path="/mongodbv/9/:id" element={<MongoDbv />} />
           <Route path="/register" element={<SignUp />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/adminlogin" element={<AdminLogIn />} />
-          <Route path="/FeedBackForm/:id" element={<FeedBackForm />} />
+          <Route path="/FeedBackForm/:staticId/:id" element={<FeedBackForm />} />
           <Route path="/feedbackdata" element={<FeedbackData />} />
           <Route path="/htmlassignment" element={<HtmlAssignment />} />
           <Route path="/cssassignment" element={<CssAssignment />} />

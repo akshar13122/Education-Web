@@ -132,62 +132,128 @@ app.put("/api/users/:id", (req, res) => {
 
 
 // Add this route to handle feedback submission
-app.post("/api/submit-feedback", (req, res) => {
-  console.log(req.body);  // This will log the request body (feedback data)
-  const { courseLike, query, suggestions, rating, id } = req.body;
+// app.post("/api/submit-feedback", (req, res) => {
+//   console.log(req.body);  // This will log the request body (feedback data)
+//   const { courseLike, query, suggestions, rating, id } = req.body;
 
-  if (!courseLike || !query || !suggestions || !rating || !id) {
-    return res.status(400).json({ error: "All fields are required!" });
-  }
+//   if (!courseLike || !query || !suggestions || !rating || !id) {
+//     return res.status(400).json({ error: "All fields are required!" });
+//   }
 
   // Insert the feedback data into the database
-  db.query(
-    "INSERT INTO feedback_data (name, q1, q2, q3, q4) VALUES (?, ?, ?, ?, ?)",
-    [id, courseLike, query, suggestions, rating],
-    (err, result) => {
-      if (err) {
-        console.error("Error inserting feedback:", err.message);
-        return res.status(500).json({ error: "Database Error" });
-      }
-      res.status(201).json({ message: "Feedback submitted successfully!" });
-    }
-  );
-});
-
-
-
+//   db.query(
+//     "INSERT INTO feedback_data (name, q1, q2, q3, q4) VALUES (?, ?, ?, ?, ?)",
+//     [id, courseLike, query, suggestions, rating],
+//     (err, result) => {
+//       if (err) {
+//         console.error("Error inserting feedback:", err.message);
+//         return res.status(500).json({ error: "Database Error" });
+//       }
+//       res.status(201).json({ message: "Feedback submitted successfully!" });
+//     }
+//   );
+// });
 
 // Get all feedback
 // Get all feedback with associated user name
-app.get('/api/feedback-data', (req, res) => {
-  db.query(`
-    SELECT fd.id, u.name, fd.q1, fd.q2, fd.q3, fd.q4
-    FROM feedback_data fd
-    JOIN user_table u ON fd.name = u.id
-  `, (err, results) => {
-    if (err) {
-      console.error("Error fetching feedback data:", err.message);
-      return res.status(500).json({ error: "Database Error" });
-    }
-    res.json({ feedback: results });
-  });
-});
+// app.get('/api/feedback-data', (req, res) => {
+//   db.query(`
+//     SELECT fd.id, u.name, fd.q1, fd.q2, fd.q3, fd.q4
+//     FROM feedback_data fd
+//     JOIN user_table u ON fd.name = u.id
+//   `, (err, results) => {
+//     if (err) {
+//       console.error("Error fetching feedback data:", err.message);
+//       return res.status(500).json({ error: "Database Error" });
+//     }
+//     res.json({ feedback: results });
+//   });
+// });
 
 
 
 
 
 // Delete feedback
-app.delete('/api/feedback-data/:id', (req, res) => {
-  const { id } = req.params;
-  db.query("DELETE FROM feedback_data WHERE id = ?", [id], (err, result) => {
+// app.delete('/api/feedback-data/:id', (req, res) => {
+//   const { id } = req.params;
+//   db.query("DELETE FROM feedback_data WHERE id = ?", [id], (err, result) => {
+//     if (err) {
+//       console.error("Error deleting feedback:", err.message);
+//       return res.status(500).json({ error: "Database Error" });
+//     }
+//     res.status(200).json({ message: "Feedback deleted successfully!" });
+//   });
+// });
+
+
+
+app.post('/api/submit-feedback', (req, res) => {
+  console.log(req.body);  // This will log the request body (feedback data)
+
+  // Destructure data from the request body
+  const { name ,coursename, rating } = req.body;
+
+  // Validate that all required fields are provided
+  if (!rating || !name || !coursename) {
+    return res.status(400).json({ error: 'All fields are required!' });
+  }
+
+  // Insert the feedback data into the feedback_data table
+  const query = 'INSERT INTO feedback_data (name, coursename, rating) VALUES (?, ?, ?)';
+
+  // Using db.query() to execute the query
+  db.query(query, [name, coursename, rating], (err, results) => {
     if (err) {
-      console.error("Error deleting feedback:", err.message);
-      return res.status(500).json({ error: "Database Error" });
+      console.error('Error inserting feedback:', err.message);
+      return res.status(500).json({ message: 'Error submitting feedback, please try again.' });
     }
-    res.status(200).json({ message: "Feedback deleted successfully!" });
+
+    // Send a success message if feedback is submitted successfully
+    res.status(200).json({ message: 'Feedback submitted successfully!' });
   });
 });
+
+
+
+
+app.get('/api/feedback-data', (req, res) => {
+  // SQL query to fetch feedback data with joined tables for user names and course names
+  const query = `
+  SELECT 
+    fd.id, 
+    u.name AS user_name, 
+    c.coursename AS course_name, 
+    fd.rating
+  FROM 
+    feedback_data fd
+  JOIN 
+    user_table u ON fd.name = u.id
+  JOIN 
+    course_tbl c ON fd.coursename = c.id
+`;
+
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error('Error fetching feedback data:', err.message);
+      return res.status(500).json({ message: 'Error fetching feedback data' });
+    }
+
+    // Send the feedback data as the response
+    res.status(200).json({ feedback: results });
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
 
 // title = 'HTML Tutor'
 // Fetch HTML course content by ID

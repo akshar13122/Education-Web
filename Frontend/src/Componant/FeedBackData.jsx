@@ -43,6 +43,18 @@ const FeedbackData = () => {
     }
   };
 
+  // Function to render stars based on the rating value
+  const renderStars = (rating) => {
+    return [...Array(5)].map((_, index) => (
+      <span
+        key={index}
+        className={`star ${index < rating ? 'filled' : ''}`}
+      >
+        ★
+      </span>
+    ));
+  };
+
   return (
     <div className="feedback-data-container">
       <h1>Feedback Data</h1>
@@ -55,24 +67,20 @@ const FeedbackData = () => {
             <table>
               <thead>
                 <tr>
-                  {/* <th>ID</th> */}
-                  <th>User Name</th> {/* Add User Name column */}
-                  {/* <th>Course Like</th>
-                  <th>Query</th>
-                  <th>Suggestions</th>
-                  <th>Rating</th> */}
-                  <th>Delete</th>
+                  <th>User Name</th> {/* Display User Name */}
+                  <th>Course Name</th> {/* Display Course Name */}
+                  <th>Rating</th> {/* Display Rating as stars */}
+                  <th>Delete</th> {/* Delete button */}
                 </tr>
               </thead>
               <tbody>
                 {feedback.map((item) => (
                   <tr key={item.id}>
-                    {/* <td>{item.id}</td> */}
-                    <td>{item.name}</td> {/* Display User Name */}
-                    {/* <td>{item.q1}</td>
-                    <td>{item.q2}</td>
-                    <td>{item.q3}</td>
-                    <td>{item.q4}</td> */}
+                    <td>{item.user_name}</td> {/* Display User Name */}
+                    <td>{item.course_name}</td> {/* Display Course Name */}
+                    <td>
+                      {renderStars(item.rating)} {/* Display Rating as stars */}
+                    </td>
                     <td>
                       <button className="deletebtn" onClick={() => deleteFeedback(item.id)}>Delete</button>
                     </td>

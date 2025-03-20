@@ -6,8 +6,12 @@ export default function Javav() {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
-
+  const staticId = 4; 
   useEffect(() => {
+     // Since '4' is fixed in the route
+
+    console.log("Static ID (fixed 4):", staticId);  // Log the static '4'
+    console.log("Dynamic ID:", id);  // Log the dynamic id from the URL (e.g., '1')
     fetch("http://localhost:5000/api/java-courses") // Fetch Java courses
       .then((response) => response.json())
       .then((data) => {
@@ -46,7 +50,7 @@ export default function Javav() {
 
       <div className="notes-container">
         <NavLink to="/javaassignment" className="notes">Assignment</NavLink>
-        <NavLink to={`/FeedBackForm/${id}`} className="notes">Feedback</NavLink>
+        <NavLink to={`/FeedBackForm/${staticId}/${id}`} className="notes">Feedback</NavLink>
       </div>
     </div>
   );

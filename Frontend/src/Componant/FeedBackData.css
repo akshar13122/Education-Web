@@ -44,3 +44,22 @@ th {
 .deletebtn:hover {
     background-color: #d32f2f;
 }
+
+.star {
+    font-size: 1.5rem;
+    color: lightgray; /* Empty stars (unfilled) */
+    cursor: pointer;  /* Optional: change the cursor on hover */
+  }
+  
+  .star.filled {
+    color: gold; /* Filled stars */
+  }
+  
+  .star:hover {
+    color: lightgray; /* Keep unfilled stars gray when hovered */
+  }
+  
+  .star.filled:hover {
+    color: gold; /* Filled stars stay gold even when hovered */
+  }
+  

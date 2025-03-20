@@ -6,6 +6,7 @@ export default function ReactJsv() {
   const [nodejsContent, setNodejsContent] = useState(null); // State to store Node.js course content
   const [loading, setLoading] = useState(true); // State to handle loading state
   const { id } = useParams();
+  const staticId = 8;
   // Fetch Node.js course content when the component mounts
   useEffect(() => {
     // Fetch data from the server (Node.js course API endpoint)
@@ -46,7 +47,7 @@ export default function ReactJsv() {
 
       <div className="notes-container">
         <NavLink to="/expressjsassignment" className="notes">Assignment</NavLink>
-        <NavLink to={`/FeedBackForm/${id}`} className="notes">Feedback</NavLink>
+        <NavLink to={`/FeedBackForm/${staticId}/${id}`} className="notes">Feedback</NavLink>
       </div>
     </div>
   );

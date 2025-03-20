@@ -35,14 +35,14 @@ const CourseMenu = () => {
     }, []);
 
     const courses = [
-        { name: 'HTML', link: '/Htmlv' },
-        { name: 'CSS', link: '/Cssv' },
-        { name: 'Java', link: '/Javav' },
-        { name: 'Python', link: '/Pythonv' },
-        { name: 'React Js', link: '/reactjsv' },
-        { name: 'Node Js', link: '/nodejsv' },
-        { name: 'Express Js', link: '/expressjsv' },
-        { name: 'Mongo-Db', link: '/mongodbv' },
+        { name: 'HTML', link: '/Htmlv/1' },
+        { name: 'CSS', link: '/Cssv/3' },
+        { name: 'Java', link: '/Javav/4' },
+        { name: 'Python', link: '/Pythonv/5' },
+        { name: 'React Js', link: '/reactjsv/6' },
+        { name: 'Node Js', link: '/nodejsv/7' },
+        { name: 'Express Js', link: '/expressjsv/8' },
+        { name: 'Mongo-Db', link: '/mongodbv/9' },
     ];
 
     const getImageForCourse = (courseName) => {

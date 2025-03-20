@@ -51,30 +51,30 @@ const AdminDashboardWithAuth = () => {
   if (!admin) {
     const confirmed = window.confirm("Please login through Admin Login to access the Admin Dashboard.");
     if (confirmed) {
-      return <Navigate to="/adminlogin" />;  
+      return <Navigate to="/adminlogin" />;
     } else {
-      return null;  
+      return null;
     }
   }
 
-  return <AdminDashBoard />;  
+  return <AdminDashBoard />;
 };
 
 // Protected Route for CourseMenu
-const CourseMenuWithAuth = () => {
-  const { id } = useParams(); 
-  console.log(id);  
+// const CourseMenuWithAuth = () => {
+//   const { id } = useParams(); 
+//   console.log(id);  
 
-  const user = localStorage.getItem("user");  // Check if user is logged in
-  const navigate = useNavigate();
+//   const user = localStorage.getItem("user");  // Check if user is logged in
+//   const navigate = useNavigate();
 
-  if (!user) {
-    alert("Please login first to access Course Menu.");
-    return <Navigate to="/login" />;  
-  }
+//   if (!user) {
+//     alert("Please login first to access Course Menu.");
+//     return <Navigate to="/login" />;  
+//   }
 
-  return <CourseMenu />;  // Show CourseMenu if logged in
-};
+//   return <CourseMenu />;  // Show CourseMenu if logged in
+// };
 const logOutHandler = () => {
   const user = localStorage.getItem("user");
   const admin = localStorage.getItem("admin");
@@ -82,16 +82,16 @@ const logOutHandler = () => {
   if (user) { // If user is logged in, logout user
     const confirmed = window.confirm("Are you sure you want to logout?");
     if (confirmed) {
-      localStorage.removeItem("user"); 
+      localStorage.removeItem("user");
       localStorage.clear();
-      window.location.href = "/" 
+      window.location.href = "/"
     }
-  } else if (admin) { 
+  } else if (admin) {
     const confirmed = window.confirm("Are you sure you want to logout?");
     if (confirmed) {
-      localStorage.removeItem("admin"); 
+      localStorage.removeItem("admin");
       localStorage.clear();
-      window.location.href = "/"; 
+      window.location.href = "/";
     }
   } else {
     alert("No user or admin is logged in."); // If no one is logged in
@@ -99,14 +99,25 @@ const logOutHandler = () => {
 }
 
 const App = () => {
+  const { id } = useParams();
+  const [userId, setUserId] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(localStorage.getItem('admin') !== null);
   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem('user') !== null || localStorage.getItem('admin') !== null
   );
 
   // Listen for changes in localStorage and update the state
   useEffect(() => {
+
+    const user = localStorage.getItem('user');
+    if (user) {
+      const userObj = JSON.parse(user); // Parse the user object
+      setUserId(userObj.id); // Set the user ID state
+    }
+
     const handleStorageChange = () => {
       setIsLoggedIn(localStorage.getItem('user') !== null || localStorage.getItem('admin') !== null);
+      setIsAdmin(localStorage.getItem('admin') !== null); // Update isAdmin state
     };
 
     // Add event listener for storage changes
@@ -121,33 +132,38 @@ const App = () => {
     <Router>
       <header>
         <nav className="nav-container">
-          <div className="left-nav22">
-            <Link classname='linkk'  to="/register" className="nav-btn22" style={{ visibility: isLoggedIn ? 'hidden' : 'visible' }}>
-              Register
-            </Link>
-            <Link classname='linkk'    to="/login" id="nnbtn" style={{ visibility: isLoggedIn ? 'hidden' : 'visible' }}>
-              Login
-            </Link>
-
-            <button
-              id="nnbtn"
-              onClick={logOutHandler}
-              style={{ visibility: isLoggedIn ? 'visible' : 'hidden' }} // Show logout button when logged in, but still occupy space
-            >
-              Logout
-            </button>
-
-
-            {/* <LogoutButton /> */}
-          </div>
           <div className="right-nav">
             {/* Existing navigation links */}
             <ul>
+
               <li><Link to="/">Home</Link></li>
-              <li><Link to="/admindahsboard">Admindashboard</Link></li>
+              {/* <li><Link to={`/myprofile/${id}`} id="profile-btn-my">My Profile</Link></li> */}
               <li><Link to="/about">About</Link></li>
               <li><Link to="/contact">Contact</Link></li>
+              {!isAdmin && isLoggedIn && (
+                <li><Link to={`/myprofile/${userId}`}>My Profile</Link></li>
+              )}
             </ul>
+          </div>
+          <div className="left-nav22">
+            <ul>
+              <li><Link classname='linkk' to="/register" style={{ visibility: isLoggedIn ? 'hidden' : 'visible', position: 'relative', bottom: '5px', left: '70px' }}>
+                Register
+              </Link></li>
+              <li><Link classname='linkk' to="/login" style={{ visibility: isLoggedIn ? 'hidden' : 'visible', position: 'relative', bottom: '5px', left: '70px' }}>
+                Login
+              </Link></li>
+
+              <li><button
+                id='nnbtn'
+                onClick={logOutHandler}
+                style={{ visibility: isLoggedIn ? 'visible' : 'hidden' }} // Show logout button when logged in, but still occupy space
+              >
+                Logout
+              </button></li>
+            </ul>
+
+            {/* <LogoutButton /> */}
           </div>
         </nav>
         <Routes>
@@ -158,7 +174,8 @@ const App = () => {
           <Route path="/contact" element={<Contact />} />
 
           {/* Conditional rendering for /CourseMenu with an alert if not logged in */}
-          <Route path="/CourseMenu/:id" element={<CourseMenuWithAuth />} />
+          <Route path="/CourseMenu" element={<CourseMenu />} />
+          <Route path="/CourseMenu/:id" element={<CourseMenu />} />
           <Route path="//Htmlv/:id" element={<Htmlv />} />
           <Route path="/Cssv/:id" element={<Cssv />} />
           <Route path="/Javav/:id" element={<Javav />} />
@@ -188,10 +205,10 @@ const App = () => {
           <Route path="/htmledit/1" element={<HtmlEdit />} />mongodbedit/9
           <Route path="mongodbedit/9" element={<MongodbEdit />} />/nodejsedit/7
           <Route path="/nodejsedit/7" element={<NodejsEdit />} />
-          <Route path="/reactjsedit/6" element={<ReactjsEdit/>} />
-          <Route path="/pythonedit/5" element={<PythonEdit/>} />/javaedit/4
-          <Route path="/javaedit/4" element={<JavaEdit/>} />/cssedit/3
-          <Route path="/cssedit/3" element={<CssEdit/>} />/edit-user/
+          <Route path="/reactjsedit/6" element={<ReactjsEdit />} />
+          <Route path="/pythonedit/5" element={<PythonEdit />} />/javaedit/4
+          <Route path="/javaedit/4" element={<JavaEdit />} />/cssedit/3
+          <Route path="/cssedit/3" element={<CssEdit />} />/edit-user/
           <Route path="/edit-user/:id" element={<UserEditByUser />} />
         </Routes>
         <ToastContainer />

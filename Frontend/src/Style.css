@@ -21,15 +21,19 @@ header {
     width: 100vw;
     height: 100vh;
 }
+.nav-container{
+  display: flex;
+  justify-content: space-between;
+}
 
 ul {
     position: relative;
-    float: right;
+    /* float: right; */
     list-style-type: none;
     margin-top: 25px;
 }
 
-ul li {
+ ul li {
     display: inline-block;
     margin: 10px;
 }
@@ -40,12 +44,61 @@ ul li a {
     padding: 8px 30px;
     border: 1px solid transparent;
     transition: 0.8s ease;
+    font-weight: 1000;
 }
 
 ul li a:hover {
     background-color: #ffffff;
     color: #000;
+} 
+/* .linkk{
+  position: relative;
+  right: 10px;
+} */
+#nnbtn{
+  text-decoration: none;
+  color: #fff;
+  padding: 8px 30px;
+  border: 1px solid transparent;
+  transition: 0.8s ease;
+  background-color: transparent;
+  position: relative;
+  bottom: 12px;
 }
+#nnbtn:hover{
+  background-color: #ffffff;
+  color: #000;
+}
+
+/* .left-nav22{
+  position: relative;
+  top: 39px;
+  left: 20px;
+}
+.nav-btn22{
+  padding-left: 0px;
+}
+
+.logot {
+  height: 50px;
+  position: relative;
+  left: 20px;
+  background-color: transparent;
+  transition: background-color 0.9s ease, color 0.9s ease; 
+}
+
+.logot:hover {
+  background-color: #ffffff;
+  color: black;
+}
+.right-nav{
+  position: relative;
+  bottom: 30px;
+} */
+
+
+
+
 
 .title {
     position: absolute;
@@ -536,15 +589,20 @@ div>img:hover{
   justify-content: center; 
   margin-top: 20px;
 } */
+ .search-profile-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
 .searchbar-main{
   position: relative;
-  top: 100px;
-  left: 260px;
+  /* top: 100px;
+  left: 260px; */
 }
 .search-bar {
   position: relative;
   bottom: 75px;
-  width: 50%; 
+  width: 700px; 
   padding: 10px;
   font-size: 16px;
   border: 2px solid #ccc;
@@ -565,33 +623,7 @@ div>img:hover{
   box-shadow: 0 0 10px rgba(0,123,255,0.5);
 }
 
-.left-nav22{
-  position: relative;
-  top: 39px;
-  left: 20px;
-}
-.nav-btn22{
-  padding-left: 0px;
-}
-#nnbtn{
-  margin-left: 20px;
-}
-.logot {
-  height: 50px;
-  position: relative;
-  left: 20px;
-  background-color: transparent;
-  transition: background-color 0.9s ease, color 0.9s ease;  /* Transition for background-color and color */
-}
 
-.logot:hover {
-  background-color: #ffffff;
-  color: black;
-}
-.right-nav{
-  position: relative;
-  bottom: 30px;
-}
 
 /* logout button */
 

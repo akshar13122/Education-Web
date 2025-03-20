@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, useParams } from 'react-router-dom'; // Import useParams
 import img8 from './images/8.jpg';
 import img9 from './images/9.jpg';
@@ -10,21 +10,30 @@ import ex from './images/ex.png';
 import mongo3 from './images/mongo3.png';
 
 const CourseMenu = () => {
-    // Access the id parameter from the URL (assuming the logged-in user has an id)
-    
-    const { id } = useParams(); 
+    var user = JSON.parse(localStorage.getItem('user'));  // Parse the 'user' JSON string from localStorage
 
-    console.log(id);  // You can see the logged-in user ID in the console
+    if (user) {
+        var id = user.id;  // Access the 'id' property from the parsed object
+        console.log("User ID from localStorage:", id);  // Now you can log the 'id'
+    } else {
+        console.log("No user found in localStorage");
+    }
+
+
+    // Check if the user is logged in (this could be based on localStorage, sessionStorage, or context)
+    const isLoggedIn = localStorage.getItem('user') !== null; // Example: Checking if a 'user' object exists in localStorage
+
     useEffect(() => {
         // Check if the page has already been reloaded (stored in localStorage)
         const hasReloaded = localStorage.getItem('hasReloaded');
-        
+
         if (!hasReloaded) {
             // If the page has not been reloaded before, reload it and set the flag in localStorage
             localStorage.setItem('hasReloaded', 'true');
             window.location.reload();
         }
     }, []);
+
     const courses = [
         { name: 'HTML', link: '/Htmlv' },
         { name: 'CSS', link: '/Cssv' },
@@ -72,14 +81,23 @@ const CourseMenu = () => {
     };
 
     const filteredCourses = getFilteredCourses();
-    // useEffect(() => {
-    //     window.location.reload();
-    // }, []); 
+
     return (
         <div className="course-menu">
-            <div className="profile-button-container">
-                <NavLink to={`/myprofile/${id}`} id="profile-btn-my">My Profile</NavLink>
-            </div>
+            {/* Conditionally render the profile button only if the user is logged in */}
+            {/* {isLoggedIn && (
+                <div className="profile-button-container">
+                    <NavLink to={`/myprofile/${id}`} id="profile-btn-my">
+                        My Profile
+                    </NavLink>
+                </div>
+            )} */}
+                {/* <div className="profile-button-container">
+                    <NavLink to={`/myprofile/${id}`} id="profile-btn-my">
+                        My Profile
+                    </NavLink>
+                </div> */}
+
             <div className="search-profile-container">
                 <div className='searchbar-main'>
                     <input
@@ -103,8 +121,11 @@ const CourseMenu = () => {
                             />
                             <h2>{course.name}</h2>
                             {/* Append the logged-in user ID to the course URL */}
-                            <NavLink to={`${course.link}/${id}`} className="btn22">
+                            <NavLink to={`${course.link}/${id}`} className="btn22" style={{marginRight:'3px'}}>
                                 {course.name}
+                            </NavLink>
+                            <NavLink to='' className="btn22" style={{marginLeft:'3px'}}>
+                                Enroll
                             </NavLink>
                         </div>
                     ))

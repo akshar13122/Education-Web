@@ -1,76 +1,78 @@
 /* src/style.css */
 .register-container {
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 2rem;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    position: relative;
-    top: 100px;
-  }
-  
-  h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-  }
-  
-  .register-form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .form-group {
-    margin-bottom: 1rem;
-  }
-  
-  label {
-    font-size: 14px;
-    margin-bottom: 0.5rem;
-  }
-  
-  input {
-    padding: 0.8rem;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    width: 100%;
-  }
-  
-  input:focus {
-    outline: none;
-    border-color: #007bff;
-  }
-  
-  button {
-    padding: 1rem;
-    background-color: #007bff;
-    color: white;
-    font-size: 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  .error-message {
-    color: red;
-    font-size: 14px;
-    margin-bottom: 1rem;
-    text-align: center;
-  }
-  #regp{
-    color: black;
-    position: relative;
-    left: 58px;
-    top: 5px;
-  }
-  .login-btn{
-    position: relative;
-    left: 135px;
-    top: 15px;
-  }
+  width: 100%;
+  max-width: 350px; /* Reduce max-width */
+  margin: 0 auto;
+  padding: 1rem; /* Further reduce padding */
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  top: 20px; /* Reduce top position */
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 1rem; /* Reduce bottom margin */
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 0.7rem; /* Reduce bottom margin */
+}
+
+label {
+  font-size: 12px; /* Smaller font size */
+  margin-bottom: 0.4rem; /* Reduce margin */
+}
+
+input {
+  padding: 0.5rem; /* Further reduce padding */
+  font-size: 13px; /* Smaller font size */
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 100%;
+}
+
+input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+button {
+  padding: 0.6rem; /* Further reduce padding */
+  background-color: #007bff;
+  color: white;
+  font-size: 13px; /* Smaller font size */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px; /* Smaller font size */
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+#regp {
+  color: black;
+  position: relative;
+  left: 48px; /* Adjusted left position */
+  top: 5px;
+}
+
+.login-btn {
+  position: relative;
+  left: 120px; /* Adjusted left position */
+  top: 12px; /* Adjusted top position */
+}

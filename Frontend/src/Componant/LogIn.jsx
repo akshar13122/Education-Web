@@ -30,13 +30,14 @@ const Login = () => {
 
       if (response.ok) {
         const data = await response.json();
-        alert(data.message);  // Show login success alert
+        // alert(data.message);  // Show login success alert
 
         // Set user data to localStorage after successful login
         localStorage.setItem('user', JSON.stringify(data.user));  // Store user object
-        console.log(data.user.id);
+        console.log(data.user);
         
-        navigate(`/CourseMenu/${data.user.id}`);  // Navigate to the course menu after successful login
+        navigate(`/CourseMenu/${data.user.id}`);  
+        // navigate('/CourseMenu'); 
       } else {
         const data = await response.json();
         setError(data.error);  // Show error message

@@ -67,6 +67,31 @@ app.get("/api/users", (req, res) => {
   });
 });
 
+//For gatting individual usersdata
+app.get('/api/indiusers/:id', (req, res) => {
+  const userId = parseInt(req.params.id);  // Get the user ID from the URL params
+  
+  // Query the database to get user by ID
+  db.query('SELECT * FROM user_table WHERE id = ?', [userId], (err, results) => {
+    if (err) {
+      console.error('Database query error: ', err);
+      return res.status(500).json({ error: 'Internal server error' });
+    }
+
+    if (results.length > 0) {
+      // If the user is found, return the user data
+      const user = results[0];  // Assuming user is unique and will return only one row
+      return res.json({ user });
+    } else {
+      // If no user is found, return a 404 error
+      return res.status(404).json({ error: "User not found" });
+    }
+  });
+});
+
+
+
+
 // Delete user
 app.delete("/api/users/:id", (req, res) => {
   const { id } = req.params;

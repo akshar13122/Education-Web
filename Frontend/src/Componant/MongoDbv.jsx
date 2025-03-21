@@ -6,7 +6,7 @@ export default function ReactJsv() {
   const [courses, setCourses] = useState([]);  // Store fetched courses
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
-
+  const staticId = 9;
   useEffect(() => {
     fetch("http://localhost:5000/api/courses")
       .then((response) => response.json())
@@ -46,7 +46,7 @@ export default function ReactJsv() {
 
       <div className="notes-container">
         <NavLink to="/mongodbassignment" className="notes">Assignment</NavLink>
-        <NavLink to={`/FeedBackForm/${id}`} className="notes">Feedback</NavLink>
+        <NavLink to={`/FeedBackForm/${staticId}/${id}`} className="notes">Feedback</NavLink>
       </div>
     </div>
   );

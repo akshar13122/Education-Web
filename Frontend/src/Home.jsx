@@ -21,13 +21,12 @@ function Home() {
 
     // Handle the click on "Course Menu" button
     const handleCourseMenuClick = () => {
-        if (!userId) {
-            // If no user is logged in, show an alert and redirect to login page
-            alert('Without login, you can\'t access the Course Menu. Please login first!');
-            navigate('/login');  // Redirect to the login page
-        } else {
-            // Otherwise, navigate to Course Menu with the user id
+        if (userId) {
+            // If logged in, navigate to the course menu with user ID
             navigate(`/CourseMenu/${userId}`);
+        } else {
+            // If not logged in, navigate to the course menu without user ID
+            navigate('/CourseMenu');
         }
     };
 
@@ -37,13 +36,16 @@ function Home() {
                 <h1>BE VERSATILE</h1>
             </div>
             <div className="btncc2">
-            <div className="buttoncc">
-                {/* Button click will trigger the handleCourseMenuClick function */}
-                <button onClick={handleCourseMenuClick} className="btn" style={{ backgroundColor: 'transparent', borderRadius: '0' }}>
-                    COURSE MENU
-                </button>
-                <NavLink to="/adminlogin" className="btn">ADMIN LOGIN</NavLink>
-            </div>
+                <div className="buttoncc">
+                    {/* Button click will trigger the handleCourseMenuClick function */}
+                    <button 
+                        onClick={handleCourseMenuClick} 
+                        className="btn" 
+                        style={{ backgroundColor: 'transparent', borderRadius: '0' }}>
+                        COURSE MENU
+                    </button>
+                    <NavLink to="/adminlogin" className="btn">ADMIN LOGIN</NavLink>
+                </div>
             </div>
         </>
     );

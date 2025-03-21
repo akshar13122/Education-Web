@@ -6,7 +6,7 @@ export default function Pythonv() {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
-
+  const staticId = 5
   useEffect(() => {
     fetch("http://localhost:5000/api/python-courses") // Fetch Python courses
       .then((response) => response.json())
@@ -46,7 +46,7 @@ export default function Pythonv() {
 
       <div className="notes-container">
         <NavLink to="/pythonassignment" className="notes">Assignment</NavLink>
-        <NavLink to={`/FeedBackForm/${id}`} className="notes">Feedback</NavLink>
+        <NavLink to={`/FeedBackForm/${staticId}/${id}`} className="notes">Feedback</NavLink>
       </div>
     </div>
   );

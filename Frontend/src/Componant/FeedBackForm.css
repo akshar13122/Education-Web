@@ -1,62 +1,59 @@
 .feedback-form222 {
-    width: 33%; /* Reduced size */
-    margin: 0 auto;
-    padding: 15px; /* Reduced padding */
-    border-radius: 8px;
-    /* background-color: #f7f7f783; */
-    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
-    position: relative;
-    top: 55px;
-    left: 30px;
-  }
-  
-  .feedback-form222 h2 {
-    text-align: center;
-    font-size: 20px; /* Slightly smaller font */
-    margin-bottom: 15px; /* Reduced margin */
-  }
-  
-  .form-group222 {
-    margin-bottom: 12px; /* Reduced space between form fields */
-  }
-  
-  .form-group222 label {
-    display: block;
-    font-size: 14px;
-    margin-bottom: 5px;
-  }
-  
-  .form-group222 select,
-  .form-group222 textarea,
-  .form-group222 input {
-    width: 100%; /* Ensure consistency */
-    padding: 8px;
-    border-radius: 4px;
-    border: 1px solid #ddd;
-    font-size: 14px;
-  }
-  
-  .form-group222 select {
-    height: 35px; /* Slightly smaller height for the select dropdown */
-  }
-  
-  .form-group222 textarea {
-    height: 80px; /* Reduced height for the textarea */
-    width: 100%; /* Ensures it's the same width as select/input */
-  }
-  
-  #bbtn {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 8px 20px; /* Slightly reduced padding */
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 4px;
-    width: 100%;
-  }
-  
-  #bbtn:hover {
-    background-color: #45a049;
-  }
-  
+  width: 40%; /* Increased size */
+  margin: 0 auto;
+  padding: 25px; /* Increased padding for more space */
+  border-radius: 8px;
+  position: relative;
+  top: 55px;
+  left: 30px;
+  background-color: #f7f7f7ac; /* Optional: Adding a light background color */
+}
+
+.feedback-form222 h2 {
+  text-align: center;
+  font-size: 24px; /* Increased font size */
+  margin-bottom: 20px; /* Increased margin for spacing */
+}
+
+.form-group222 {
+  margin-bottom: 15px; /* Increased space between form fields */
+}
+
+#bbtn {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 12px 30px; /* Increased padding */
+  font-size: 18px; /* Increased font size */
+  cursor: pointer;
+  border-radius: 4px;
+  width: 100%;
+  transition: background-color 0.2s;
+}
+
+#bbtn:hover {
+  background-color: #45a049;
+}
+
+/* Star rating styles */
+.stars-container {
+  display: flex;
+  justify-content: center; /* Center the stars */
+  margin-top: 15px; /* Increased margin */
+}
+
+.star {
+  font-size: 40px; /* Increased star size */
+  color: lightgray;
+  cursor: pointer;
+  transition: color 0.2s;
+  margin: 0 5px; /* Added space between stars */
+}
+
+.star.filled {
+  color: gold;
+}
+
+.star:hover {
+  color: gold;
+}

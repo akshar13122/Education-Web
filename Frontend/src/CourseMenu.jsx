@@ -77,7 +77,8 @@ const CourseMenu = () => {
     // }, []); 
     return (
         <div className="course-menu">
-            <div className="profile-button-container">
+            <div className="center">
+                  <div className="profile-button-container">
                 <NavLink to={`/myprofile/${id}`} id="profile-btn-my">My Profile</NavLink>
             </div>
             <div className="search-profile-container">
@@ -90,6 +91,7 @@ const CourseMenu = () => {
                         className="search-bar"
                     />
                 </div>
+            </div>
             </div>
 
             <div className="course-grid">

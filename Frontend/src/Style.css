@@ -14,7 +14,9 @@
 header {
   overflow: hidden;
     overflow-y: scroll;
-    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(./images/7.jpg);
+    /* background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(./images/7.jpg); */
+         background: linear-gradient(135deg, #121212d8, #0d7377, #0d7377); 
+    /* background: linear-gradient(135deg, #121212d8, #093d3f, #0d7377); */
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -291,7 +293,8 @@ div>img:hover{
 
 /* Course Card Styling */
 .course-card {
-    background-color: rgba(135, 207, 235, 0.3);
+    /* background-color: rgba(135, 207, 235, 0.3); */
+    background-color: rgba(0, 183, 255, 0.253);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -304,6 +307,7 @@ div>img:hover{
 
 .course-card:hover {
     transform: translateY(-5px);
+    border: 3px solid #cccccc;
 }
 
 /* Course Image Styling */
@@ -312,6 +316,7 @@ div>img:hover{
     /* height: 130px; */
     object-fit: cover;
     border-radius: 10px;
+    opacity: 0.9;
 }
 
 /* Course Card Title */

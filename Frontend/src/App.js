@@ -135,11 +135,18 @@ const App = () => {
         <nav className="nav-container">
           <div className="right-nav">
             <ul>
-            <li><NavLink to="/" className={({ isActive }) => (isActive ? "active" : "")}>Home</NavLink></li>
-            <li><NavLink to="/about" className={({ isActive }) => (isActive ? "active" : "")}>About</NavLink></li>
-            <li><NavLink to="/contact" className={({ isActive }) => (isActive ? "active" : "")}>Contact</NavLink></li>
+            <li><NavLink to="/" className={({ isActive }) => (isActive ? "active" : "")} style={{ visibility: isLoggedIn ? 'hidden' : 'visible' }}>Home</NavLink></li>
+            <li><NavLink to="/about" className={({ isActive }) => (isActive ? "active" : "")} style={{ visibility: isLoggedIn ? 'hidden' : 'visible' }}>About</NavLink></li>
+            <li><NavLink to="/contact" className={({ isActive }) => (isActive ? "active" : "")} style={{ visibility: isLoggedIn ? 'hidden' : 'visible' }}>Contact</NavLink></li>
               {!isAdmin && isLoggedIn && (
-                <li><NavLink to={`/myprofile/${userId}`} className={({ isActive }) => (isActive ? "active" : "")}>My Profile</NavLink></li>
+                <li><NavLink to={`/myprofile/${userId}`} className={({ isActive }) => (isActive ? "active" : "")} 
+                style={{
+                  position: isLoggedIn ? 'relative' : 'static',
+                  right: isLoggedIn ? '400px' : 'auto',
+                  // float: 'left' 
+                }}
+                
+>My Profile</NavLink></li>
               )}
             </ul>
           </div>

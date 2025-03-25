@@ -124,13 +124,16 @@ const AdminDashBoard = () => {
   return (
     <div className="adminDiv">
       <div className="admin-dashboard">
+      <div><h2>Admin Dashboard</h2></div>
         <div className="adminupper">
         <div className="upperbuttons">
-          <button onClick={navigateToFeedbackData} className="feedbackbtn">Feedback Data</button>
-          <button onClick={navigateToEditCourse} className="feedbackbtn">Edit-Courses</button>
-          <button onClick={navigateToRegisterAdmin} className="feedbackbtn">Register-Admin</button>
+          <button onClick={navigateToFeedbackData} className="feedbackbtn"
+          style={{fontSize:"11px"}}
+          >Feedback Data</button>
+          <button onClick={navigateToEditCourse} className="feedbackbtn" style={{fontSize:"11px"}}>Edit-Courses</button>
+          <button onClick={navigateToRegisterAdmin} className="feedbackbtn" style={{fontSize:"11px"}}>Register-Admin</button>
         </div>
-        <div><h1>Admin Dashboard</h1></div>
+        <div><h3 style={{color:"white"}}>Registered Users</h3></div>
         <div className="srch">
             <div className="search-bar3">
               <input
@@ -139,7 +142,7 @@ const AdminDashBoard = () => {
                 value={searchTerm}
                 onChange={handleSearchChange}
                 className="search-input"
-                style={{height:"40px"}}
+                style={{height:"40px" , width:"400px" , color:"black"}}
               />
             </div>
             </div>
@@ -152,7 +155,7 @@ const AdminDashBoard = () => {
           <p className="loading">Loading users...</p>
         ) : (
           <div>
-            <h2>Registered Users</h2>
+            
 
             {/* Search Bar */}
       
@@ -178,13 +181,13 @@ const AdminDashBoard = () => {
                       <td>{user.email}</td>
                       {/* <td>{user.password}</td> */}
                       <td>
-                        <button className="editbtn" onClick={() => editUser(user.id)}>Edit</button>
+                        <button className="editbtn" onClick={() => editUser(user.id)} style={{fontSize:"10px"}}>Edit</button>
                       </td>
                       <td>
-                        <button className="editbtn" onClick={() => enrolled(user.id)}>Details</button>
+                        <button className="editbtn" onClick={() => enrolled(user.id)} style={{fontSize:"10px"}}>Details</button>
                       </td>
                       <td>
-                        <button className="deletebtn" onClick={() => deleteUser(user.id)}>Delete</button>
+                        <button className="deletebtn" onClick={() => deleteUser(user.id)} style={{fontSize:"10px"}}>Delete</button>
                       </td>
                     </tr>
                   ))}

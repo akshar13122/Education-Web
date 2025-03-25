@@ -1,8 +1,10 @@
-import React from 'react';
+import { React, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 function Home() {
     const navigate = useNavigate(); // Initialize the useNavigate hook
+    const [isAdmin, setIsAdmin] = useState(localStorage.getItem('admin') !== null);
+    const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('user') !== null);
 
     // Check if the user is logged in by checking localStorage
     const storedUser = localStorage.getItem('user');  // Get the user string from localStorage
@@ -30,6 +32,17 @@ function Home() {
         }
     };
 
+    // Handle the click for admin login
+    const handleAdminLoginClick = () => {
+        if (isLoggedIn) {
+            // If the user is logged in as a regular user, show an alert
+            alert("You are not an Admin, you cannot login as Admin.");
+        } else {
+            // If the user is not logged in, navigate to admin login page
+            navigate('/adminlogin');
+        }
+    };
+
     return (
         <>
             <div className="title">
@@ -44,7 +57,19 @@ function Home() {
                         style={{ backgroundColor: 'transparent', borderRadius: '0' }}>
                         COURSE MENU
                     </button>
-                    <NavLink to="/adminlogin" className="btn">ADMIN LOGIN</NavLink>
+
+                    {/* Conditionally render the ADMIN LOGIN based on login status */}
+                    {!isLoggedIn ? (
+                        <NavLink to="/adminlogin" className="btn">ADMIN LOGIN</NavLink>
+                    ) : (
+                        <NavLink 
+                            onClick={handleAdminLoginClick} 
+                            className="btn"
+                            // style={{ backgroundColor: 'transparent', borderRadius: '0' }}
+                            >
+                            ADMIN LOGIN
+                        </NavLink>
+                    )}
                 </div>
             </div>
         </>

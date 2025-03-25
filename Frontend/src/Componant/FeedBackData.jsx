@@ -4,6 +4,7 @@ import './FeedBackData.css'; // Import CSS
 const FeedbackData = () => {
   const [feedback, setFeedback] = useState([]); // State to store feedback data
   const [loading, setLoading] = useState(true); // Loading state
+  const [searchQuery, setSearchQuery] = useState(''); // State to store the search query
 
   // Fetch feedback on component mount
   useEffect(() => {
@@ -55,44 +56,76 @@ const FeedbackData = () => {
     ));
   };
 
-  return (
-    <div className="feedback-data-container">
-      <h1>Feedback Data</h1>
+  // Filter feedback based on the search query (course name)
+  const filteredFeedback = feedback.filter(item =>
+    item.course_name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
-      {loading ? (
-        <p>Loading feedback...</p>
-      ) : (
-        <div>
-          {feedback.length > 0 ? (
-            <table>
-              <thead>
-                <tr>
-                  <th>User Name</th> {/* Display User Name */}
-                  <th>Course Name</th> {/* Display Course Name */}
-                  <th>Rating</th> {/* Display Rating as stars */}
-                  <th>Delete</th> {/* Delete button */}
-                </tr>
-              </thead>
-              <tbody>
-                {feedback.map((item) => (
-                  <tr key={item.id}>
-                    <td>{item.user_name}</td> {/* Display User Name */}
-                    <td>{item.course_name}</td> {/* Display Course Name */}
-                    <td>
-                      {renderStars(item.rating)} {/* Display Rating as stars */}
-                    </td>
-                    <td>
-                      <button className="deletebtn" onClick={() => deleteFeedback(item.id)}>Delete</button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          ) : (
-            <p>No feedback found.</p>
-          )}
+  return (
+    <div className="feedmain">
+      <div className="feedback-data-container">
+        <h2 style={{ color: "white" }}>Feedback Data</h2>
+
+        {/* Search Bar */}
+         {/* <div className="searchmain">
+         <div className="search-bar">
+          <input
+            type="text"
+            placeholder="Search by Course Name"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)} 
+            className="search-input"
+          />
         </div>
-      )}
+         </div> */}
+               <div className="searchm">
+            <div className="search-bar3">
+              <input
+                type="text"
+                placeholder="Search by Course Name"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)} 
+                className="search-input"
+                style={{height:"40px" , width:"400px" , color:"black"}}
+              />
+            </div>
+            </div>
+
+        {loading ? (
+          <p>Loading feedback...</p>
+        ) : (
+          <div>
+            {filteredFeedback.length > 0 ? (
+              <table>
+                <thead>
+                  <tr>
+                    <th>User Name</th> {/* Display User Name */}
+                    <th>Course Name</th> {/* Display Course Name */}
+                    <th>Rating</th> {/* Display Rating as stars */}
+                    <th>Delete</th> {/* Delete button */}
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredFeedback.map((item) => (
+                    <tr key={item.id} className='td'>
+                      <td>{item.user_name}</td> {/* Display User Name */}
+                      <td>{item.course_name}</td> {/* Display Course Name */}
+                      <td>
+                        {renderStars(item.rating)} {/* Display Rating as stars */}
+                      </td>
+                      <td>
+                        <button className="deletebtn" onClick={() => deleteFeedback(item.id)}>Delete</button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ) : (
+              <p>No feedback found.</p>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

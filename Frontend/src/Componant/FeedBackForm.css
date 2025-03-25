@@ -41,7 +41,9 @@
   justify-content: center; /* Center the stars */
   margin-top: 15px; /* Increased margin */
 }
-
+.stars-container span{
+  font-size: 90px; 
+}
 .star {
   font-size: 40px; /* Increased star size */
   color: lightgray;
@@ -54,6 +56,6 @@
   color: gold;
 }
 
-.star:hover {
+.stars-container span:hover {
   color: gold;
 }

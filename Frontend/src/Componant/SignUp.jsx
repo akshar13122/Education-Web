@@ -1,20 +1,16 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Importing useNavigate for navigation
+import { useNavigate } from "react-router-dom";
 import "./SignUp.css";
 
 const SignUp = () => {
-  // State to store input values
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
-    confirmPassword: "", // New field for confirm password
+    confirmPassword: "",
   });
 
-  // State to handle errors
-  const [error, setError] = useState("");
-
-  const navigate = useNavigate(); // Hook for navigation
+  const navigate = useNavigate();
 
   // Handle input change
   const handleChange = (e) => {
@@ -29,45 +25,42 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Basic form validation with individual alerts
     if (!formData.name) {
       alert("Name is required!");
-      return; // Prevent further submission
+      return;
     }
 
     if (!formData.email) {
       alert("Email is required!");
-      return; // Prevent further submission
+      return;
     }
 
-    // Enhanced email validation regex (more comprehensive)
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailRegex.test(formData.email)) {
       alert("Please enter a valid email!");
-      return; // Prevent further submission
+      return;
     }
 
     if (!formData.password) {
       alert("Password is required!");
-      return; // Prevent further submission
+      return;
     }
 
     if (formData.password.length < 8) {
       alert("Password must be at least 8 characters long!");
-      return; // Prevent further submission
-    }
-
-    if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match!");
-      return; // Prevent further submission
+      return;
     }
 
     if (!formData.confirmPassword) {
       alert("Confirm Password is required!");
-      return; // Prevent further submission
+      return;
     }
 
-    // If all validations pass, send a POST request to your backend
+    if (formData.password !== formData.confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
+
     try {
       const response = await fetch("http://localhost:5000/api/register", {
         method: "POST",
@@ -78,15 +71,14 @@ const SignUp = () => {
       });
 
       if (response.ok) {
-        alert("Registration successful!"); // Show alert on success
+        alert("Registration successful!");
         setFormData({
           name: "",
           email: "",
           password: "",
-          confirmPassword: "", // Reset confirm password field
+          confirmPassword: "",
         });
-        setError("");
-        navigate("/login"); // Navigate to login page after successful registration
+        navigate("/login");
       } else {
         alert("Registration failed! Please try again.");
       }
@@ -95,17 +87,12 @@ const SignUp = () => {
     }
   };
 
-  // Navigate to login page
-  const handleLoginRedirect = () => {
-    navigate("/login"); // Navigates to the login page
-  };
-
   return (
     <div className="register-container">
       <h2>Register</h2>
       <form onSubmit={handleSubmit} className="register-form">
         <div className="form-group">
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name">Name <span style={{ color: "red" }}>*</span></label>
           <input
             type="text"
             id="name"
@@ -113,10 +100,11 @@ const SignUp = () => {
             value={formData.name}
             onChange={handleChange}
             placeholder="Enter your name"
+            required
           />
         </div>
         <div className="form-group">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email">Email <span style={{ color: "red" }}>*</span></label>
           <input
             type="email"
             id="email"
@@ -124,10 +112,11 @@ const SignUp = () => {
             value={formData.email}
             onChange={handleChange}
             placeholder="Enter your email"
+            required
           />
         </div>
         <div className="form-group">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">Password <span style={{ color: "red" }}>*</span></label>
           <input
             type="password"
             id="password"
@@ -135,10 +124,11 @@ const SignUp = () => {
             value={formData.password}
             onChange={handleChange}
             placeholder="Enter your password"
+            required
           />
         </div>
         <div className="form-group">
-          <label htmlFor="confirmPassword">Confirm Password</label>
+          <label htmlFor="confirmPassword">Confirm Password <span style={{ color: "red" }}>*</span></label>
           <input
             type="password"
             id="confirmPassword"
@@ -146,6 +136,7 @@ const SignUp = () => {
             value={formData.confirmPassword}
             onChange={handleChange}
             placeholder="Confirm your password"
+            required
           />
         </div>
         <button type="submit" className="submit-btn">
@@ -155,7 +146,7 @@ const SignUp = () => {
 
       <div className="login-redirect">
         <p id="regp">Already have an account?</p>
-        <button className="login-btn" onClick={handleLoginRedirect}>
+        <button className="login-bn" onClick={() => navigate("/login")}>
           Login
         </button>
       </div>

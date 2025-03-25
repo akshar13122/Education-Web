@@ -31,11 +31,12 @@ label {
 }
 
 input {
-  padding: 0.5rem; /* Further reduce padding */
+  padding: 0.3rem; /* Further reduce padding */
   font-size: 13px; /* Smaller font size */
   border: 1px solid #ddd;
   border-radius: 4px;
   width: 100%;
+  height: 30px;
 }
 
 input:focus {
@@ -67,12 +68,19 @@ button:hover {
 #regp {
   color: black;
   position: relative;
-  left: 48px; /* Adjusted left position */
-  top: 5px;
+  /* left: 48px;  */
+  /* top: 5px; */
+}
+.login-redirect{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.login-btn {
+.login-bn {
   position: relative;
-  left: 120px; /* Adjusted left position */
-  top: 12px; /* Adjusted top position */
+  top: 5px;
+  /* left: 120px; 
+  top: 12px;  */
 }

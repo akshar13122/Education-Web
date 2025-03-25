@@ -30,14 +30,12 @@ const Login = () => {
 
       if (response.ok) {
         const data = await response.json();
-        // alert(data.message);  // Show login success alert
 
         // Set user data to localStorage after successful login
         localStorage.setItem('user', JSON.stringify(data.user));  // Store user object
         console.log(data.user);
         
         navigate(`/CourseMenu/${data.user.id}`);  
-        // navigate('/CourseMenu'); 
       } else {
         const data = await response.json();
         setError(data.error);  // Show error message
@@ -57,24 +55,26 @@ const Login = () => {
       <h2>Login</h2>
       <form onSubmit={handleSubmit} className="form">
         <div className="form-group">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email">Email:</label>
           <input
             type="email"
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            placeholder="Enter your email"
             className="form-input"
           />
         </div>
         <div className="form-group">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">Password:</label>
           <input
             type="password"
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            placeholder="Enter your password"
             className="form-input"
           />
         </div>

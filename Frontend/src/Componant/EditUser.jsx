@@ -46,7 +46,7 @@ const EditUser = () => {
 
       if (response.ok) {
         alert("User updated successfully!");
-        navigate("/admindahsboard"); // Navigate back to Admin Dashboard
+        navigate("/admindashboard"); // Navigate back to Admin Dashboard
       } else {
         alert("Failed to update user.");
       }

@@ -1,0 +1,76 @@
+.user-edit-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #ffffff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  .user-edit-title {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .user-edit-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .user-edit-label {
+    font-size: 16px;
+    color: #444;
+    margin-bottom: 8px;
+  }
+  
+  .user-edit-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .user-edit-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+  }
+  
+  .user-edit-submit {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .user-edit-submit:hover {
+    background-color: #218838;
+  }
+  
+  .user-edit-cancel {
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .user-edit-cancel:hover {
+    background-color: #c82333;
+  }
+  
+  .user-edit-loading,
+  .user-edit-error {
+    text-align: center;
+    font-size: 18px;
+    color: red;
+  }
+  

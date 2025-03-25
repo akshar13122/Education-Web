@@ -15,8 +15,8 @@ header {
   overflow: hidden;
     overflow-y: scroll;
     /* background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(./images/7.jpg); */
-         background: linear-gradient(135deg, #121212d8, #0d7377, #0d7377); 
-    /* background: linear-gradient(135deg, #121212d8, #093d3f, #0d7377); */
+         /* background: linear-gradient(135deg, #121212d8, #0d7377, #0d7377);  */
+    background: linear-gradient(135deg, #121212d8, #093d3f, #0d7377);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -48,11 +48,18 @@ ul li a {
     transition: 0.8s ease;
     font-weight: 1000;
 }
+.active {
+  font-weight: bold;
+  color: red;
+  
+}
+
 
 ul li a:hover {
     background-color: #ffffff;
     color: #000;
 } 
+
 /* .linkk{
   position: relative;
   right: 10px;
@@ -300,14 +307,14 @@ div>img:hover{
     padding: 20px;
     text-align: center;
     width: 100%;
-    max-width: 300px;
+    max-width: 295px;
     transition: transform 0.3s ease;
     margin-bottom: 20px;
 }
 
 .course-card:hover {
     transform: translateY(-5px);
-    border: 3px solid #cccccc;
+   
 }
 
 /* Course Image Styling */
@@ -321,7 +328,7 @@ div>img:hover{
 
 /* Course Card Title */
 .course-card h2 {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     margin: 10px 0;
 }
 
@@ -601,8 +608,8 @@ div>img:hover{
  }
 .searchbar-main{
   position: relative;
-  /* top: 100px;
-  left: 260px; */
+  top: 80px;
+  /* left: 260px; */
 }
 .search-bar {
   position: relative;

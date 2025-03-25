@@ -43,16 +43,34 @@
     background-color: white;
   }
   
-  .contentH2{
+  .contentH2 {
     text-align: justify;
     color: black;
     margin-left: 10px;
-  }
-  .contentH2 a{
+}
+
+.contentH2 a {
     text-decoration: none;
     color: black;
     font-weight: 800;
-  }
+    display: inline-block; /* Needed for animation */
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+/* Hover Effect */
+.contentH2 a:hover {
+  color: #ff4500; /* Deep Orange-Red */
+  animation: bounce 0.5s ease-in-out;
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+    0% { transform: translateY(0); }
+    30% { transform: translateY(-5px); }
+    50% { transform: translateY(0); }
+    70% { transform: translateY(-3px); }
+    100% { transform: translateY(0); }
+}
   .contentP{
     text-align: justify;
     margin-left: 10px;
@@ -61,4 +79,7 @@
     text-decoration: none;
     color: black;
   }
+  .notes-container{
 
+    margin-left: 40px;
+  }

@@ -10,7 +10,7 @@ app.use(express.json());
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",  
-  password: "root",  
+  password: "akshar2409",  
   database: "edu_users",  
 });
 
@@ -175,16 +175,16 @@ app.put("/api/users/:id", (req, res) => {
 
 
 // Delete feedback
-// app.delete('/api/feedback-data/:id', (req, res) => {
-//   const { id } = req.params;
-//   db.query("DELETE FROM feedback_data WHERE id = ?", [id], (err, result) => {
-//     if (err) {
-//       console.error("Error deleting feedback:", err.message);
-//       return res.status(500).json({ error: "Database Error" });
-//     }
-//     res.status(200).json({ message: "Feedback deleted successfully!" });
-//   });
-// });
+app.delete('/api/feedback-data/:id', (req, res) => {
+  const { id } = req.params;
+  db.query("DELETE FROM feedback_data WHERE id = ?", [id], (err, result) => {
+    if (err) {
+      console.error("Error deleting feedback:", err.message);
+      return res.status(500).json({ error: "Database Error" });
+    }
+    res.status(200).json({ message: "Feedback deleted successfully!" });
+  });
+});
 
 
 
@@ -786,6 +786,130 @@ app.post("/api/login", (req, res) => {
     });
   });
 });
+
+
+
+// API Route to Enroll User
+app.post("/api/enroll", (req, res) => {
+  const { name, coursename, enrolled } = req.body;
+
+  if (!name || !coursename || !enrolled) {
+    return res.status(400).json({ error: "All fields are required" });
+  }
+
+  const sql = "INSERT INTO enroll_tbl (name, coursename, enrolled) VALUES (?, ?, ?)";
+  db.query(sql, [name, coursename, enrolled], (err, result) => {
+    if (err) {
+      console.error("Error inserting enrollment:", err);
+      return res.status(500).json({ error: "Database error" });
+    }
+    res.json({ message: "User successfully enrolled!" });
+  });
+});
+
+
+//Fetching Enrolled
+app.get("/api/enrollment/:userid", async (req, res) => {
+  const { userid } = req.params;
+
+  try {
+    const query = `
+      SELECT u.name, c.coursename, e.enrolled
+      FROM enroll_tbl e 
+      JOIN course_tbl c ON e.coursename = c.id 
+      JOIN user_table u ON e.name = u.id 
+      WHERE e.name = ?;
+    `;
+
+    db.query(query, [userid], (err, results) => {
+      if (err) {
+        console.error("Database error:", err);
+        return res.status(500).json({ error: "Database error." });
+      }
+      res.json({ enrollments: results });
+    });
+  } catch (error) {
+    console.error("Server error:", error);
+    res.status(500).json({ error: "Server error." });
+  }
+});
+
+
+// app.delete("/api/enrolled/remove/:id", async (req, res) => {
+//   const { id } = req.params;
+//   const { courseName } = req.query;  // ✅ Get courseName from query parameters
+
+//   if (!courseName) {
+//     return res.status(400).json({ success: false, message: "Course name is required." });
+//   }
+
+//   try {
+//     const [result] = await db.query(
+//       "DELETE FROM enroll_tbl WHERE name = ? AND coursename = ?",
+//       [id, courseName]  // ✅ Pass both ID and courseName
+//     );
+
+//     if (result.affectedRows > 0) {
+//       res.json({ success: true, message: "Enrollment removed successfully." });
+//     } else {
+//       res.status(404).json({ success: false, message: "Enrollment not found." });
+//     }
+//   } catch (error) {
+//     console.error("Error removing enrollment:", error);
+//     res.status(500).json({ success: false, message: "Server error." });
+//   }
+// });
+
+
+
+
+app.post("/admin/login", (req, res) => {
+  const { email, password } = req.body;
+
+  const sql = "SELECT * FROM admin_tbl WHERE email = ?";
+  db.query(sql, [email], (err, result) => {
+    if (err) {
+      return res.status(500).json({ error: "Database query error" });
+    }
+
+    if (result.length === 0) {
+      return res.status(401).json({ error: "Admin not found" });
+    }
+
+    const admin = result[0];
+
+    // Compare provided password with stored password (without hashing)
+    if (password !== admin.password) {
+      return res.status(401).json({ error: "Invalid credentials" });
+    }
+
+    // If login successful, return admin data (excluding password)
+    res.json({ message: "Login successful", admin: { id: admin.id, email: admin.email } });
+  });
+});
+
+
+
+
+app.post('/register-admin', (req, res) => {
+  const { name, email, password } = req.body;
+
+  const sql = 'INSERT INTO admin_tbl (name, email, password) VALUES (?, ?, ?)';
+  db.query(sql, [name, email, password], (err, result) => {
+    if (err) {
+      console.error('Error inserting data:', err);
+      return res.status(500).json({ message: 'Failed to register admin' });
+    }
+    res.status(200).json({ message: 'Admin registered successfully' });
+  });
+});
+
+
+
+
+
+
+
 
 
 // Start the server

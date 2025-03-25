@@ -45,7 +45,7 @@ const UserProfile = () => {
           <div className="button-container">
             <button className="go-back-btn" onClick={() => navigate(-1)}>Go Back</button>
             <button className="edit-btnn" onClick={() => navigate(`/edit-user/${id}`)}>Edit Profile</button>
-            <button className="edit-btnn" >My Course</button>
+            <button className="edit-btnn" onClick={() => navigate(`/mycourse/${id}`)}>My Course</button>
           </div>
         </div>
       ) : (

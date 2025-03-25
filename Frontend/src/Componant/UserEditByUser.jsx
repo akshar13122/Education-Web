@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import './UserEditByUser.css';
 
 const UserEditByUser = () => {
   const { id } = useParams();
@@ -46,30 +47,48 @@ const UserEditByUser = () => {
       }
 
       alert('User updated successfully!');
-      navigate(`/myprofile/${id}`); // Navigate back to UserProfile
+      navigate(`/myprofile/${id}`);
     } catch (err) {
       console.error('Error updating user data:', err);
       alert('Error updating user data.');
     }
   };
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
+  if (loading) return <p className="user-edit-loading">Loading...</p>;
+  if (error) return <p className="user-edit-error">{error}</p>;
 
   return (
-    <div className="edit-user">
-      <h2>Edit Profile</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
+    <div className="user-edit-container">
+      <h2 className="user-edit-title">Edit Profile</h2>
+      <form onSubmit={handleSubmit} className="user-edit-form">
+        <label className="user-edit-label">
           Name:
-          <input type="text" name="name" value={userData.name} onChange={handleChange} required />
+          <input
+            type="text"
+            name="name"
+            value={userData.name}
+            onChange={handleChange}
+            required
+            className="user-edit-input"
+          />
         </label>
-        <label>
+        <label className="user-edit-label">
           Email:
-          <input type="email" name="email" value={userData.email} onChange={handleChange} required />
+          <input
+            type="email"
+            name="email"
+            value={userData.email}
+            onChange={handleChange}
+            required
+            className="user-edit-input"
+          />
         </label>
-        <button type="submit">Update</button>
-        <button type="button" onClick={() => navigate(`/user-profile/${id}`)}>Cancel</button>
+        <div className="user-edit-buttons">
+          <button type="submit" className="user-edit-submit">Update</button>
+          <button type="button" onClick={() => navigate(`/myprofile/${id}`)} className="user-edit-cancel">
+            Cancel
+          </button>
+        </div>
       </form>
     </div>
   );

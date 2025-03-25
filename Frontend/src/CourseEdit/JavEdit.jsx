@@ -39,6 +39,7 @@ const JavaEdit = () => {
       if (response.ok) {
         fetchCourses();
         setCourse({ heading: "", content: "", link: "" });
+        alert("Course added successfully!");
       }
     } catch (error) {
       console.error("Error adding course:", error);
@@ -58,6 +59,7 @@ const JavaEdit = () => {
         fetchCourses();
         setCourse({ heading: "", content: "", link: "" });
         setEditId(null);
+        alert("Course updated successfully!");
       }
     } catch (error) {
       console.error("Error updating course:", error);
@@ -66,22 +68,25 @@ const JavaEdit = () => {
 
   // Delete a course
   const handleDeleteCourse = async (id) => {
-    try {
-      const response = await fetch(`http://localhost:5000/api/java-courses/${id}`, {
-        method: "DELETE",
-      });
-      if (response.ok) {
-        fetchCourses();
+    if (window.confirm("Are you sure you want to delete this course?")) {
+      try {
+        const response = await fetch(`http://localhost:5000/api/java-courses/${id}`, {
+          method: "DELETE",
+        });
+        if (response.ok) {
+          fetchCourses();
+          alert("Course deleted successfully!");
+        }
+      } catch (error) {
+        console.error("Error deleting course:", error);
       }
-    } catch (error) {
-      console.error("Error deleting course:", error);
     }
   };
 
   return (
     <div className="htmlmaincr">
       <div className="secmain">
-        <h2>{editId ? "Edit Course" : "Add New Course"}</h2>
+        <h2>{editId ? "Edit Course" : "Add New Content"}</h2>
         <form onSubmit={editId ? handleUpdateCourse : handleAddCourse}>
           <h3>Heading</h3>
           <input type="text" name="heading" value={course.heading} onChange={handleChange} placeholder="Heading" required />
@@ -93,7 +98,7 @@ const JavaEdit = () => {
         </form>
 
         <div className="margdiv">
-          <h2>Courses List</h2>
+          <h2>Content List</h2>
           <table border="1">
             <thead>
               <tr>

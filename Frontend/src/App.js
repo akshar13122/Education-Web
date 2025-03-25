@@ -41,6 +41,19 @@ import JavaEdit from './CourseEdit/JavEdit';
 import CssEdit from './CourseEdit/CssEdit';
 import UserEditByUser from './Componant/UserEditByUser';
 import { NavLink } from 'react-router-dom';
+import HtmlEnroll from './Enroll/HtmlEnroll'
+import CssEnroll from './Enroll/CsssEnroll';
+import JavaEnroll from './Enroll/JavaEnroll';
+import PythonEnroll from './Enroll/PythonEnroll';
+import ReactJsEnroll from './Enroll/ReactJsEnroll';
+import NodeJsEnroll from './Enroll/NodeJsEnroll';
+import ExpressJsEnroll from './Enroll/ExpressJsEnroll';
+import MongoDbEnroll from './Enroll/MongoDbEnroll';
+import EnrolledUser from './Componant/EnrolledUser';
+import MyCourse from './MyCourse'
+import RegisterAdmin from './Componant/RegisterAdmin';
+
+
 // Protected Route for Admin Dashboard
 const AdminDashboardWithAuth = () => {
   const admin = localStorage.getItem('admin'); // Check if admin is logged in
@@ -122,22 +135,22 @@ const App = () => {
         <nav className="nav-container">
           <div className="right-nav">
             <ul>
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/about">About</Link></li>
-              <li><Link to="/contact">Contact</Link></li>
+            <li><NavLink to="/" className={({ isActive }) => (isActive ? "active" : "")}>Home</NavLink></li>
+            <li><NavLink to="/about" className={({ isActive }) => (isActive ? "active" : "")}>About</NavLink></li>
+            <li><NavLink to="/contact" className={({ isActive }) => (isActive ? "active" : "")}>Contact</NavLink></li>
               {!isAdmin && isLoggedIn && (
-                <li><Link to={`/myprofile/${userId}`}>My Profile</Link></li>
+                <li><NavLink to={`/myprofile/${userId}`} className={({ isActive }) => (isActive ? "active" : "")}>My Profile</NavLink></li>
               )}
             </ul>
           </div>
           <div className="left-nav22">
             <ul>
-              <li><Link className='linkk' to="/register" style={{ visibility: isLoggedIn ? 'hidden' : 'visible' }}>
+              <li><NavLink  to="/register" className={({ isActive }) => (isActive ? "active" : "")}           style={{ visibility: isLoggedIn ? 'hidden' : 'visible' }}>
                 Register
-              </Link></li>
-              <li><Link className='linkk' to="/login" style={{ visibility: isLoggedIn ? 'hidden' : 'visible' }}>
+              </NavLink></li>
+              <li><NavLink     to="/login"    className={({ isActive }) => (isActive ? "active" : "")}    style={{ visibility: isLoggedIn ? 'hidden' : 'visible' }}>
                 Login
-              </Link></li>
+              </NavLink></li>
 
               <li><button
                 id='nnbtn'
@@ -152,7 +165,7 @@ const App = () => {
 
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/admindahsboard" element={<AdminDashboardWithAuth />} />
+          <Route path="/admindashboard" element={<AdminDashboardWithAuth />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/CourseMenu" element={<CourseMenu />} />
@@ -188,7 +201,20 @@ const App = () => {
           <Route path="/pythonedit/5" element={<PythonEdit />} />
           <Route path="/javaedit/4" element={<JavaEdit />} />
           <Route path="/cssedit/3" element={<CssEdit />} />
-          <Route path="/edit-user/:id" element={<UserEditByUser />} />
+          <Route path="/edit-user/:id" element={<UserEditByUser />} />/htmlenroll/1
+          <Route path="/htmlenroll/1/:id" element={< HtmlEnroll/>} />
+          <Route path="/cssenroll/3/:id" element={< CssEnroll/>} />
+          <Route path="/javaenroll/4/:id" element={< JavaEnroll/>} />
+          <Route path="/pythonenroll/5/:id" element={< PythonEnroll/>} />
+          <Route path="/reactjsenroll/6/:id" element={< ReactJsEnroll/>} />
+          <Route path="/nodejsenroll/7/:id" element={<NodeJsEnroll />} />
+          <Route path="/expressenroll/8/:id" element={<ExpressJsEnroll />} />
+          <Route path="/mongodbenroll/9/:id" element={<MongoDbEnroll />} />
+          <Route path="/mycourse/:id" element={< MyCourse/>} />
+          <Route path="/registeruser" element={< RegisterAdmin/>} />
+
+
+          <Route path="/enrollment/:id" element={<EnrolledUser />} />
         </Routes>
         <ToastContainer />
       </header>

@@ -1,0 +1,12 @@
+.mainfdata{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+}
+.feeddata{
+    width: 70%;
+    position: relative;
+    top: 30px;
+}

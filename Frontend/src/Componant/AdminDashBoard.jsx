@@ -8,6 +8,40 @@ const AdminDashBoard = () => {
   const [searchTerm, setSearchTerm] = useState(""); // State to store the search term
   const navigate = useNavigate();  // For navigation
 
+
+  useEffect(() => {
+    // Function to check if 1 hour has passed
+    const checkLoginExpiration = () => {
+      const loginTime = localStorage.getItem("loginTime");
+      if (loginTime) {
+        const currentTime = Date.now();
+        const elapsedTime = (currentTime - parseInt(loginTime, 10)) / 1000; // Convert to seconds
+        if (elapsedTime >= 3600) { // 1 hour (3600 seconds)
+          localStorage.clear(); // Clear all localStorage data
+          window.location.reload(); // Refresh the page
+        }
+      }
+    };
+  
+    // Check if "admin" key exists in localStorage
+    const isAdmin = localStorage.getItem("admin");
+  
+    if (isAdmin) {
+      // Store login time if not already stored
+      if (!localStorage.getItem("loginTime")) {
+        localStorage.setItem("loginTime", Date.now().toString());
+      }
+  
+      // Check expiration every minute (instead of every second for better performance)
+      const interval = setInterval(checkLoginExpiration, 60 * 1000); // Check every 1 minute
+  
+      return () => clearInterval(interval);
+    }
+  }, []);
+  
+  
+  
+  
   // Fetch users on component mount
   useEffect(() => {
           // Check if the page has already been reloaded (stored in localStorage)
@@ -60,6 +94,9 @@ const AdminDashBoard = () => {
   const editUser = (id) => {
     navigate(`/edituser/${id}`); // Navigate to EditUser page with the user ID
   };
+  const enrolled = (id) =>{
+    navigate(`/enrollment/${id}`);
+  }
 
   // Navigate to FeedbackData page
   const navigateToFeedbackData = () => {
@@ -69,29 +106,47 @@ const AdminDashBoard = () => {
   const navigateToEditCourse = () => {
     navigate('/editcourse');
   }
+  const navigateToRegisterAdmin = () =>{
+    navigate('/registeruser');
+
+  }
   // Handle the search input change
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value); // Update the search term state
   };
 
   // Filter users based on search term (search by ID or name)
-  const filteredUsers = users.filter(
-    (user) =>
-      user.name.toLowerCase().includes(searchTerm.toLowerCase()) || // Match by name
-      user.id.toString().includes(searchTerm) // Match by ID
+  const filteredUsers = users.filter((user) =>
+    user.name.toLowerCase().includes(searchTerm.toLowerCase()) // Match only by name
   );
   
 
   return (
     <div className="adminDiv">
       <div className="admin-dashboard">
-        <h1>Admin Dashboard</h1>
-
-        {/* Add Feedback Data Button */}
+        <div className="adminupper">
         <div className="upperbuttons">
           <button onClick={navigateToFeedbackData} className="feedbackbtn">Feedback Data</button>
           <button onClick={navigateToEditCourse} className="feedbackbtn">Edit-Courses</button>
+          <button onClick={navigateToRegisterAdmin} className="feedbackbtn">Register-Admin</button>
         </div>
+        <div><h1>Admin Dashboard</h1></div>
+        <div className="srch">
+            <div className="search-bar3">
+              <input
+                type="text"
+                placeholder="Search by  Name"
+                value={searchTerm}
+                onChange={handleSearchChange}
+                className="search-input"
+                style={{height:"40px"}}
+              />
+            </div>
+            </div>
+        </div>
+
+        {/* Add Feedback Data Button */}
+    
 
         {loading ? (
           <p className="loading">Loading users...</p>
@@ -100,17 +155,7 @@ const AdminDashBoard = () => {
             <h2>Registered Users</h2>
 
             {/* Search Bar */}
-            <div className="srch">
-            <div className="search-bar3">
-              <input
-                type="text"
-                placeholder="Search by ID or Name"
-                value={searchTerm}
-                onChange={handleSearchChange}
-                className="search-input"
-              />
-            </div>
-            </div>
+      
 
             {filteredUsers.length > 0 ? (
               <table>
@@ -119,8 +164,9 @@ const AdminDashBoard = () => {
                     {/* <th>ID</th> */}
                     <th>Name</th>
                     <th>Email</th>
-                    <th>Password</th>
+                    {/* <th>Password</th> */}
                     <th>Edit</th>
+                    <th>Enrollment</th>
                     <th>Delete</th>
                   </tr>
                 </thead>
@@ -130,9 +176,12 @@ const AdminDashBoard = () => {
                       {/* <td>{user.id}</td> */}
                       <td>{user.name}</td>
                       <td>{user.email}</td>
-                      <td>{user.password}</td>
+                      {/* <td>{user.password}</td> */}
                       <td>
                         <button className="editbtn" onClick={() => editUser(user.id)}>Edit</button>
+                      </td>
+                      <td>
+                        <button className="editbtn" onClick={() => enrolled(user.id)}>Details</button>
                       </td>
                       <td>
                         <button className="deletebtn" onClick={() => deleteUser(user.id)}>Delete</button>

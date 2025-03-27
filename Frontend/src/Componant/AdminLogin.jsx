@@ -21,6 +21,7 @@ const AdminLogIn = () => {
 
       if (response.ok) {
         localStorage.setItem("admin", JSON.stringify({ id: data.admin.id, email: data.admin.email }));
+        console.log("Navigating to Admin Dashboard");
         navigate("/admindashboard"); // Redirect to Admin Dashboard
       } else {
         alert(data.error || "Invalid login credentials. Please try again.");
@@ -34,7 +35,7 @@ const AdminLogIn = () => {
   return (
     <div className="form-container">
       <h2>Admin Login</h2>
-      <form onSubmit={handleLogin} className="form">
+      <form onSubmit={(e) => { e.preventDefault(); handleLogin(); }} className="form">
         <div className="form-group">
           <label htmlFor="email">Email:</label>
           <input

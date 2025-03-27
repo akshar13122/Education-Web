@@ -5,8 +5,9 @@ const NodejsEdit = () => {
   const [courses, setCourses] = useState([]);
   const [course, setCourse] = useState({ heading: "", content: "", link: "" });
   const [editId, setEditId] = useState(null);
+     const [errors, setErrors] = useState({ heading: "", content: "", link: "" });
+  
 
-  // Fetch courses from backend
   useEffect(() => {
     fetchCourses();
   }, []);
@@ -21,37 +22,26 @@ const NodejsEdit = () => {
     }
   };
 
-  // Handle form input changes
+  const isValidUrl = (url) => {
+    const urlPattern = /^(https?:\/\/)?([\w\d\-]+\.)+[\w]{2,}(\/.*)?$/;
+    return urlPattern.test(url);
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCourse((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Add a new course
-  const handleAddCourse = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await fetch("http://localhost:5000/api/nodejs-courses", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(course),
-      });
-      if (response.ok) {
-        fetchCourses();
-        setCourse({ heading: "", content: "", link: "" });
-        alert("Course added successfully!");
-      }
-    } catch (error) {
-      console.error("Error adding course:", error);
+    if (!isValidUrl(course.link)) {
+      alert("Please enter a valid URL (e.g., https://example.com)");
+      return;
     }
-  };
 
-  // Update a course
-  const handleUpdateCourse = async (e) => {
-    e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:5000/api/nodejs-courses/${editId}`, {
-        method: "PUT",
+      const response = await fetch(editId ? `http://localhost:5000/api/nodejs-courses/${editId}` : "http://localhost:5000/api/nodejs-courses", {
+        method: editId ? "PUT" : "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(course),
       });
@@ -59,14 +49,13 @@ const NodejsEdit = () => {
         fetchCourses();
         setCourse({ heading: "", content: "", link: "" });
         setEditId(null);
-        alert("Course updated successfully!");
+        alert(editId ? "Course updated successfully!" : "Course added successfully!");
       }
     } catch (error) {
-      console.error("Error updating course:", error);
+      console.error(editId ? "Error updating course:" : "Error adding course:", error);
     }
   };
 
-  // Delete a course
   const handleDeleteCourse = async (id) => {
     try {
       const response = await fetch(`http://localhost:5000/api/nodejs-courses/${id}`, {
@@ -85,13 +74,18 @@ const NodejsEdit = () => {
     <div className="htmlmaincr">
       <div className="secmain">
         <h2>{editId ? "Edit Course" : "Add New Content"}</h2>
-        <form onSubmit={editId ? handleUpdateCourse : handleAddCourse}>
-          <h3>Heading</h3>
+        <form onSubmit={handleSubmit}>
+        <h3>Heading <span style={{ color: "red" }}>*</span></h3>
           <input type="text" name="heading" value={course.heading} onChange={handleChange} placeholder="Heading" required />
-          <h3>Content</h3>
+          {errors.heading && <p style={{ color: "red", fontSize: "14px" }}>{errors.heading}</p>}
+          
+          <h3>Content <span style={{ color: "red" }}>*</span></h3>
           <textarea name="content" value={course.content} onChange={handleChange} placeholder="Content" required />
-          <h3>Link</h3>
-          <input type="text" name="link" value={course.link} onChange={handleChange} placeholder="Link" required />
+          {errors.content && <p style={{ color: "red", fontSize: "14px" }}>{errors.content}</p>}
+          
+          <h3>Link <span style={{ color: "red" }}>*</span></h3>
+          <input type="text" name="link" value={course.link} onChange={handleChange} placeholder="Enter a valid URL (e.g., https://example.com)" required />
+          {errors.link && <p style={{ color: "red", fontSize: "14px" }}>{errors.link}</p>}
           <button type="submit">{editId ? "Update Course" : "Add Course"}</button>
         </form>
 
@@ -100,17 +94,15 @@ const NodejsEdit = () => {
           <table border="1">
             <thead>
               <tr>
-                <th>Id</th>
-                <th>Heading</th>
-                <th>Content</th>
-                <th>Link</th>
-                <th>Actions</th>
+                <th>HEADING</th>
+                <th>CONTENT</th>
+                <th>LINK</th>
+                <th>ACTION</th>
               </tr>
             </thead>
             <tbody>
               {courses.map((course) => (
                 <tr key={course.id}>
-                  <td>{course.id}</td>
                   <td>{course.heading}</td>
                   <td>{course.content}</td>
                   <td>

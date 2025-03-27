@@ -10,7 +10,7 @@ app.use(express.json());
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",  
-  password: "root",  
+  password: "akshar2409",  
   database: "edu_users",  
 });
 
@@ -591,6 +591,7 @@ app.get("/api/java-courses", (req, res) => {
     res.json(result);
   });
 });
+
 
 //  Add a New Java Course
 app.post("/api/java-courses", (req, res) => {

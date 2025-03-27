@@ -43,7 +43,7 @@ const UserProfile = () => {
           
           {/* Buttons */}
           <div className="button-container">
-            <button className="go-back-btn" onClick={() => navigate(-1)}>Go Back</button>
+            <button className="go-back-btn" onClick={() => navigate(`/CourseMenu/${id}`)}>Go Back</button>
             <button className="edit-btnn" onClick={() => navigate(`/edit-user/${id}`)}>Edit Profile</button>
             <button className="edit-btnn" onClick={() => navigate(`/mycourse/${id}`)}>My Course</button>
           </div>

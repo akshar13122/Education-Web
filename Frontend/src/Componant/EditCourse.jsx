@@ -6,44 +6,40 @@ const EditCourse = () => {
   return (
     <div className="coursesDiv">
       <div className="courses-dashboard">
-        <h1>Course Management</h1>
-        <h2>Manage your courses easily</h2>
-
-        {/* Course List */}
-        <div className="courses-list">
-          <div className="course-item">
-            <h3 className="course-title">HTML</h3>
-            <NavLink to="/htmledit/1" className="editbtn">Edit</NavLink>
-          </div>
-          <div className="course-item">
-            <h3 className="course-title">CSS</h3>
-            <NavLink to="/cssedit/3" className="editbtn">Edit</NavLink>
-          </div>
-          <div className="course-item">
-            <h3 className="course-title">Java</h3>
-            <NavLink to="/javaedit/4" className="editbtn">Edit</NavLink>
-          </div>
-          <div className="course-item">
-            <h3 className="course-title">Python</h3>
-            <NavLink to="/pythonedit/5" className="editbtn">Edit</NavLink>
-          </div>
-          <div className="course-item">
-            <h3 className="course-title">React-js</h3>
-            <NavLink to="/reactjsedit/6" className="editbtn">Edit</NavLink>
-          </div>
-          <div className="course-item">
-            <h3 className="course-title">Node-js</h3>
-            <NavLink to="/nodejsedit/7" className="editbtn">Edit</NavLink>
-          </div>
-          <div className="course-item">
-            <h3 className="course-title">Express-js</h3>
-            <button className="editbtn">Edit</button>
-          </div>
-          <div className="course-item">
-            <h3 className="course-title">Mongo-Db</h3>
-            <NavLink to="/mongodbedit/9" className="editbtn">Edit</NavLink>
-          </div>
-        </div>
+        <h2 style={{color:"white"}}>Course Management</h2>
+        {/* Course Table */}
+        <table className="courses-table">
+          <thead>
+            <tr>
+              <th>Course Name</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              { name: "HTML", link: "/htmledit/1" },
+              { name: "CSS", link: "/cssedit/3" },
+              { name: "Java", link: "/javaedit/4" },
+              { name: "Python", link: "/pythonedit/5" },
+              { name: "React-js", link: "/reactjsedit/6" },
+              { name: "Node-js", link: "/nodejsedit/7" },
+              { name: "Express-js", link: "#" },
+              { name: "Mongo-Db", link: "/mongodbedit/9" },
+            ].map((course, index) => (
+              <tr key={index} >
+                <td style={{ borderBottom: "1px solid rgba(255, 255, 255, 0.15)" }}
+                >{course.name}</td>
+                <td>
+                  {course.link !== "#" ? (
+                    <NavLink to={course.link} className="editbtn">Edit</NavLink>
+                  ) : (
+                    <button className="editbtn">Edit</button>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

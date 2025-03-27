@@ -100,17 +100,17 @@ const ReactjsEdit = () => {
           <table border="1">
             <thead>
               <tr>
-                <th>Id</th>
-                <th>Heading</th>
-                <th>Content</th>
-                <th>Link</th>
-                <th>Actions</th>
+                {/* <th>Id</th> */}
+                <th>HeEADING</th>
+                <th>CONTENT</th>
+                <th>LINK</th>
+                <th>ACTION</th>
               </tr>
             </thead>
             <tbody>
               {courses.map((course) => (
                 <tr key={course.id}>
-                  <td>{course.id}</td>
+                  {/* <td>{course.id}</td> */}
                   <td>{course.heading}</td>
                   <td>{course.content}</td>
                   <td>

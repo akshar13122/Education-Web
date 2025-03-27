@@ -5,7 +5,8 @@ const CssEdit = () => {
   const [courses, setCourses] = useState([]);
   const [course, setCourse] = useState({ heading: "", content: "", link: "" });
   const [editId, setEditId] = useState(null);
-
+    const [errors, setErrors] = useState({ heading: "", content: "", link: "" });
+  
   // Fetch courses from backend
   useEffect(() => {
     fetchCourses();
@@ -27,9 +28,20 @@ const CssEdit = () => {
     setCourse((prev) => ({ ...prev, [name]: value }));
   };
 
+  // Validate URL format
+  const isValidURL = (url) => {
+    const urlPattern = /^(https?:\/\/)?([\w.-]+)\.([a-z]{2,6})(\/[\w.-]*)*\/?$/;
+    return urlPattern.test(url);
+  };
+
   // Add a new course
   const handleAddCourse = async (e) => {
     e.preventDefault();
+    if (!isValidURL(course.link)) {
+      alert("Please enter a valid URL (e.g., https://example.com)");
+      return;
+    }
+
     try {
       const response = await fetch("http://localhost:5000/api/css-courses", {
         method: "POST",
@@ -49,6 +61,11 @@ const CssEdit = () => {
   // Update a course
   const handleUpdateCourse = async (e) => {
     e.preventDefault();
+    if (!isValidURL(course.link)) {
+      alert("Please enter a valid URL (e.g., https://example.com)");
+      return;
+    }
+
     try {
       const response = await fetch(`http://localhost:5000/api/css-courses/${editId}`, {
         method: "PUT",
@@ -86,12 +103,17 @@ const CssEdit = () => {
       <div className="secmain">
         <h2>{editId ? "Edit Course" : "Add New Content"}</h2>
         <form onSubmit={editId ? handleUpdateCourse : handleAddCourse}>
-          <h3>Heading</h3>
+        <h3>Heading <span style={{ color: "red" }}>*</span></h3>
           <input type="text" name="heading" value={course.heading} onChange={handleChange} placeholder="Heading" required />
-          <h3>Content</h3>
+          {errors.heading && <p style={{ color: "red", fontSize: "14px" }}>{errors.heading}</p>}
+
+          <h3>Content <span style={{ color: "red" }}>*</span></h3>
           <textarea name="content" value={course.content} onChange={handleChange} placeholder="Content" required />
-          <h3>Link</h3>
-          <input type="text" name="link" value={course.link} onChange={handleChange} placeholder="Link" required />
+          {errors.content && <p style={{ color: "red", fontSize: "14px" }}>{errors.content}</p>}
+
+          <h3>Link <span style={{ color: "red" }}>*</span></h3>
+          <input type="text" name="link" value={course.link} onChange={handleChange} placeholder="Enter a valid URL (e.g., https://example.com)" required />
+          {errors.link && <p style={{ color: "red", fontSize: "14px" }}>{errors.link}</p>}
           <button type="submit">{editId ? "Update Course" : "Add Course"}</button>
         </form>
 
@@ -100,17 +122,15 @@ const CssEdit = () => {
           <table border="1">
             <thead>
               <tr>
-                <th>Id</th>
-                <th>Heading</th>
-                <th>Content</th>
-                <th>Link</th>
-                <th>Actions</th>
+                <th>HEADING</th>
+                <th>CONTENT</th>
+                <th>LINK</th>
+                <th>ACTION</th>
               </tr>
             </thead>
             <tbody>
               {courses.map((course) => (
                 <tr key={course.id}>
-                  <td>{course.id}</td>
                   <td>{course.heading}</td>
                   <td>{course.content}</td>
                   <td>
@@ -119,7 +139,7 @@ const CssEdit = () => {
                     </a>
                   </td>
                   <td>
-                    <button id='edt' onClick={() => { setCourse(course); setEditId(course.id); }}>Edit</button>
+                    <button id="edt" onClick={() => { setCourse(course); setEditId(course.id); }}>Edit</button>
                     <button id="dlt" onClick={() => handleDeleteCourse(course.id)}>Delete</button>
                   </td>
                 </tr>

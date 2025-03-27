@@ -3,31 +3,41 @@ import { useParams } from 'react-router-dom'; // Import useParams
 import './FeedBackForm.css';
 
 const FeedBackForm = () => {
-  var {  id ,staticId } = useParams(); // Retrieve userId and courseId from the URL parameters
+  var { id, staticId } = useParams(); // Retrieve userId and courseId from the URL parameters
 
   // Log userId and courseId when the component is mounted
   useEffect(() => {
-    console.log("User ID:", id);   // Log the userId
-    console.log("Course ID:", staticId); // Log the courseId
-  }, [id, staticId]); // The effect will run whenever userId or courseId changes
+    console.log("User ID:", id);
+    console.log("Course ID:", staticId);
+  }, [id, staticId]);
 
   const [formData, setFormData] = useState({
     rating: 0, // Initially, rating is 0
   });
+
+  const [error, setError] = useState(""); // State for validation message
 
   const handleStarClick = (rating) => {
     setFormData({
       ...formData,
       rating,
     });
+    setError(""); // Clear error message when a rating is selected
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // Validation: Ensure a rating is selected
+    if (formData.rating === 0) {
+      alert("Please select a rating before submitting.")
+      // setError("Please select a rating before submitting.");
+      return;
+    }
+
     // Prepare data to be sent, including userId, courseId, and rating
-    const dataToSubmit = { 
-      rating: formData.rating, 
+    const dataToSubmit = {
+      rating: formData.rating,
       name: id,  // User ID
       coursename: staticId,  // Course ID
     };
@@ -41,16 +51,15 @@ const FeedBackForm = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(dataToSubmit), // Send the data with userId and courseId
+      body: JSON.stringify(dataToSubmit),
     })
       .then((response) => response.json())
       .then((data) => {
         if (data.message) {
           alert(data.message);
-          // Optionally, reset the form after submission
-          setFormData({
-            rating: 0, // Reset rating
-          });
+          // Reset the form after submission
+          setFormData({ rating: 0 });
+          setError(""); // Clear error message
         }
       })
       .catch((err) => {
@@ -69,12 +78,13 @@ const FeedBackForm = () => {
               <span
                 key={index}
                 className={`star ${index < formData.rating ? 'filled' : ''}`}
-                onClick={() => handleStarClick(index + 1)} // Update rating on click
+                onClick={() => handleStarClick(index + 1)}
               >
                 ★
               </span>
             ))}
           </div>
+          {error && <p className="error-message">{error}</p>}
         </div>
 
         <div className="form-group222">

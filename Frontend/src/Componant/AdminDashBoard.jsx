@@ -9,35 +9,35 @@ const AdminDashBoard = () => {
   const navigate = useNavigate();  // For navigation
 
 
-  useEffect(() => {
-    // Function to check if 1 hour has passed
-    const checkLoginExpiration = () => {
-      const loginTime = localStorage.getItem("loginTime");
-      if (loginTime) {
-        const currentTime = Date.now();
-        const elapsedTime = (currentTime - parseInt(loginTime, 10)) / 1000; // Convert to seconds
-        if (elapsedTime >= 3600) { // 1 hour (3600 seconds)
-          localStorage.clear(); // Clear all localStorage data
-          window.location.reload(); // Refresh the page
-        }
-      }
-    };
+  // useEffect(() => {
+    
+  //   const checkLoginExpiration = () => {
+  //     const loginTime = localStorage.getItem("loginTime");
+  //     if (loginTime) {
+  //       const currentTime = Date.now();
+  //       const elapsedTime = (currentTime - parseInt(loginTime, 10)) / 1000; 
+  //       if (elapsedTime >= 3600) { 
+  //         localStorage.clear(); 
+  //         window.location.reload(); 
+  //       }
+  //     }
+  //   };
   
-    // Check if "admin" key exists in localStorage
-    const isAdmin = localStorage.getItem("admin");
+    
+  //   const isAdmin = localStorage.getItem("admin");
   
-    if (isAdmin) {
-      // Store login time if not already stored
-      if (!localStorage.getItem("loginTime")) {
-        localStorage.setItem("loginTime", Date.now().toString());
-      }
+  //   if (isAdmin) {
+      
+  //     if (!localStorage.getItem("loginTime")) {
+  //       localStorage.setItem("loginTime", Date.now().toString());
+  //     }
   
-      // Check expiration every minute (instead of every second for better performance)
-      const interval = setInterval(checkLoginExpiration, 60 * 1000); // Check every 1 minute
+      
+  //     const interval = setInterval(checkLoginExpiration, 60 * 1000); 
   
-      return () => clearInterval(interval);
-    }
-  }, []);
+  //     return () => clearInterval(interval);
+  //   }
+  // }, []);
   
   
   
@@ -65,7 +65,6 @@ const AdminDashBoard = () => {
     const hasReloaded = localStorage.getItem('hasReloaded');
           
     if (!hasReloaded) {
-        // If the page has not been reloaded before, reload it and set the flag in localStorage
         localStorage.setItem('hasReloaded', 'true');
         window.location.reload();
     }
@@ -129,9 +128,9 @@ const AdminDashBoard = () => {
         <div className="upperbuttons">
           <button onClick={navigateToFeedbackData} className="feedbackbtn"
           style={{fontSize:"11px"}}
-          >Feedback Data</button>
-          <button onClick={navigateToEditCourse} className="feedbackbtn" style={{fontSize:"11px"}}>Edit-Courses</button>
-          <button onClick={navigateToRegisterAdmin} className="feedbackbtn" style={{fontSize:"11px"}}>Register-Admin</button>
+          >View Feedback</button>
+          <button onClick={navigateToEditCourse} className="feedbackbtn" style={{fontSize:"11px"}}>Manage Courses</button>
+          <button onClick={navigateToRegisterAdmin} className="feedbackbtn" style={{fontSize:"11px"}}>Add New Admin</button>
         </div>
         <div><h3 style={{color:"white"}}>Registered Users</h3></div>
         <div className="srch">

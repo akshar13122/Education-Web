@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./Htmlv.css"; // Assuming styles are in this CSS file
+import "./Htmlv.css"; 
 import { NavLink, useParams } from "react-router-dom";
 
 export default function Htmlv() {
@@ -36,7 +36,7 @@ export default function Htmlv() {
                   {course.heading}
                 </a>
               </h2>
-              <p className="contentP">{course.content}</p>
+              <p className="contentP">{course.content}</p><br/>
             </div>
           ))
         ) : (

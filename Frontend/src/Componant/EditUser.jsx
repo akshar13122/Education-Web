@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom'; // For navigation and accessing params
+import { useNavigate, useParams } from 'react-router-dom';
 import './EditUser.css';
 
 const EditUser = () => {
-  const { id } = useParams(); // Get user ID from the URL params
+  const { id } = useParams();
   const [user, setUser] = useState({ name: '', email: '', password: '' });
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null); // To handle errors
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  // Fetch the user details on component mount
   useEffect(() => {
     const fetchUser = async () => {
       try {
         const response = await fetch(`http://localhost:5000/api/indiusers/${id}`);
         const data = await response.json();
 
-        // Check if user exists in the response
         if (data.user) {
-          setUser(data.user); // Set the user data to state
+          setUser(data.user);
+          setConfirmPassword(data.user.password); // Pre-fill confirm password
         } else {
           setError("User not found");
         }
@@ -31,11 +31,21 @@ const EditUser = () => {
     };
 
     fetchUser();
-  }, [id]); // Dependency on 'id' ensures it re-runs when 'id' changes
+  }, [id]);
 
-  // Handle form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Password validation
+    if (user.password.length < 8) {
+      alert("Password must be at least 8 characters long.");
+      return;
+    }
+    
+    if (user.password !== confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
 
     try {
       const response = await fetch(`http://localhost:5000/api/users/${id}`, {
@@ -46,7 +56,7 @@ const EditUser = () => {
 
       if (response.ok) {
         alert("User updated successfully!");
-        navigate("/admindashboard"); // Navigate back to Admin Dashboard
+        navigate("/admindashboard");
       } else {
         alert("Failed to update user.");
       }
@@ -56,10 +66,9 @@ const EditUser = () => {
     }
   };
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setUser((prevUser) => ({ ...prevUser, [name]: value })); // Update state with user input
+    setUser((prevUser) => ({ ...prevUser, [name]: value }));
   };
 
   return (
@@ -106,6 +115,18 @@ const EditUser = () => {
                 className="form-input2"
                 value={user.password}
                 onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="confirmPassword" className="form-label">Confirm Password:</label>
+              <input
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                className="form-input2"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
                 required
               />
             </div>

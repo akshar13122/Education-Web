@@ -186,7 +186,9 @@ const App = () => {
           <Route path="/expressjsv/8/:id" element={<Expressjsv />} />
           <Route path="/mongodbv/9/:id" element={<MongoDbv />} />
           <Route path="/register" element={<SignUp />} />
-          <Route path="/login" element={<LogIn />} />
+          {/* <Route path="/login" element={<LogIn />} /> */}
+          <Route path="/login"  element={isLoggedIn ? <Navigate to="/" /> : <LogIn />} />
+          {/* <Route path="/adminlogin"  element={isAdmin ? <Navigate to="/" /> : <AdminLogIn />} /> */}
           <Route path="/adminlogin" element={<AdminLogIn />} />
           <Route path="/FeedBackForm/:staticId/:id" element={<FeedBackForm />} />
           <Route path="/feedbackdata" element={<FeedbackData />} />

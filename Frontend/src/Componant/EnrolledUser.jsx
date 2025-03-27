@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import './EnrolledUser.css'
+
 const EnrolledUser = () => {
   const { id } = useParams(); // Get user ID from URL
   const [enrollments, setEnrollments] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [hoverIndex, setHoverIndex] = useState(null);
 
   useEffect(() => {
     fetchEnrollments();
@@ -56,27 +58,35 @@ const EnrolledUser = () => {
   return (
     <div className="mainfdata">
         <div className="feeddata">
-      <h2>Enrolled Courses</h2>
+      <h2 style={{color:"white"}}>Enrolled Courses</h2>
       {/* <p>User ID: {id}</p> */}
 
       {loading ? (
         <p>Loading enrollments...</p>
       ) : enrollments.length > 0 ? (
-        <table border="1">
+        <table border="1" className="entable" >
           <thead>
             <tr>
-              <th>Name</th> 
-              <th>Course Name</th>
-              <th>Enrollment Status</th>
+              {/* <th>NAME</th>  */}
+              <th>COURSE NAME</th>
+              {/* <th>ENROLLMENT STATUS</th> */}
               {/* <th>Action</th> */}
             </tr>
           </thead>
           <tbody>
             {enrollments.map((enrollment, index) => (
-              <tr key={index}>
-                <td>{enrollment.name}</td>
+                     <tr
+                     key={index}
+                     style={{
+                       backgroundColor: hoverIndex === index ? "rgba(47, 102, 156, 0.74)" : "transparent",
+                       transition: "0.3s",
+                     }}
+                     onMouseEnter={() => setHoverIndex(index)}
+                     onMouseLeave={() => setHoverIndex(null)}
+                   >
+                {/* <td>{enrollment.name}</td> */}
                 <td>{enrollment.coursename}</td>
-                <td>{enrollment.enrolled}</td>
+                {/* <td>{enrollment.enrolled}</td> */}
                 {/* <td>
                   <button
                     style={{

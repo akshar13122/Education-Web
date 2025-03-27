@@ -108,7 +108,7 @@ const MyCourse = () => {
               value={searchTerm}
               onChange={handleSearchChange}
               className="search-bar"
-              style={{height:"45px"}}
+              style={{height:"45px",width:"400px"}}
             />
           </div>
         </div>
@@ -136,7 +136,7 @@ const MyCourse = () => {
                 <NavLink
                   to={`${course.link}/${uid}`}
                   className="btn22"
-                  style={{ marginRight: "3px",borderRadius:"5px" }}
+                  style={{ marginRight: "3px",borderRadius:"5px",fontSize:"13px" }}
                 >
                   {course.name}
                 </NavLink>
@@ -146,6 +146,7 @@ const MyCourse = () => {
                     marginLeft: "3px",
                     backgroundColor: isEnrolled ? "green" : "blue",
                     cursor: isEnrolled ? "not-allowed" : "pointer",
+                    fontSize:"13px"
                   }}
                   onClick={() => handleEnrollClick(course.name)}
                   disabled={isEnrolled}

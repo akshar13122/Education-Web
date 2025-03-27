@@ -5,30 +5,26 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  top: 15px;
-  padding: 15px;
-  animation: fadeIn 0.8s ease-in-out;
+  padding: 25px;
+  bottom: 30px;
 }
 
 .courses-dashboard {
-  font-family: Arial, sans-serif;
-  margin: 15px;
-  padding: 18px;
-  background: rgba(220, 220, 255, 0.3); /* Soft pastel blue */
-  backdrop-filter: blur(8px);
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 45%;
-  border: 2px solid rgba(200, 200, 255, 0.5);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+  background-color: rgba(44, 62, 80, 0.9);
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+  width: 98%;
+  max-width: 1800px;
 }
 
-.courses-dashboard:hover {
-  transform: scale(1.01);
-  box-shadow: 0px 8px 18px rgba(0, 0, 0, 0.12);
+.courses-dashboard h1 {
+  color: #ecf0f1;
+  font-size: 2.4rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .courses-list {
@@ -42,16 +38,19 @@
   justify-content: space-between;
   align-items: center;
   padding: 12px;
-  background: rgba(255, 240, 250, 0.4); /* Soft pastel purple */
+  /* background: rgba(255, 240, 250, 0.4);  */
   border-radius: 8px;
   box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.04);
   transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
 }
 
-.course-item:hover {
-  transform: translateY(-4px);
-  background: rgba(100, 200, 255, 0.3); /* Light sky blue */
-  box-shadow: 0px 5px 12px rgba(100, 200, 255, 0.2);
+.courses-dashboard table tr {
+  background-color: rgba(44, 62, 80, 0.9);
+}
+
+.courses-dashboard table tr:hover {
+  background-color: rgba(35, 93, 116, 0.847);
+  transition: background 0.3s ease-in-out;
 }
 
 .course-title {
@@ -69,6 +68,7 @@
   cursor: pointer;
   font-size: 0.9rem;
   transition: transform 0.2s ease, background 0.3s ease;
+  text-decoration: none;
 }
 
 .editbtn:hover {

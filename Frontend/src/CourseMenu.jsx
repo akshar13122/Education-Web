@@ -136,7 +136,7 @@ const CourseMenu = () => {
         <div className="search-profile-container">
           <div className="searchbar-main">
             <input
-            style={{height:"40px"}}
+            style={{height:"45px",width:"400px"}}
               type="text"
               placeholder="Search courses..."
               value={searchTerm}
@@ -169,7 +169,7 @@ const CourseMenu = () => {
                 <NavLink
                   to={isEnrolled ? `${course.link}/${uid}` : "#"}
                   className="btn22"
-                  style={{ marginRight: "3px" , borderRadius:"5px" ,fontWeight:"550"}}
+                  style={{ marginRight: "3px" , borderRadius:"5px" ,fontWeight:"550",fontSize:"13px"}}
                   onClick={(event) => {
                     if (!isEnrolled) {
                       event.preventDefault();
@@ -185,6 +185,7 @@ const CourseMenu = () => {
                     marginLeft: "3px",
                     cursor: isEnrolled ? "default" : "pointer",
                     backgroundColor: isEnrolled ? "green" : "transparent",
+                    fontSize:"13px"
                   }}
                   onClick={() => handleEnrollClick(course)}
                 >

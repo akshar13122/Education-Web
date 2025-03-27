@@ -118,7 +118,7 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
-  background: #ffffff6b;
+  background-color: rgba(3, 96, 182, 0.351); 
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -149,7 +149,7 @@ td {
 
 /* Table row hover effect */
 tbody tr:hover {
-  background-color: #f2f2f2;
+  background-color: #ffffff32;
 }
 
 /* Action buttons */

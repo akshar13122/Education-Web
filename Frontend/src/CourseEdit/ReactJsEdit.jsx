@@ -6,7 +6,6 @@ const ReactjsEdit = () => {
   const [course, setCourse] = useState({ heading: "", content: "", link: "" });
   const [editId, setEditId] = useState(null);
 
-  // Fetch courses from backend
   useEffect(() => {
     fetchCourses();
   }, []);
@@ -21,15 +20,22 @@ const ReactjsEdit = () => {
     }
   };
 
-  // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCourse((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Add a new course
+  const validateLink = (url) => {
+    const regex = /^(https?:\/\/)?(www\.)?([a-zA-Z0-9_-]+)\.([a-zA-Z]{2,})(\/[^\s]*)?$/;
+    return regex.test(url);
+  };
+
   const handleAddCourse = async (e) => {
     e.preventDefault();
+    if (!validateLink(course.link)) {
+      alert("Please enter a valid link. Example: https://example.com");
+      return;
+    }
     try {
       const response = await fetch("http://localhost:5000/api/reactjs-courses", {
         method: "POST",
@@ -46,9 +52,12 @@ const ReactjsEdit = () => {
     }
   };
 
-  // Update a course
   const handleUpdateCourse = async (e) => {
     e.preventDefault();
+    if (!validateLink(course.link)) {
+      alert("Please enter a valid URL (e.g., https://example.com)");
+            return;
+    }
     try {
       const response = await fetch(`http://localhost:5000/api/reactjs-courses/${editId}`, {
         method: "PUT",
@@ -66,7 +75,6 @@ const ReactjsEdit = () => {
     }
   };
 
-  // Delete a course
   const handleDeleteCourse = async (id) => {
     try {
       const response = await fetch(`http://localhost:5000/api/reactjs-courses/${id}`, {
@@ -86,12 +94,12 @@ const ReactjsEdit = () => {
       <div className="secmain">
         <h2>{editId ? "Edit Course" : "Add New Content"}</h2>
         <form onSubmit={editId ? handleUpdateCourse : handleAddCourse}>
-          <h3>Heading</h3>
+          <h3>Heading <span style={{ color: "red" }}>*</span></h3>
           <input type="text" name="heading" value={course.heading} onChange={handleChange} placeholder="Heading" required />
-          <h3>Content</h3>
+          <h3>Content <span style={{ color: "red" }}>*</span></h3>
           <textarea name="content" value={course.content} onChange={handleChange} placeholder="Content" required />
-          <h3>Link</h3>
-          <input type="text" name="link" value={course.link} onChange={handleChange} placeholder="Link" required />
+          <h3>Link <span style={{ color: "red" }}>*</span></h3>
+          <input type="text" name="link" value={course.link} onChange={handleChange} placeholder="Example: https://example.com" required />
           <button type="submit">{editId ? "Update Course" : "Add Course"}</button>
         </form>
 
@@ -100,8 +108,7 @@ const ReactjsEdit = () => {
           <table border="1">
             <thead>
               <tr>
-                {/* <th>Id</th> */}
-                <th>HeEADING</th>
+                <th>HEADING</th>
                 <th>CONTENT</th>
                 <th>LINK</th>
                 <th>ACTION</th>
@@ -110,7 +117,6 @@ const ReactjsEdit = () => {
             <tbody>
               {courses.map((course) => (
                 <tr key={course.id}>
-                  {/* <td>{course.id}</td> */}
                   <td>{course.heading}</td>
                   <td>{course.content}</td>
                   <td>

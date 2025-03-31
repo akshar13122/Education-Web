@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import img8 from "./images/8.jpg";
 import img9 from "./images/9.jpg";
 import htmlimg from "./images/htmlimg.jpg";
@@ -13,9 +13,13 @@ const CourseMenu = () => {
   const [enrollments, setEnrollments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
 
   const user = JSON.parse(localStorage.getItem("user"));
   const uid = user ? user.id : null;
+
+  console.log("User ID:", uid);
+
   useEffect(() => {
     // Function to check if 30 minutes have passed
     const checkLoginExpiration = () => {
@@ -42,6 +46,9 @@ const CourseMenu = () => {
       return () => clearInterval(interval);
     }
   }, [uid]);
+  
+  
+
   useEffect(() => {
     const fetchEnrollments = async () => {
       // if (!uid) return;
@@ -71,28 +78,28 @@ const CourseMenu = () => {
   }, [uid]);
 
   const courses = [
-    { name: "HTML", id: 1, link: "/Htmlv/1" },
-    { name: "CSS", id: 3, link: "/Cssv/3" },
-    { name: "Java", id: 4, link: "/Javav/4" },
-    { name: "Python", id: 5, link: "/Pythonv/5" },
-    { name: "ReactJs", id: 6, link: "/reactjsv/6" },
-    { name: "NodeJs", id: 7, link: "/nodejsv/7" },
-    { name: "Express", id: 8, link: "/expressjsv/8" },
-    { name: "Mongo", id: 9, link: "/mongodbv/9" },
+    { name: "HTML", link: "/Htmlv/1" },
+    { name: "CSS", link: "/Cssv/3" },
+    { name: "Java", link: "/Javav/4" },
+    { name: "Python", link: "/Pythonv/5" },
+    { name: "ReactJs", link: "/reactjsv/6" },
+    { name: "NodeJs", link: "/nodejsv/7" },
+    { name: "Express", link: "/expressjsv/8" },
+    { name: "Mongo", link: "/mongodbv/9" },
   ];
 
   const getImageForCourse = (courseName) => {
-    const images = {
-      HTML: htmlimg,
-      CSS: cssimg,
-      Java: img9,
-      Python: img8,
-      ReactJs: react2,
-      NodeJs: nodejs2,
-      Express: ex,
-      Mongo: mongo3,
-    };
-    return images[courseName] || "";
+    switch (courseName) {
+      case "HTML": return htmlimg;
+      case "CSS": return cssimg;
+      case "Java": return img9;
+      case "Python": return img8;
+      case "ReactJs": return react2;
+      case "NodeJs": return nodejs2;
+      case "Express": return ex;
+      case "Mongo": return mongo3;
+      default: return "";
+    }
   };
 
   const handleSearchChange = (event) => {
@@ -103,77 +110,66 @@ const CourseMenu = () => {
     course.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const handleEnrollClick = async (course) => {
+  const handleEnrollClick = (course) => {
     if (!uid) {
       alert("Please log in first to enroll.");
       return;
     }
 
-    const isAlreadyEnrolled = enrollments.some((enrollment) =>
-      typeof enrollment.coursename === "string" &&
-      enrollment.coursename.replace(/[-\s]/g, "").toLowerCase() === course.name.replace(/[-\s]/g, "").toLowerCase() &&
-      enrollment.enrolled?.trim().toUpperCase() === "YES"
-    );
+    const enrollPath = `/${course.name.toLowerCase().replace(/\s+/g, "")}enroll/${course.link.split("/").pop()}/${uid}`;
+    const isEnrolled = enrollments.some((enrollment) => {
+      const storedCourseName = enrollment.coursename.replace(/[-\s]/g, "").toLowerCase();
+      const currentCourseName = course.name.replace(/[-\s]/g, "").toLowerCase();
+      return storedCourseName === currentCourseName && enrollment.enrolled.trim().toUpperCase() === "YES";
+    });
 
-    if (isAlreadyEnrolled) {
+    if (isEnrolled) {
       alert("You are already enrolled.");
-      return;
-    }
-
-    const enrollmentData = { name: uid, coursename: course.id, enrolled: "YES" };
-
-    try {
-      const response = await fetch("http://localhost:5000/api/enroll", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(enrollmentData),
-      });
-      const result = await response.json();
-      if (response.ok) {
-        alert(result.message);
-        setEnrollments((prev) => [...prev, enrollmentData]);
-      } else {
-        alert(result.error);
-      }
-    } catch (error) {
-      console.error("Error enrolling user:", error);
-      alert("Error enrolling user. Please try again.");
+    } else {
+      navigate(enrollPath);
     }
   };
 
   return (
     <div className="course-menu">
       <div className="center">
-        <input
-          type="text"
-          placeholder="Search courses..."
-          value={searchTerm}
-          onChange={handleSearchChange}
-          className="search-bar"
-          style={{ height: "45px", width: "400px" }}
-        />
+        <div className="search-profile-container">
+          <div className="searchbar-main">
+            <input
+            style={{height:"45px",width:"400px"}}
+              type="text"
+              placeholder="Search courses..."
+              value={searchTerm}
+              onChange={handleSearchChange}
+              className="search-bar"
+            />
+          </div>
+        </div>
       </div>
 
       <div className="course-grid">
         {loading ? (
           <p>Loading courses...</p>
         ) : filteredCourses.length > 0 ? (
-          filteredCourses.map((course) => {
-            const isEnrolled = enrollments.some(
-              (enrollment) =>
-                typeof enrollment.coursename === "string" &&
-                enrollment.coursename.replace(/[-\s]/g, "").toLowerCase() === course.name.replace(/[-\s]/g, "").toLowerCase() &&
-                enrollment.enrolled?.trim().toUpperCase() === "YES"
-            );
+          filteredCourses.map((course, index) => {
+            const isEnrolled = enrollments.some((enrollment) => {
+              const storedCourseName = enrollment.coursename.replace(/[-\s]/g, "").toLowerCase();
+              const currentCourseName = course.name.replace(/[-\s]/g, "").toLowerCase();
+              return storedCourseName === currentCourseName && enrollment.enrolled.trim().toUpperCase() === "YES";
+            });
 
             return (
-              <div key={course.id} className="course-card">
-                <img src={getImageForCourse(course.name)} alt={`${course.name} Course`} className="course-image" />
+              <div key={index} className="course-card">
+                <img
+                  src={getImageForCourse(course.name)}
+                  alt={`${course.name} Course`}
+                  className="course-image"
+                />
                 <h2>{course.name}</h2>
                 <NavLink
                   to={isEnrolled ? `${course.link}/${uid}` : "#"}
                   className="btn22"
-                  style={{ marginRight: "3px",borderRadius:"5px",fontSize:"13px" }}
+                  style={{ marginRight: "3px" , borderRadius:"5px" ,fontWeight:"550",fontSize:"13px"}}
                   onClick={(event) => {
                     if (!isEnrolled) {
                       event.preventDefault();
@@ -185,9 +181,13 @@ const CourseMenu = () => {
                 </NavLink>
                 <button
                   className="btn22"
-                  style={{ backgroundColor: isEnrolled ? "green" : "transparent" ,fontSize:"13px"}}
+                  style={{
+                    marginLeft: "3px",
+                    cursor: isEnrolled ? "default" : "pointer",
+                    backgroundColor: isEnrolled ? "green" : "transparent",
+                    fontSize:"13px"
+                  }}
                   onClick={() => handleEnrollClick(course)}
-                  disabled={isEnrolled}
                 >
                   {isEnrolled ? "Enrolled" : "Enroll"}
                 </button>

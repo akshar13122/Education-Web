@@ -135,14 +135,15 @@ const App = () => {
         <nav className="nav-container">
           <div className="right-nav">
             <ul>
-            <li><NavLink to="/" className={({ isActive }) => (isActive ? "active" : "")} style={{ visibility: isLoggedIn ? 'hidden' : 'visible' }}>Home</NavLink></li>
-            <li><NavLink to="/about" className={({ isActive }) => (isActive ? "active" : "")} style={{ visibility: isLoggedIn ? 'hidden' : 'visible' }}>About</NavLink></li>
-            <li><NavLink to="/contact" className={({ isActive }) => (isActive ? "active" : "")} style={{ visibility: isLoggedIn ? 'hidden' : 'visible' }}>Contact</NavLink></li>
+            <li><NavLink to={isAdmin ? "/admindashboard" : isLoggedIn ? `/CourseMenu/${userId}` : "/"}
+            className={({ isActive }) => (isActive ? "active" : "")} >Home</NavLink></li>
+            <li><NavLink to="/about" className={({ isActive }) => (isActive ? "active" : "")} >About</NavLink></li>
+            <li><NavLink to="/contact" className={({ isActive }) => (isActive ? "active" : "")} >Contact</NavLink></li>
               {!isAdmin && isLoggedIn && (
                 <li><NavLink to={`/myprofile/${userId}`} className={({ isActive }) => (isActive ? "active" : "")} 
                 style={{
-                  position: isLoggedIn ? 'relative' : 'static',
-                  right: isLoggedIn ? '400px' : 'auto',
+                  // position: isLoggedIn ? 'relative' : 'static',
+                  // right: isLoggedIn ? '400px' : 'auto',
                   // float: 'left' 
                 }}
                 
@@ -221,6 +222,7 @@ const App = () => {
           <Route path="/mongodbenroll/9/:id" element={<MongoDbEnroll />} />
           <Route path="/mycourse/:id" element={< MyCourse/>} />
           <Route path="/registeruser" element={< RegisterAdmin/>} />
+          
 
 
           <Route path="/enrollment/:id" element={<EnrolledUser />} />

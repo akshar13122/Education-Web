@@ -43,7 +43,7 @@ const MongodbEdit = () => {
   const handleAddCourse = async (e) => {
     e.preventDefault();
     if (!isValidURL(course.link)) {
-      alert("Please enter a valid URL.");
+      alert("Please enter a valid URL (e.g., https://example.com)");
       return;
     }
 

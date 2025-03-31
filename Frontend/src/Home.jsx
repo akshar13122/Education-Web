@@ -54,7 +54,9 @@ function Home() {
                     <button 
                         onClick={handleCourseMenuClick} 
                         className="btn" 
-                        style={{ backgroundColor: 'transparent', borderRadius: '0' }}>
+                        style={{ backgroundColor: 'transparent',borderRadius:"0.1px" }}
+                        // style={{backgroundColor:'transparent'}}
+                        >
                         COURSE MENU
                     </button>
 
@@ -65,7 +67,8 @@ function Home() {
                         <NavLink 
                             onClick={handleAdminLoginClick} 
                             className="btn"
-                            // style={{ backgroundColor: 'transparent', borderRadius: '0' }}
+                            // style={{ backgroundColor: 'transparent', borderRadius: '10px' }}
+                            
                             >
                             ADMIN LOGIN
                         </NavLink>

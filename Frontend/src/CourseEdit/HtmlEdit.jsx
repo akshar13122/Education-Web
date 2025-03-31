@@ -34,33 +34,32 @@ const HtmlEdit = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Check for empty fields
+  
     let newErrors = {};
     Object.keys(course).forEach((key) => {
-      if (!course[key].trim()) {
+      if (!String(course[key] || "").trim()) {
         newErrors[key] = "This field is required";
       }
     });
-
+  
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
-
+  
     // Validate URL
     if (!isValidURL(course.link)) {
-      setErrors((prev) => ({ ...prev, link: "Please enter a valid URL (e.g., https://example.com)" }));
+      alert("Please enter a valid URL (e.g., https://example.com)");
       return;
     }
-
+  
     try {
       const response = await fetch(`http://localhost:5000/api/html-courses${editId ? `/${editId}` : ""}`, {
         method: editId ? "PUT" : "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(course),
       });
-
+  
       if (response.ok) {
         alert(`Course ${editId ? "updated" : "added"} successfully!`);
         fetchCourses();
@@ -72,6 +71,8 @@ const HtmlEdit = () => {
       console.error(`Error ${editId ? "updating" : "adding"} course:`, error);
     }
   };
+  
+  
 
   const handleDeleteCourse = async (id) => {
     try {
